@@ -7,7 +7,8 @@ df = pd.read_csv('anime.csv')
 dataset = df.copy()
 
 # Generate original dataset columns
-dataset.columns
+print(dataset.columns)
+print(dataset.dtypes)
 
 # [17562 rows x 35 columns]
 # Index([u'MAL_ID', u'Name', u'Score', u'Genres', u'English name',
@@ -18,6 +19,9 @@ dataset.columns
 #        u'Score-10', u'Score-9', u'Score-8', u'Score-7', u'Score-6', u'Score-5',
 #        u'Score-4', u'Score-3', u'Score-2', u'Score-1'],
 #       dtype='object')
+
+print(pd.to_numeric(dataset[dataset['Score'] != 'Unknown']['Score']).to_frame().describe())
+dataproperties = dataset.describe()
 
 # Deal with Genres many to many relations
 data1 = dataset[['MAL_ID', 'Genres']]
