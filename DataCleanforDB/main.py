@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import re
 
 print(os.getcwd())
 os.chdir("/Users/lawrence/Documents/GitHub/Web_Development/CIS5500Project_Datasets")
@@ -9,6 +10,27 @@ dataset = df.copy()
 # Generate original dataset columns
 print(dataset.columns)
 print(dataset.dtypes)
+
+# Deal with Duration attribute
+def split_it(time):
+    return re.findall('^(\d) hr.', time)
+
+dataset['Duration_hour'] = dataset['Duration'].apply(split_it)
+dataset['Duration_hour'] = dataset['Duration_hour'].astype('str')
+print(dataset['Duration_hour'])
+dataset['Duration_hour'] = dataset['Duration_hour'].str.replace('[', '', regex=True)
+dataset['Duration_hour'] = dataset['Duration_hour'].str.replace(']', '', regex=True)
+dataset['Duration_hour'] = dataset['Duration_hour'].str.replace("'", '', regex=True)
+
+def split_it2(time):
+    return re.findall('(\d*) min', time)
+
+dataset['Duration_min'] = dataset['Duration'].apply(split_it2)
+dataset['Duration_min'] = dataset['Duration_min'].astype('str')
+dataset['Duration_min'] = dataset['Duration_min'].str.replace('[', '', regex=True)
+dataset['Duration_min'] = dataset['Duration_min'].str.replace(']', '', regex=True)
+dataset['Duration_min'] = dataset['Duration_min'].str.replace("'", '', regex=True)
+
 
 # [17562 rows x 35 columns]
 # Index([u'MAL_ID', u'Name', u'Score', u'Genres', u'English name',
@@ -47,3 +69,7 @@ data4 = dataset[['MAL_ID', 'Studios']]
 data_studios = data4.set_index(['MAL_ID']).apply(lambda x: x.str.split(', ').explode()).reset_index()
 os.chdir("/Users/lawrence/Documents/GitHub/Web_Development/CIS550Project/DataCleanforDB")
 data_studios.to_csv('Anime_Studios.csv')
+
+# Output the Anime file
+os.chdir("/Users/lawrence/Documents/GitHub/Web_Development/CIS550Project/DataCleanforDB")
+dataset.to_csv('Anime.csv')
