@@ -11,6 +11,16 @@ dataset = df.copy()
 print(dataset.columns)
 print(dataset.dtypes)
 
+# Check with missing values
+dataset.isnull().sum()
+df2 = pd.read_csv('anime_with_synopsis.csv')
+df2.isnull().sum()
+df3 = pd.read_csv('animelist.csv')
+df3.isnull().sum()
+df4 = pd.read_csv('rating_complete.csv')
+df4.isnull().sum()
+
+
 # Deal with Duration attribute
 def split_it(time):
     return re.findall('^(\d) hr.', time)
@@ -30,7 +40,6 @@ dataset['Duration_min'] = dataset['Duration_min'].astype('str')
 dataset['Duration_min'] = dataset['Duration_min'].str.replace('[', '', regex=True)
 dataset['Duration_min'] = dataset['Duration_min'].str.replace(']', '', regex=True)
 dataset['Duration_min'] = dataset['Duration_min'].str.replace("'", '', regex=True)
-
 
 # [17562 rows x 35 columns]
 # Index([u'MAL_ID', u'Name', u'Score', u'Genres', u'English name',
