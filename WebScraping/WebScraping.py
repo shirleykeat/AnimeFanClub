@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jun  9 17:14:30 2022
+
+@author: lawrence
+"""
+
 #!conda install selenium -y
 import pandas as pd
 from selenium import webdriver
