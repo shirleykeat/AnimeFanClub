@@ -1,0 +1,9 @@
+{
+    "rds_host": "database-3.cpmyd28i0j3p.us-east-2.rds.amazonaws.com",
+    "rds_port": "3306",
+    "rds_user": "admin",
+    "rds_password": "YeZiJi8930!",
+    "rds_db": "ANIMATION",
+    "server_host": "127.0.0.1",
+    "server_port": "8080"
+}
