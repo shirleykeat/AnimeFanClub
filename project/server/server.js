@@ -16,6 +16,7 @@ app.get('/user/watched', routes.user_watched)
 app.get('/user/watching', routes.user_watching)
 app.get('/user/rated', routes.user_rated)
 app.get('/user/profile', routes.user_profile)
+app.get('/anime', routes.anime_page)
 
 
 app.listen(config.server_port, () => {

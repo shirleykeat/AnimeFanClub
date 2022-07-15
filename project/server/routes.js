@@ -74,9 +74,36 @@ async function user_rated(req, res) {
     })
 }
 
+async function anime_page(req, res) {
+    const animeid = req.query.Anime_ID ? req.query.Anime_ID : 1;
+    AnimeQuery = `SELECT * 
+    FROM anime
+    WHERE Anime_ID = ${animeid}`;
+
+    if (animeid === null) {
+        res.json({results: []})
+    } else {
+        connection.query(AnimeQuery, 
+        function (error, results, fields) {
+            
+            if (error) {
+                console.log (error)
+                res.json({error: error})
+            } else if (results) {
+                res.json({results: results})
+            }
+        })
+    }
+
+
+}
+
+
+
 module.exports = {
     user_profile,
     user_watched,
     user_watching,
-    user_rated
+    user_rated,
+    anime_page
 }
