@@ -143,34 +143,36 @@ async function search(req, res) {
     const studio = req.query.id ? req.query.id : '';
     const keyword = req.query.id ? req.query.id : '';
     SearchQuery =  `WITH genre AS (
-                        SELECT Anime_ID, Genres
-                        FROM Anime_Genres
-                        WHERE Genres LIKE '%${genre}%'
-                        )
-                    WITH licensor AS (
-                        SELECT Anime_ID, Licensors
-                        FROM Anime_Licensors
-                        WHERE Licensors LIKE '%${licensor}%'
-                        )
-                    WITH producer AS (
-                        SELECT Anime_ID, Producers
-                        FROM Anime_Producers
-                        WHERE Producers LIKE '%${producer}%'
-                        )
-                    WITH studio AS (
-                        SELECT Anime_ID, Studios
-                        FROM Anime_Studioss
-                        WHERE Studios LIKE '%${studio}%'
-                        )
-                    SELECT Name, Score, Type, Rating, Ranked, Popularity, Favorites, Synopsis
-                    FROM anime
-                    INNER JOIN genre ON anime.Anime_ID = genre.Anime_ID
-                    INNER JOIN licensor ON anime.Anime_ID = licensor.Anime_ID
-                    INNER JOIN producer ON anime.Anime_ID = producer.Anime_ID
-                    INNER JOIN studio ON anime.Anime_ID = studio.Anime_ID
-                    INNER JOIN anime_with_synopsis ON anime.Anime_ID = anime_with_synopsis.Anime_ID
-                    WHERE Name LIKE '%${keyword}%' OR Synopsis LIKE '%${keyword}%'
-                    `;
+        SELECT Anime_ID, Genres
+        FROM anime_genres
+        WHERE Genres LIKE '%${genre}%'
+        ),
+    licensor AS (
+        SELECT Anime_ID, Licensors
+        FROM anime_licensors
+        WHERE Licensors LIKE '%${licensor}%'
+        ),
+    producer AS (
+        SELECT Anime_ID, Producers
+        FROM anime_producers
+        WHERE Producers LIKE '%${producer}%'
+        ),
+    studio AS (
+        SELECT Anime_ID, Studios
+        FROM anime_studios
+        WHERE Studios LIKE '%${studio}%'
+        )
+    SELECT anime.Name AS name, anime.Score AS score, anime.Type AS type, anime.Rating AS rating,
+           anime.Ranked AS ranked, anime.Popularity AS popularity, anime.Favorites AS favorites,
+           anime_with_synopsis.Synopsis AS synopsis
+    FROM anime
+    INNER JOIN genre ON anime.Anime_ID = genre.Anime_ID
+    INNER JOIN licensor ON anime.Anime_ID = licensor.Anime_ID
+    INNER JOIN producer ON anime.Anime_ID = producer.Anime_ID
+    INNER JOIN studio ON anime.Anime_ID = studio.Anime_ID
+    INNER JOIN anime_with_synopsis ON anime.Anime_ID = anime_with_synopsis.Anime_ID
+    WHERE anime.Name LIKE '%${keyword}%' OR Synopsis LIKE '%${keyword}%';
+    `;
     if (animeid === null) {
         res.json({ results: [] })
     } else {
