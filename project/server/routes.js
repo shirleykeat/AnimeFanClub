@@ -76,12 +76,12 @@ async function user_rated(req, res) {
 
 async function anime(req, res) {
     const animeid = req.query.id ? req.query.id : 1;
-    AnimeQuery = `SELECT Anime_ID, Name, Score, English_name, Japanese_name, Type, Episodes, Aired, 
-    Premiered, Source, Rating, Ranked, Popularity, Members, Favorites, Watching, Completed, On_Hold,
-    Dropped, Plan_to_Watch, Score_10, Score_9, Score_8, Score_7, Score_6, Score_5, Score_4, Score_3,
-    Score_2, Score_1, Duration 
-    FROM anime LEFT JOIN 
-    WHERE Anime_ID = ${animeid}`;
+    AnimeQuery = `SELECT a.Anime_ID, a.Name, a.Score, a.English_name, a.Japanese_name, a.Type, a.Episodes, a.Aired, 
+    a.Premiered, a.Source, a.Rating, a.Ranked, a.Popularity, a.Members, a.Favorites, a.Watching, a.Completed, a.On_Hold,
+    a.Dropped, a.Plan_to_Watch, a.Score_10, a.Score_9, a.Score_8, a.Score_7, a.Score_6, a.Score_5, a.Score_4, a.Score_3,
+    a.Score_2, a.Score_1, a.Duration, au.url
+    FROM anime a LEFT JOIN anime_url au ON a.Anime_ID = au.Anime_ID
+    WHERE a.Anime_ID = ${animeid}`;
 
     if (animeid === null) {
         res.json({ results: [] })

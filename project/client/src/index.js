@@ -24,7 +24,7 @@ ReactDOM.render(
 								<HomePage />
 							)}/>
 		<Route exact
-							path="/"
+							path="/anime"
 							render={() => (
 								<Anime />
 							)}/>

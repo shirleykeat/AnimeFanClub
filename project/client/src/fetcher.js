@@ -1,5 +1,13 @@
 import config from './config.json'
 
+const getAnime = async (id) => {
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/anime?id=${id}`, {
+        method: 'GET',
+    })
+    return res.json()
+}
+
+
 const getAllMatches = async (page, pagesize, league) => {
     var res = await fetch(`http://${config.server_host}:${config.server_port}/matches/${league}?page=${page}&pagesize=${pagesize}`, {
         method: 'GET',
@@ -47,14 +55,8 @@ const getPlayerSearch = async (name, nationality, club, rating_high, rating_low,
 
 
 
-
-
-
-
-
-
-
 export {
+    getAnime,
     getAllMatches,
     getAllPlayers,
     getMatch,
