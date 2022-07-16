@@ -67,10 +67,6 @@ class MatchesPage extends React.Component {
         getMatch(this.state.selectedMatchId).then(res => {
             this.setState({ selectedMatchDetails: res.results[0] })
         })
-
-
-
-
     }
 
     render() {
@@ -97,27 +93,27 @@ class MatchesPage extends React.Component {
                 </Form>
                 <Divider />
                 {/* TASK 12: Copy over your implementation of the matches table from the home page */}
-                <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
-                    <Table onRow={(record, rowIndex) => {
-                        return {
-                            onClick: event => { this.goToMatch(record.MatchId) }, // clicking a row takes the user to a detailed view of the match in the /matches page using the MatchId parameter  
-                        };
-                    }} dataSource={this.state.matchesResults} pagination={{ pageSizeOptions: [5, 10], defaultPageSize: 5, showQuickJumper: true }}>
-                        <ColumnGroup title="Teams">
+                        
+                <Table onRow={(record, rowIndex) => {
+                    return {
+                    onClick: event => {this.goToMatch(record.MatchId)}, // clicking a row takes the user to a detailed view of the match in the /matches page using the MatchId parameter  
+                    };
+                }} dataSource={this.state.matchesResults} pagination={{ pageSizeOptions:[5, 10], defaultPageSize: 5, showQuickJumper:true }}>
+                            <ColumnGroup title="Teams">
                             {/* TASK 4: correct the title for the 'Home' column and add a similar column for 'Away' team in this ColumnGroup */}
-                            <Column title="Home" dataIndex="Home" key="Home" sorter={(a, b) => a.Home.localeCompare(b.Home)} />
-                            <Column title="Away" dataIndex="Away" key="Away" sorter={(a, b) => a.Away.localeCompare(b.Away)} />
-                        </ColumnGroup>
-                        <ColumnGroup title="Goals">
+                            <Column title="Home" dataIndex="Home" key="Home" sorter= {(a, b) => a.Home.localeCompare(b.Home)}/>
+                            <Column title="Away" dataIndex="Away" key="Away" sorter= {(a, b) => a.Away.localeCompare(b.Away)}/>
+                            </ColumnGroup>
+                            <ColumnGroup title="Goals">
                             {/* TASK 5: add columns for home and away goals in this ColumnGroup, with the ability to sort values in these columns numerically */}
-                            <Column title="HomeGoals" dataIndex="HomeGoals" key="HomeGoals" sorter={(a, b) => a.HomeGoals - b.HomeGoals} />
-                            <Column title="AwayGoals" dataIndex="AwayGoals" key="AwayGoals" sorter={(a, b) => a.AwayGoals - b.AwayGoals} />
-                        </ColumnGroup>
-                        {/* TASK 6: create two columns (independent - not in a column group) for the date and time. Do not add a sorting functionality */}
-                        <Column title="Date" dataIndex="Date" key="Date" />
-                        <Column title="Time" dataIndex="Time" key="Time" />
-                    </Table>
-                </div>
+                            <Column title="Home" dataIndex="HomeGoals" key="HomeGoals" sorter= {(a, b) => a.HomeGoals - b.HomeGoals}/>
+                            <Column title="Away" dataIndex="AwayGoals" key="AwayGoals" sorter= {(a, b) => a.AwayGoals - b.AwayGoals}/>
+                            </ColumnGroup>
+                            {/* TASK 6: create two columns (independent - not in a column group) for the date and time. Do not add a sorting functionality */}
+                            <Column title="Date" dataIndex="Date" key="Date"/>
+                            <Column title="Time" dataIndex="Time" key="Time"/>
+                </Table>
+
                 <Divider />
                 {this.state.selectedMatchDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
                     <Card>
@@ -146,7 +142,6 @@ class MatchesPage extends React.Component {
                                     Goals
                                 </Col >
                                 {/* TASK 14: Add a column with span = 9, and text alignment = right to display the # of goals the away team scored - similar 1 in this row */}
-
                                 <Col span={9} style={{ textAlign: 'right' }}>
                                     <h3>{this.state.selectedMatchDetails.AwayGoals}</h3>
                                 </Col>
@@ -159,15 +154,14 @@ class MatchesPage extends React.Component {
                                 <Col span={6} style={{ textAlign: 'center' }}>
                                     Goals at Half Time
                                 </Col >
-                                {/* TASK 14: Add a column with span = 9, and text alignment = right to display the # of goals the away team scored - similar 1 in this row */}
-
                                 <Col span={9} style={{ textAlign: 'right' }}>
                                     <h5>{this.state.selectedMatchDetails.HTAwayGoals}</h5>
                                 </Col>
                             </Row>
+
                             <Row gutter='30' align='middle' justify='center'>
                                 <Col span={9} style={{ textAlign: 'left' }}>
-                                    <Progress value={this.state.selectedMatchDetails.ShotsOnTargetHome * 100 / this.state.selectedMatchDetails.ShotsHome}>{this.state.selectedMatchDetails.ShotsOnTargetHome} / {this.state.selectedMatchDetails.ShotsHome}</Progress>
+                                <Progress value={this.state.selectedMatchDetails.ShotsOnTargetHome * 100 / this.state.selectedMatchDetails.ShotsHome}>{this.state.selectedMatchDetails.ShotsOnTargetHome} / {this.state.selectedMatchDetails.ShotsHome}</Progress>
                                 </Col >
                                 <Col span={6} style={{ textAlign: 'center' }}>
                                     Shot Accuracy
@@ -194,12 +188,13 @@ class MatchesPage extends React.Component {
                                     <h5>{this.state.selectedMatchDetails.FoulsHome}</h5>
                                 </Col >
                                 <Col span={6} style={{ textAlign: 'center' }}>
-                                    Foul Cards
+                                    Fouls Cards
                                 </Col >
                                 <Col span={9} style={{ textAlign: 'right' }}>
                                     <h5>{this.state.selectedMatchDetails.FoulsAway}</h5>
                                 </Col>
                             </Row>
+
                             <Row gutter='30' align='middle' justify='center'>
                                 <Col span={9} style={{ textAlign: 'left' }}>
                                     <h5>{this.state.selectedMatchDetails.RCHome}</h5>
@@ -224,9 +219,10 @@ class MatchesPage extends React.Component {
                                 </Col>
                             </Row>
 
+
                         </CardBody>
                     </Card>
-
+                    
                 </div> : null}
                 <Divider />
 

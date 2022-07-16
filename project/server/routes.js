@@ -75,8 +75,11 @@ async function user_rated(req, res) {
 }
 
 async function anime_page(req, res) {
-    const animeid = req.query.Anime_ID ? req.query.Anime_ID : 1;
-    AnimeQuery = `SELECT * 
+    const animeid = req.query.id ? req.query.id : 1;
+    AnimeQuery = `SELECT Anime_ID, Name, Score, English_name, Japanese_name, Type, Episodes, Aired, 
+    Premiered, Source, Rating, Ranked, Popularity, Members, Favorites, Watching, Completed, On_Hold,
+    Dropped, Plan_to_Watch, Score_10, Score_9, Score_8, Score_7, Score_6, Score_5, Score_4, Score_3,
+    Score_2, Score_1, Duration 
     FROM anime
     WHERE Anime_ID = ${animeid}`;
 
