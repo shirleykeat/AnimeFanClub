@@ -12,7 +12,7 @@ class MenuBar extends React.Component {
         return(
             <Navbar type="dark" theme="primary" expand="md">
         <NavbarBrand href="/">CIS 5500 Project</NavbarBrand>
-          <Nav navbar>
+          <Nav Navbar>
           <NavItem>
               <NavLink active href="/">
                 Home

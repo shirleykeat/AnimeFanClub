@@ -66,8 +66,8 @@ class Anime extends React.Component {
             
 
 
-            </CardBody>
-            </Card>
+          </CardBody>
+          </Card>
 
 
 
