@@ -1,7 +1,5 @@
-CREATE DATABASE ANIMATION;
-
-USE ANIMATION;
-
+create database ANIMATION;
+use ANIMATION;
 CREATE TABLE anime (Anime_ID int, PRIMARY KEY(Anime_ID), Name varchar(255), Score int, English_name varchar(255), Japanese_name varchar(255), Type varchar(255), Episodes int, Aired varchar(255),
 Premiered varchar(255),  Source varchar(255), Rating varchar(255), Ranked int, Popularity int, Members int, Favorites int, Watching int,
 Completed int, On_Hold int, Dropped int, Plan_to_Watch int, Score_10 int, Score_9 int, Score_8 int, Score_7 int, Score_6 int,
@@ -24,9 +22,4 @@ CREATE TABLE watching_status(status int ,PRIMARY KEY (status), description varch
 CREATE TABLE animelist (user_id int,PRIMARY KEY (user_id, anime_id), anime_id int, score int, watching_status int,
 watched_episodes int, FOREIGN KEY (anime_id) REFERENCES anime(Anime_ID), FOREIGN KEY (watching_status) REFERENCES watching_status(status));
 
-#CREATE TABLE rating_complete (user_id int, anime_id int, rating int,FOREIGN KEY (user_id) REFERENCES animelist(user_id),
-#FOREIGN KEY (anime_id) REFERENCES anime(Anime_ID));
-
-
-
-
+CREATE TABLE anime_url(Anime_ID int, PRIMARY KEY(Anime_ID), url varchar(255), FOREIGN KEY (Anime_ID) REFERENCES anime(Anime_ID));
