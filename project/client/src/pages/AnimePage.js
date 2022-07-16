@@ -23,19 +23,18 @@ class Anime extends React.Component {
 
   constructor(props) {
     super(props)
-
     this.state = {
+      selectedAnimeId: window.location.search,
       selectedAnimeDetails: null
-    }
 
+    }
   }
 
   componentDidMount() {
     
-    getAnime().then(res => {
+    getAnime(this.state.selectedAnimeId).then(res => {
       this.setState({ selectedAnimeDetails: res.results[0] })
-    })
-    
+    })  
   }
 
   render() {
@@ -59,7 +58,7 @@ class Anime extends React.Component {
             </Col> */}
 
             <Col flex={2} style={{ textAlign: 'right' }}>
-            <img src={this.state.selectedAnimeDetails.url} referrerpolicy="no-referrer" alt={null} style={{height:'15vh'}}/>
+            {/* <img src={this.state.selectedAnimeDetails.url} referrerpolicy="no-referrer" alt={null} style={{height:'15vh'}}/> */}
 
             </Col>
             </Row>
