@@ -134,10 +134,57 @@ async function user_AlsoWatch(req, res) {
                 }
             })
     }
-
-
 }
 
+async function search(req, res) {
+    const genre = req.query.genre ? req.query.genre : '';
+    const licensor = req.query.id ? req.query.id : '';
+    const producer = req.query.id ? req.query.id : '';
+    const studio = req.query.id ? req.query.id : '';
+    const keyword = req.query.id ? req.query.id : '';
+    SearchQuery =  `WITH genre AS (
+                        SELECT Anime_ID, Genres
+                        FROM Anime_Genres
+                        WHERE Genres LIKE '%${genre}%'
+                        )
+                    WITH licensor AS (
+                        SELECT Anime_ID, Licensors
+                        FROM Anime_Licensors
+                        WHERE Licensors LIKE '%${licensor}%'
+                        )
+                    WITH producer AS (
+                        SELECT Anime_ID, Producers
+                        FROM Anime_Producers
+                        WHERE Producers LIKE '%${producer}%'
+                        )
+                    WITH studio AS (
+                        SELECT Anime_ID, Studios
+                        FROM Anime_Studioss
+                        WHERE Studios LIKE '%${studio}%'
+                        )
+                    SELECT Name, Score, Type, Rating, Ranked, Popularity, Favorites, Synopsis
+                    FROM anime
+                    INNER JOIN genre ON anime.Anime_ID = genre.Anime_ID
+                    INNER JOIN licensor ON anime.Anime_ID = licensor.Anime_ID
+                    INNER JOIN producer ON anime.Anime_ID = producer.Anime_ID
+                    INNER JOIN studio ON anime.Anime_ID = studio.Anime_ID
+                    INNER JOIN anime_with_synopsis ON anime.Anime_ID = anime_with_synopsis.Anime_ID
+                    WHERE Name LIKE '%${keyword}%' OR Synopsis LIKE '%${keyword}%'
+                    `;
+    if (animeid === null) {
+        res.json({ results: [] })
+    } else {
+        connection.query(SearchQuery,
+            function (error, results, fields) {
+                if (error) {
+                    console.log(error)
+                    res.json({ error: error })
+                } else if (results) {
+                    res.json({ results: results })
+                }
+            })
+    }
+}
 
 
 
