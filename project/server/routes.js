@@ -17,7 +17,7 @@ connection.connect();
 // ********************************************
 async function user_profile(req, res) {
     const userid = req.query.id
-    connection.query(`SELECT Name, Birthday
+    connection.query(`SELECT USER_ID, Name, Birthday, Email_address
     FROM user
     WHERE user_id = ${userid}`, function (error, results, fields) {
 
@@ -84,18 +84,18 @@ async function anime_page(req, res) {
     WHERE Anime_ID = ${animeid}`;
 
     if (animeid === null) {
-        res.json({results: []})
+        res.json({ results: [] })
     } else {
-        connection.query(AnimeQuery, 
-        function (error, results, fields) {
-            
-            if (error) {
-                console.log (error)
-                res.json({error: error})
-            } else if (results) {
-                res.json({results: results})
-            }
-        })
+        connection.query(AnimeQuery,
+            function (error, results, fields) {
+
+                if (error) {
+                    console.log(error)
+                    res.json({ error: error })
+                } else if (results) {
+                    res.json({ results: results })
+                }
+            })
     }
 
 
