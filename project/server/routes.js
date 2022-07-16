@@ -31,9 +31,10 @@ async function user_profile(req, res) {
 
 async function user_watched(req, res) {
     const userid = req.query.id
-    connection.query(`SELECT Name
+    connection.query(`SELECT Name, url
     FROM animelist
     JOIN anime ON animelist.anime_id = anime.Anime_ID
+    LEFT JOIN anime_url au ON animelist.anime_id = au.url
     WHERE user_id = ${userid} AND watching_status = 2`, function (error, results, fields) {
 
         if (error) {
@@ -46,9 +47,10 @@ async function user_watched(req, res) {
 
 async function user_watching(req, res) {
     const userid = req.query.id
-    connection.query(`SELECT Name
+    connection.query(`SELECT Name, url
     FROM animelist
     JOIN anime ON animelist.anime_id = anime.Anime_ID
+    LEFT JOIN anime_url au ON animelist.anime_id = au.url
     WHERE user_id = ${userid} AND watching_status = 1`, function (error, results, fields) {
 
         if (error) {
@@ -61,9 +63,10 @@ async function user_watching(req, res) {
 
 async function user_rated(req, res) {
     const userid = req.query.id
-    connection.query(`SELECT Name
+    connection.query(`SELECT Name, url
     FROM animelist
     JOIN anime ON animelist.anime_id = anime.Anime_ID
+    LEFT JOIN anime_url au ON animelist.anime_id = au.url
     WHERE user_id = ${userid} AND score <> 0`, function (error, results, fields) {
 
         if (error) {
