@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 import HomePage from './pages/HomePage';
-import Anime from './pages/Anime';
+import AnimePage from './pages/AnimePage';
 
 
 import 'antd/dist/antd.css';
@@ -26,7 +26,7 @@ ReactDOM.render(
 		<Route exact
 							path="/anime"
 							render={() => (
-								<Anime />
+								<AnimePage />
 							)}/>
       </Switch>
     </Router>
