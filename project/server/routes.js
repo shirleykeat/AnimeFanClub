@@ -186,6 +186,152 @@ async function search(req, res) {
     }
 }
 
+//**************************************************
+//                   MAIN PAGE ROUTES
+//**************************************************
+
+async function get_genre(req, res){
+    const page = req.query.page?req.query.page:1
+    const pagenumber = page-1
+    const genre = req.query.genre
+    var query = `SELECT Name, Score, Source, Rating, Type, Genres, url
+    FROM anime A INNER JOIN anime_genres G ON G.Anime_ID = A.Anime_ID
+    INNER JOIN anime_url U on G.Anime_ID = U.Anime_ID
+    WHERE G.Genres = ${genre}
+    ORDER BY Score
+    LIMIT ${pagenumber*10}, 10;`;
+
+    connection.query(query, function(error, results, fields){
+
+        if(error){
+            res.json({error:error})
+        }else if(results){
+            res.json({results:results})
+        }
+    });
+
+}
+
+async function get_source(req, res){
+    const page = req.query.page?req.query.page:1
+    const pagenumber = page-1
+    const source = req.query.source 
+    var query = `SELECT Name, Score, Source, Rating, Episodes, Type, url
+    FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
+    WHERE A.Source = ${source}
+    ORDER BY Score
+    LIMIT ${pagenumber*10}, 10;`;
+
+    connection.query(query, function(error, results, fields){
+
+        if(error){
+            res.json({error:error})
+        }else if(results){
+            res.json({results:results})
+        }
+    });
+}
+
+async function get_type(req, res){
+    const page = req.query.page?req.query.page:1
+    const pagenumber = page-1
+    const type = req.query.type
+    
+    var query = `SELECT Name, Score, Source, Rating, Episodes, Type, url
+    FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
+    WHERE A.Type = ${type}
+    ORDER BY Score
+    LIMIT ${pagenumber*10}, 10;`;
+
+    connection.query(query, function(error, results, fields){
+
+        if(error){
+            res.json({error:error})
+        }else if(results){
+            res.json({results:results})
+        }
+    });
+
+}
+
+async function get_rating(req,res){
+    const page = req.query.page?req.query.page:1
+    const pagenumber = page-1
+    const rating = req.query.rating
+
+    var query = `SELECT Name, Score, Source, Rating, Episodes, Type, url
+    FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
+    WHERE A.Rating LIKE '%${rating}%'
+    ORDER BY Score
+    LIMIT ${pagenumber*10}, 10;`;
+
+    connection.query(query, function(error, results, fields){
+
+        if(error){
+            res.json({error:error})
+        }else if(results){
+            res.json({results:results})
+        }
+    });
+
+}
+
+async function top_manga(req, res){
+
+    var query = `SELECT Name, Score, Episodes, url
+    FROM anime A JOIN anime_url AU ON A.Anime_ID = AU.Anime_ID
+    WHERE A.Source = 'Manga'
+    ORDER BY Ranked
+    LIMIT 10;`;
+    
+    connection.query(query, function(error, results, fields){
+
+        if(error){
+            res.json({error:error})
+        }else if(results){
+            res.json({results:results})
+        }
+    });
+}
+
+async function top_anime(req, res){
+     
+    var query = `SELECT Name, Score, Episodes, url
+    FROM anime
+    WHERE anime.Source <> 'Manga'
+    ORDER BY Ranked
+    LIMIT 10;`;
+
+    connection.query(query, function(error, results, fields){
+
+        if(error){
+            res.json({error:error})
+        }else if(results){
+            res.json({results:results})
+        }
+    });
+}
+
+async function search_title(req, res){
+
+    const page = req.query.page?req.query.page:1
+    const pagenumber = page-1
+    const title = req.query.title
+
+    var query = `SELECT SELECT Name, Score, Source, Rating, Episodes, Type, url
+    FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
+    Where A.Name LIKE '%${title}%'
+    ORDER BY Score
+    LIMIT ${pagenumber*10}, 10;`;
+    connection.query(query, function(error, results, fields){
+
+        if(error){
+            res.json({error:error})
+        }else if(results){
+            res.json({results:results})
+        }
+    });
+}
 
 
 module.exports = {
@@ -194,5 +340,13 @@ module.exports = {
     user_watching,
     user_rated,
     anime,
-    user_AlsoWatch
+    user_AlsoWatch,
+    search,
+    get_genre,
+    get_source,
+    get_type,
+    get_rating,
+    top_manga,
+    top_anime,
+    search_title
 }

@@ -18,8 +18,13 @@ app.get('/user/rated', routes.user_rated)
 app.get('/user/profile', routes.user_profile)
 app.get('/anime', routes.anime)
 app.get('/anime/user_alsowatch', routes.user_AlsoWatch)
-
-
+app.get('/main/get_genre', routes.get_genre)
+app.get('/main/get_type', routes.get_type)
+app.get('/main/get_rating', routes.get_rating)
+app.get('main/get_source', routes.get_source)
+app.get('/main/top_manga',routes.top_manga)
+app.get('/main/top_anime', routes.top_anime)
+app.get('/mian/search_title',routes.search_title)
 
 app.listen(config.server_port, () => {
     console.log(`Server running at http://${config.server_host}:${config.server_port}/`);
