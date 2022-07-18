@@ -77,7 +77,11 @@ async function user_rated(req, res) {
     })
 }
 
-async function anime(req, res) {
+// ********************************************
+//             Anime-SPECIFIC ROUTES
+// ********************************************
+
+async function anime_property(req, res) {
     const animeid = req.query.id ? req.query.id : 1;
     AnimeQuery = `SELECT a.Anime_ID, a.Name, a.Score, a.English_name, a.Japanese_name, a.Type, a.Episodes, a.Aired, 
     a.Premiered, a.Source, a.Rating, a.Ranked, a.Popularity, a.Members, a.Favorites, a.Watching, a.Completed, a.On_Hold,
@@ -104,7 +108,7 @@ async function anime(req, res) {
 
 }
 
-async function user_AlsoWatch(req, res) {
+async function anime_UserAlsoWatch(req, res) {
     const animeid = req.query.id ? req.query.id : 1;
     AnimeQuery = `WITH temp AS (
         SELECT user_id
@@ -339,8 +343,8 @@ module.exports = {
     user_watched,
     user_watching,
     user_rated,
-    anime,
-    user_AlsoWatch,
+    anime_property,
+    anime_UserAlsoWatch,
     search,
     get_genre,
     get_source,
