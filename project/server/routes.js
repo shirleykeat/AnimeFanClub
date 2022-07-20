@@ -77,6 +77,10 @@ async function user_rated(req, res) {
     })
 }
 
+// ********************************************
+//             ANIME-SPECIFIC ROUTES
+// ********************************************
+
 async function anime(req, res) {
     const animeid = req.query.id ? req.query.id : 1;
     AnimeQuery = `SELECT a.Anime_ID, a.Name, a.Score, a.English_name, a.Japanese_name, a.Type, a.Episodes, a.Aired, 
@@ -102,6 +106,9 @@ async function anime(req, res) {
     }
 
 
+}
+
+async function anime_property(req, res) {
 }
 
 async function user_AlsoWatch(req, res) {
@@ -136,7 +143,39 @@ async function user_AlsoWatch(req, res) {
     }
 }
 
-async function search(req, res) {
+
+// ********************************************
+//             MAIN PAGE ROUTES
+// ********************************************
+
+async function get_genre(req, res) {
+}
+
+async function get_type(req, res) {
+}
+
+async function get_rating(req, res) {
+}
+
+async function get_source(req, res) {
+}
+
+async function top_manga(req, res) {
+}
+
+async function top_anime(req, res) {
+}
+
+async function search_title(req, res) {
+}
+
+
+
+// ********************************************
+//             SEARCH PAGE ROUTES
+// ********************************************
+
+async function advance_search(req, res) {
     const genre = req.query.genre ? req.query.genre : '';
     const licensor = req.query.id ? req.query.id : '';
     const producer = req.query.id ? req.query.id : '';
@@ -195,6 +234,15 @@ module.exports = {
     user_watched,
     user_watching,
     user_rated,
+    user_AlsoWatch,
     anime,
-    user_AlsoWatch
+    anime_property,
+    get_genre, 
+    get_type,
+    get_rating,
+    get_source,
+    top_manga,
+    top_anime, 
+    search_title,
+    advance_search
 }
