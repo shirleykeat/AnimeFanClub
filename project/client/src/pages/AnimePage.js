@@ -11,6 +11,7 @@ import {
   Slider,
   Rate 
 } from 'antd'
+
 import { RadarChart } from 'react-vis';
 import { format } from 'd3-format';
 
@@ -19,12 +20,12 @@ import { getAnime } from '../fetcher';
 // import { getAllMatches, getAllPlayers } from '../fetcher'
 const wideFormat = format('.3r');
 
-class Anime extends React.Component {
+class AnimePage extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      selectedAnimeId: window.location.search,
+      selectedAnimeId: window.location.search ? window.location.search.substring(1).split('=')[1] : 1,
       selectedAnimeDetails: null
 
     }
@@ -37,6 +38,7 @@ class Anime extends React.Component {
     })  
   }
 
+
   render() {
 
     return (
@@ -48,19 +50,26 @@ class Anime extends React.Component {
           <Divider />
           <Divider />
 
-              <Card>
-              <CardBody>
+          {this.state.selectedAnimeDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
+          <Card>
+          <CardBody>
 
             <Row gutter='30' align='middle' justify='center'>
-            {/* <Col flex={2} style={{ textAlign: 'left' }}>
-            <h3>{this.state.selectedPlayerDetails.Name}</h3>
+                
 
-            </Col> */}
 
-            <Col flex={2} style={{ textAlign: 'right' }}>
-            {/* <img src={this.state.selectedAnimeDetails.url} referrerpolicy="no-referrer" alt={null} style={{height:'15vh'}}/> */}
+                <Col flex={2} style={{ textAlign: 'left' }}>
+                <img src={this.state.selectedAnimeDetails.url} referrerpolicy="no-referrer" alt={null} style={{height:'60vh'}}/>
+                </Col>
 
-            </Col>
+                <Col flex={2} style={{ textAlign: 'left' }}>
+                <h3>{this.state.selectedAnimeDetails.Name}</h3>
+                <h5>{this.state.selectedAnimeDetails.Japanese_name}</h5>
+                <h5>{this.state.selectedAnimeDetails.Type}</h5>
+                </Col>
+
+
+                
             </Row>
             
 
@@ -68,7 +77,7 @@ class Anime extends React.Component {
           </CardBody>
           </Card>
 
-
+          </div> : null}
 
         </div>
       </div>
@@ -77,5 +86,5 @@ class Anime extends React.Component {
 
 }
 
-export default Anime
+export default AnimePage
 
