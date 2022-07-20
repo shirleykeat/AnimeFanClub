@@ -19,7 +19,7 @@ async function user_profile(req, res) {
     const userid = req.query.id
     connection.query(`SELECT USER_ID, Name, Birthday, Email_address
     FROM user
-    WHERE user_id = ${userid}`, function (error, results, fields) {
+    WHERE USER_ID = ${userid}`, function (error, results, fields) {
 
         if (error) {
             res.json({ error: error })
@@ -31,10 +31,10 @@ async function user_profile(req, res) {
 
 async function user_watched(req, res) {
     const userid = req.query.id
-    connection.query(`SELECT Name, url
+    connection.query(`SELECT anime.Anime_ID, Name, url
     FROM animelist
     JOIN anime ON animelist.anime_id = anime.Anime_ID
-    LEFT JOIN anime_url au ON animelist.anime_id = au.url
+    LEFT JOIN anime_url au ON animelist.anime_id = au.Anime_ID
     WHERE user_id = ${userid} AND watching_status = 2`, function (error, results, fields) {
 
         if (error) {
@@ -47,10 +47,10 @@ async function user_watched(req, res) {
 
 async function user_watching(req, res) {
     const userid = req.query.id
-    connection.query(`SELECT Name, url
+    connection.query(`SELECT anime.Anime_ID, Name, url
     FROM animelist
     JOIN anime ON animelist.anime_id = anime.Anime_ID
-    LEFT JOIN anime_url au ON animelist.anime_id = au.url
+    LEFT JOIN anime_url au ON animelist.anime_id = au.Anime_ID
     WHERE user_id = ${userid} AND watching_status = 1`, function (error, results, fields) {
 
         if (error) {
@@ -63,11 +63,11 @@ async function user_watching(req, res) {
 
 async function user_rated(req, res) {
     const userid = req.query.id
-    connection.query(`SELECT Name, url
+    connection.query(`SELECT anime.Anime_ID, Name, url
     FROM animelist
     JOIN anime ON animelist.anime_id = anime.Anime_ID
-    LEFT JOIN anime_url au ON animelist.anime_id = au.url
-    WHERE user_id = ${userid} AND score <> 0`, function (error, results, fields) {
+    LEFT JOIN anime_url au ON animelist.anime_id = au.Anime_ID
+    WHERE user_id = ${userid} AND animelist.score <> 0`, function (error, results, fields) {
 
         if (error) {
             res.json({ error: error })
@@ -179,7 +179,7 @@ async function advance_search(req, res) {
     const producer = req.query.id ? req.query.id : '';
     const studio = req.query.id ? req.query.id : '';
     const keyword = req.query.id ? req.query.id : '';
-    SearchQuery =  `WITH genre AS (
+    SearchQuery = `WITH genre AS (
         SELECT Anime_ID, Genres
         FROM anime_genres
         WHERE Genres LIKE '%${genre}%'
@@ -234,12 +234,12 @@ module.exports = {
     user_rated,
     anime_property,
     anime_userAlsoWatch,
-    get_genre, 
+    get_genre,
     get_type,
     get_rating,
     get_source,
     top_manga,
-    top_anime, 
+    top_anime,
     search_title,
     advance_search
 }
