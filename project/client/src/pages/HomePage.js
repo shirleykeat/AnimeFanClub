@@ -6,6 +6,7 @@ import {
 } from 'antd'
 
 import MenuBar from '../components/MenuBar';
+import Button from '../components/Button';
 // import { getAllMatches, getAllPlayers } from '../fetcher'
 const { Column, ColumnGroup } = Table;
 const { Option } = Select;
@@ -43,7 +44,17 @@ class HomePage extends React.Component {
 
       </div>
     )
+
+    return (
+      <div>
+        <h3>This is my new project</h3>
+        <Button label="test" kind="primary"/>
+      </div>
+
+    )
   }
+
+
 
 }
 
