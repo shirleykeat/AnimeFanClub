@@ -67,7 +67,7 @@ async function user_rated(req, res) {
     FROM animelist
     JOIN anime ON animelist.anime_id = anime.Anime_ID
     LEFT JOIN anime_url au ON animelist.anime_id = au.Anime_ID
-    WHERE user_id = ${userid} AND score <> 0`, function (error, results, fields) {
+    WHERE user_id = ${userid} AND animelist.score <> 0`, function (error, results, fields) {
 
         if (error) {
             res.json({ error: error })
