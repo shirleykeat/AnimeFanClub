@@ -6,8 +6,8 @@ import {
 } from 'antd'
 
 import MenuBar from '../components/MenuBar';
-import Button from '../components/Button';
-// import { getAllMatches, getAllPlayers } from '../fetcher'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Form, Button} from 'react-bootstrap';
 const { Column, ColumnGroup } = Table;
 const { Option } = Select;
 
@@ -39,8 +39,16 @@ class HomePage extends React.Component {
           <h3>Homepage</h3>
           {/* <Table dataSource={this.state.playersResults} columns={playerColumns} pagination={{ pageSizeOptions:[5, 10], defaultPageSize: 5, showQuickJumper:true }}/> */}
         </div>
-        <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
-
+        <div class="col-sm-7">
+        <Form className="d-flex">
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"
+            />
+            <Button variant="outline-success">Search</Button>
+          </Form>
         </div>
 
 
