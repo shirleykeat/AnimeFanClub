@@ -115,14 +115,19 @@ async function anime_userAlsoWatch(req, res) {
         SELECT user_id
         FROM animelist
         WHERE Anime_id = ${animeid} AND watching_status IN (1,2)
+    ),
+        animeID AS (
+        SELECT Anime_id
+        FROM animelist AS a
+        JOIN temp AS t ON a.user_id = t.user_id
+        WHERE Anime_id <> ${animeid} AND watching_status IN (1,2)
+        GROUP BY Anime_id
+        ORDER BY count(*) DESC
+        LIMIT 10
     )
-    SELECT Anime_id
-    FROM animelist AS a
-    JOIN temp AS t ON a.user_id = t.user_id
-    WHERE Anime_id <> ${animeid} AND watching_status IN (1,2)
-    GROUP BY Anime_id
-    ORDER BY count(*) DESC
-    LIMIT 10
+    SELECT Anime_ID, Name 
+    FROM anime
+    WHERE Anime_ID in (select Anime_id from animeID)
     `;
 
     if (animeid === null) {
