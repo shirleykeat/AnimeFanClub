@@ -39,13 +39,18 @@ class AnimePage extends React.Component {
     })  
 
     anime_userAlsoWatch(this.state.selectedAnimeId).then(res => {
-      this.setState({ userAlsoWatchDetails: res.results[0]})
+      this.setState({ userAlsoWatchDetails: res.results})
     })
 
   }
 
 
   render() {
+
+    // var arr = [];
+    // Object.keys(userAlsoWatchDetails).forEach( function(url) {
+    //   arr.push(userAlsoWatchDetails[url])
+    // })
 
     return (
       <div>
@@ -92,18 +97,60 @@ class AnimePage extends React.Component {
           </div> : null}
 
           {this.state.userAlsoWatchDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
+            
 
 
           <Card>
+            <h3>People Also Watch</h3>
           <CardBody>
 
             <Row gutter='30' align='middle' justify='center'>
-            
-              <Col flex={2} style={{ textAlign: 'left' }}>
-                  <img src={this.state.userAlsoWatchDetails.url} referrerpolicy="no-referrer" alt={null} style={{height:'25vh'}}/>
+
+              <Col flex={2} style={{ textAlign: 'center' }}>
+              <h5> {this.state.userAlsoWatchDetails[0].Name} </h5>  
+                {!this.state.userAlsoWatchDetails[0] ? (
+                  <h5> No results found </h5>
+                ) : (
+                  <img src={this.state.userAlsoWatchDetails[0].url} referrerpolicy="no-referrer" alt={null} style={{height:'25vh'}}/>
+                )}
+              </Col>
+
+              <Col flex={2} style={{ textAlign: 'center' }}>
+              <h5> {this.state.userAlsoWatchDetails[1].Name} </h5>  
+                {!this.state.userAlsoWatchDetails[1] ? (
+                  <h5> No results found </h5>
+                ) : (
+                  <img src={this.state.userAlsoWatchDetails[1].url} referrerpolicy="no-referrer" alt={null} style={{height:'25vh'}}/>
+                )}
+              </Col>
+
+              <Col flex={2} style={{ textAlign: 'center' }}>
+              <h5> {this.state.userAlsoWatchDetails[2].Name} </h5>  
+                {!this.state.userAlsoWatchDetails[2] ? (
+                  <h5> No results found </h5>
+                ) : (
+                  <img src={this.state.userAlsoWatchDetails[2].url} referrerpolicy="no-referrer" alt={null} style={{height:'25vh'}}/>
+                )}
               </Col>
 
 
+              <Col flex={2} style={{ textAlign: 'center' }}>
+              <h5> {this.state.userAlsoWatchDetails[3].Name} </h5>  
+                {!this.state.userAlsoWatchDetails[3] ? (
+                  <h5> No results found </h5>
+                ) : (
+                  <img src={this.state.userAlsoWatchDetails[3].url} referrerpolicy="no-referrer" alt={null} style={{height:'25vh'}}/>
+                )}
+              </Col>
+
+              <Col flex={2} style={{ textAlign: 'center' }}>
+              <h5> {this.state.userAlsoWatchDetails[4].Name} </h5>  
+                {!this.state.userAlsoWatchDetails[4] ? (
+                  <h5> No results found </h5>
+                ) : (
+                  <img src={this.state.userAlsoWatchDetails[4].url} referrerpolicy="no-referrer" alt={null} style={{height:'25vh'}}/>
+                )}
+              </Col>
             </Row>
 
 
