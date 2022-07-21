@@ -86,11 +86,23 @@ class AnimePage extends React.Component {
           <Divider />
           <Divider />
 
+
+
+
+          </div> : null}
+
+          {this.state.userAlsoWatchDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
+
+
           <Card>
           <CardBody>
 
             <Row gutter='30' align='middle' justify='center'>
             
+              <Col flex={2} style={{ textAlign: 'left' }}>
+                  <img src={this.state.userAlsoWatchDetails.url} referrerpolicy="no-referrer" alt={null} style={{height:'25vh'}}/>
+              </Col>
+
 
             </Row>
 
@@ -98,9 +110,7 @@ class AnimePage extends React.Component {
           </CardBody>
           </Card>
 
-
           </div> : null}
-
         </div>
       </div>
     )

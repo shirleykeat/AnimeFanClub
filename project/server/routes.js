@@ -125,9 +125,9 @@ async function anime_userAlsoWatch(req, res) {
         ORDER BY count(*) DESC
         LIMIT 10
     )
-    SELECT Anime_ID, Name 
-    FROM anime
-    WHERE Anime_ID in (select Anime_id from animeID)
+    SELECT a.Anime_ID, a.Name, au.url
+    FROM anime a LEFT JOIN anime_url au ON a.Anime_ID = au.Anime_ID
+    WHERE a.Anime_ID in (select Anime_id from animeID)
     `;
 
     if (animeid === null) {
