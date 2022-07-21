@@ -16,7 +16,7 @@ import { RadarChart } from 'react-vis';
 import { format } from 'd3-format';
 
 import MenuBar from '../components/MenuBar';
-import { getAnime } from '../fetcher';
+import { getAnime, anime_userAlsoWatch } from '../fetcher';
 // import { getAllMatches, getAllPlayers } from '../fetcher'
 const wideFormat = format('.3r');
 
@@ -26,7 +26,8 @@ class AnimePage extends React.Component {
     super(props)
     this.state = {
       selectedAnimeId: window.location.search ? window.location.search.substring(1).split('=')[1] : 1,
-      selectedAnimeDetails: null
+      selectedAnimeDetails: null,
+      userAlsoWatchDetails: null
 
     }
   }
@@ -36,6 +37,11 @@ class AnimePage extends React.Component {
     getAnime(this.state.selectedAnimeId).then(res => {
       this.setState({ selectedAnimeDetails: res.results[0] })
     })  
+
+    anime_userAlsoWatch(this.state.selectedAnimeId).then(res => {
+      this.setState({ userAlsoWatchDetails: res.results[0]})
+    })
+
   }
 
 
@@ -76,6 +82,22 @@ class AnimePage extends React.Component {
 
           </CardBody>
           </Card>
+
+          <Divider />
+          <Divider />
+
+          <Card>
+          <CardBody>
+
+            <Row gutter='30' align='middle' justify='center'>
+            
+
+            </Row>
+
+
+          </CardBody>
+          </Card>
+
 
           </div> : null}
 
