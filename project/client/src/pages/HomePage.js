@@ -32,7 +32,9 @@ class HomePage extends React.Component {
 
     return (
       <div>
-        <MenuBar />
+        <div>
+          <MenuBar/>
+        </div> 
         <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
           <h3>Homepage</h3>
           {/* <Table dataSource={this.state.playersResults} columns={playerColumns} pagination={{ pageSizeOptions:[5, 10], defaultPageSize: 5, showQuickJumper:true }}/> */}
@@ -45,13 +47,6 @@ class HomePage extends React.Component {
       </div>
     )
 
-    return (
-      <div>
-        <h3>This is my new project</h3>
-        <Button label="test" kind="primary"/>
-      </div>
-
-    )
   }
 
 
