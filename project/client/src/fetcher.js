@@ -44,5 +44,9 @@ const getUserRated = async (id) => {
 
 export {
     getAnime,
-    anime_userAlsoWatch
+    anime_userAlsoWatch,
+    getUserProfile,
+    getUserWatched,
+    getUserWatching,
+    getUserRated
 }
