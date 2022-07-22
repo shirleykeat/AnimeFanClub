@@ -1,24 +1,20 @@
 import React from 'react';
-import { Form, FormInput, FormGroup, Button, Card, CardBody, CardTitle, Progress } from "shards-react";
-
+import {Card, CardBody} from "shards-react";
 import {
-  Table,
-  Pagination,
-  Select,
   Row,
   Col,
   Divider,
-  Slider,
-  Rate 
 } from 'antd'
+import 'antd/dist/antd.min.css';
 
-import { RadarChart } from 'react-vis';
-import { format } from 'd3-format';
+
+// import { RadarChart } from 'react-vis';
+// import { format } from 'd3-format';
 
 import MenuBar from '../components/MenuBar';
 import { getAnime, anime_userAlsoWatch } from '../fetcher';
-// import { getAllMatches, getAllPlayers } from '../fetcher'
-const wideFormat = format('.3r');
+
+// const wideFormat = format('.3r');
 
 class AnimePage extends React.Component {
 
@@ -47,11 +43,6 @@ class AnimePage extends React.Component {
 
   render() {
 
-    // var arr = [];
-    // Object.keys(userAlsoWatchDetails).forEach( function(url) {
-    //   arr.push(userAlsoWatchDetails[url])
-    // })
-
     return (
       <div>
         <MenuBar />
@@ -70,7 +61,7 @@ class AnimePage extends React.Component {
 
 
                 <Col flex={2} style={{ textAlign: 'left' }}>
-                <img src={this.state.selectedAnimeDetails.url} referrerpolicy="no-referrer" alt={null} style={{height:'60vh'}}/>
+                <img src={this.state.selectedAnimeDetails.url} referrerpolicy="no-referrer" alt={"MainPic"} style={{height:'60vh'}}/>
                 </Col>
 
                 <Col flex={2} style={{ textAlign: 'left' }}>
@@ -111,7 +102,7 @@ class AnimePage extends React.Component {
                 {!this.state.userAlsoWatchDetails[0] ? (
                   <h5> No results found </h5>
                 ) : (
-                  <img src={this.state.userAlsoWatchDetails[0].url} referrerpolicy="no-referrer" alt={null} style={{height:'25vh'}}/>
+                  <img src={this.state.userAlsoWatchDetails[0].url} referrerpolicy="no-referrer" alt={"Alsowatch1"} style={{height:'25vh'}}/>
                 )}
               </Col>
 
@@ -120,7 +111,7 @@ class AnimePage extends React.Component {
                 {!this.state.userAlsoWatchDetails[1] ? (
                   <h5> No results found </h5>
                 ) : (
-                  <img src={this.state.userAlsoWatchDetails[1].url} referrerpolicy="no-referrer" alt={null} style={{height:'25vh'}}/>
+                  <img src={this.state.userAlsoWatchDetails[1].url} referrerpolicy="no-referrer" alt={"Alsowatch2"} style={{height:'25vh'}}/>
                 )}
               </Col>
 
@@ -129,7 +120,7 @@ class AnimePage extends React.Component {
                 {!this.state.userAlsoWatchDetails[2] ? (
                   <h5> No results found </h5>
                 ) : (
-                  <img src={this.state.userAlsoWatchDetails[2].url} referrerpolicy="no-referrer" alt={null} style={{height:'25vh'}}/>
+                  <img src={this.state.userAlsoWatchDetails[2].url} referrerpolicy="no-referrer" alt={"Alsowatch3"} style={{height:'25vh'}}/>
                 )}
               </Col>
 
@@ -139,7 +130,7 @@ class AnimePage extends React.Component {
                 {!this.state.userAlsoWatchDetails[3] ? (
                   <h5> No results found </h5>
                 ) : (
-                  <img src={this.state.userAlsoWatchDetails[3].url} referrerpolicy="no-referrer" alt={null} style={{height:'25vh'}}/>
+                  <img src={this.state.userAlsoWatchDetails[3].url} referrerpolicy="no-referrer" alt={"Alsowatch4"} style={{height:'25vh'}}/>
                 )}
               </Col>
 
@@ -148,7 +139,7 @@ class AnimePage extends React.Component {
                 {!this.state.userAlsoWatchDetails[4] ? (
                   <h5> No results found </h5>
                 ) : (
-                  <img src={this.state.userAlsoWatchDetails[4].url} referrerpolicy="no-referrer" alt={null} style={{height:'25vh'}}/>
+                  <img src={this.state.userAlsoWatchDetails[4].url} referrerpolicy="no-referrer" alt={"Alsowatch5"} style={{height:'25vh'}}/>
                 )}
               </Col>
             </Row>

@@ -13,7 +13,7 @@ import AnimePage from './pages/AnimePage';
 import SearchPage from './pages/SearchPage';
 
 
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css"
 
