@@ -26,8 +26,8 @@ app.get('/main/genre', routes.get_genre)
 app.get('/main/type', routes.get_type)
 app.get('/main/rating', routes.get_rating)
 app.get('/main/source', routes.get_source)
-app.get('/main/manga',routes.top_manga)
-app.get('/main/anime', routes.top_anime)
+app.get('/main/topManga',routes.top_manga)
+app.get('/main/topAnime', routes.top_anime)
 app.get('/main/title',routes.search_title)
 
 // SEARCH PAGE ROUTES
