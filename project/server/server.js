@@ -22,13 +22,13 @@ app.get('/anime', routes.anime_property)
 app.get('/anime/useralsowatch', routes.anime_userAlsoWatch)
 
 // MAIN PAGE ROUTES
-app.get('/main/get_genre', routes.get_genre)
-app.get('/main/get_type', routes.get_type)
-app.get('/main/get_rating', routes.get_rating)
-app.get('/main/get_source', routes.get_source)
-app.get('/main/top_manga',routes.top_manga)
-app.get('/main/top_anime', routes.top_anime)
-app.get('/main/search_title',routes.search_title)
+app.get('/main/genre', routes.get_genre)
+app.get('/main/type', routes.get_type)
+app.get('/main/rating', routes.get_rating)
+app.get('/main/source', routes.get_source)
+app.get('/main/manga',routes.top_manga)
+app.get('/main/anime', routes.top_anime)
+app.get('/main/title',routes.search_title)
 
 // SEARCH PAGE ROUTES
 app.get('/search/advance_search',routes.advance_search)
