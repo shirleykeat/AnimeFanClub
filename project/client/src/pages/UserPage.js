@@ -5,6 +5,7 @@ import {
     Table,
     Pagination,
     Select,
+    Card,
     Row,
     Col,
     Divider,
@@ -18,6 +19,7 @@ import { format } from 'd3-format';
 import MenuBar from '../components/MenuBar';
 import { getUserProfile, getUserWatched, getUserWatching, getUserRated } from '../fetcher';
 const wideFormat = format('.3r');
+const { Meta } = Card;
 
 class UserPage extends React.Component {
 
@@ -59,66 +61,37 @@ class UserPage extends React.Component {
             <div>
                 <MenuBar />
                 <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
-                    <h3>Anime</h3>
-
-                    <Divider />
-                    <Divider />
-
-                    {this.state.selectedAnimeDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
-                        <Card>
-                            <CardBody>
-
-                                <Row gutter='30' align='middle' justify='center'>
+                    <h3>Profile</h3>
+                </div>
 
 
-
-                                    <Col flex={2} style={{ textAlign: 'left' }}>
-                                        <img src={this.state.selectedAnimeDetails.url} referrerpolicy="no-referrer" alt={null} style={{ height: '60vh' }} />
-                                    </Col>
-
-                                    <Col flex={2} style={{ textAlign: 'left' }}>
-                                        <h3>{this.state.selectedAnimeDetails.Name}</h3>
-                                        <h5>{this.state.selectedAnimeDetails.Japanese_name}</h5>
-                                        <h5>{this.state.selectedAnimeDetails.Type}</h5>
-                                    </Col>
-
-
-
-                                </Row>
-
-
-
-                            </CardBody>
-                        </Card>
-
-                        <Divider />
-                        <Divider />
-
-
-
-
-                    </div> : null}
-
-                    {this.state.userAlsoWatchDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
-
-
-                        <Card>
-                            <CardBody>
-
-                                <Row gutter='30' align='middle' justify='center'>
-
-                                    <Col flex={2} style={{ textAlign: 'left' }}>
-                                        <img src={this.state.userAlsoWatchDetails.url} referrerpolicy="no-referrer" alt={null} style={{ height: '25vh' }} />
-                                    </Col>
-
-
-                                </Row>
-
-
-                            </CardBody>
-                        </Card>
-
-                    </div> : null}
+                <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
+                    <h3>You have watched</h3>
+                    <div className="site-card-wrapper">
+                        <Row gutter={16}>
+                            <Col span={8}>
+                                <Card
+                                    hoverable
+                                    style={{
+                                        width: 240,
+                                    }}
+                                    cover={<img alt="anime_pic" src={this.state.userwatchedDetails[0].url} />}
+                                >
+                                    <Meta title={this.state.userwatchedDetails[0].Name} />
+                                </Card>
+                            </Col>
+                            <Col span={8}>
+                                <Card title="Card title" bordered={false}>
+                                    Card content
+                                </Card>
+                            </Col>
+                            <Col span={8}>
+                                <Card title="Card title" bordered={false}>
+                                    Card content
+                                </Card>
+                            </Col>
+                        </Row>
+                    </div>
                 </div>
             </div>
         )
