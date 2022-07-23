@@ -81,13 +81,25 @@ class UserPage extends React.Component {
                                 </Card>
                             </Col>
                             <Col span={8}>
-                                <Card title="Card title" bordered={false}>
-                                    Card content
+                                <Card
+                                    hoverable
+                                    style={{
+                                        width: 240,
+                                    }}
+                                    cover={<img alt="anime_pic" src={this.state.userwatchedDetails[1].url} />}
+                                >
+                                    <Meta title={this.state.userwatchedDetails[1].Name} />
                                 </Card>
                             </Col>
                             <Col span={8}>
-                                <Card title="Card title" bordered={false}>
-                                    Card content
+                                <Card
+                                    hoverable
+                                    style={{
+                                        width: 240,
+                                    }}
+                                    cover={<img alt="anime_pic" src={this.state.userwatchedDetails[2].url} />}
+                                >
+                                    <Meta title={this.state.userwatchedDetails[2].Name} />
                                 </Card>
                             </Col>
                         </Row>
