@@ -258,8 +258,8 @@ async function top_manga(req, res){
 async function top_anime(req, res){
      
     var query = `SELECT Name, Score, Episodes, url
-    FROM anime
-    WHERE anime.Source <> 'Manga'
+    FROM anime A JOIN anime_url AU ON A.Anime_ID = AU.Anime_ID
+    WHERE A.Source <> 'Manga'
     ORDER BY Ranked
     LIMIT 10;`;
 
