@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Container, Nav, Navbar, NavDropdown, Button} from 'react-bootstrap';
+import {Container, Nav, Navbar, NavDropdown, Button, ButtonGroup} from 'react-bootstrap';
 
 class MenuBar extends React.Component {
     render() {
@@ -52,9 +52,12 @@ class MenuBar extends React.Component {
                 <NavDropdown.Item>Rx</NavDropdown.Item>
               </NavDropdown>
             </Nav>
+            <Nav.Link href="/">Advance Search</Nav.Link>
             <Nav>
+              <ButtonGroup className="mb-2">
               <Button variant="outline-secondary">Sign In</Button>
               <Button variant="outline-secondary">Sign Up</Button>
+              </ButtonGroup>
             </Nav>
            </Container>
           </Navbar>

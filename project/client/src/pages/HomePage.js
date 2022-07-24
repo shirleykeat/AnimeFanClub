@@ -39,15 +39,15 @@ class HomePage extends React.Component {
           <h3>Homepage</h3>
           {/* <Table dataSource={this.state.playersResults} columns={playerColumns} pagination={{ pageSizeOptions:[5, 10], defaultPageSize: 5, showQuickJumper:true }}/> */}
         </div>
-        <div class="col-sm-7">
+        <div class="col-md-4 offset-md-4">
         <Form className="d-flex">
             <Form.Control
               type="search"
               placeholder="Search"
               className="me-2"
-              aria-label="Search"
+              aria-label="Title Search"
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-success">Title Search</Button>
           </Form>
         </div>
 
