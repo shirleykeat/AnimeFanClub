@@ -24,17 +24,39 @@ class HomePage extends React.Component {
     }
 
   }
+  topAnimesReq = async() =>{
+
+    const url = "http://127.0.0.1:8080/main/topAnime"
+    const res = await fetch(url);
+    const resJson = await res.json()
+    console.log(resJson)
+    this.setState({topAnimes: resJson})
+  };
+
+  topMangasReq = async() =>{
+
+    const url = "http://127.0.0.1:8080/main/topManga"
+    const res = await fetch(url);
+    const resJson = await res.json()
+    console.log(resJson)
+    this.setState({topMangas: resJson})
+  };
+ 
 
   componentDidMount() {
 
-    getTopAnime().then(res =>{
+   getTopAnime().then(res =>{
       this.setState({topAnimes: res})
     })
 
-    getTopManga().then(res => {
+   getTopManga().then(res => {
       this.setState({topMangas: res})
     })
- 
+     
+    //this.topAnimesReq();
+    //this.topMangasReq();
+
+
   }
 
 
@@ -49,7 +71,7 @@ class HomePage extends React.Component {
         <Form className="d-flex">
             <Form.Control
               type="search"
-              placeholder="Search"
+              placeholder="Title Search"
               className="me-2"
               aria-label="Title Search"
             />
