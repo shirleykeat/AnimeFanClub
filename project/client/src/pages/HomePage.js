@@ -30,6 +30,10 @@ class HomePage extends React.Component {
     getTopAnime().then(res =>{
       this.setState({topAnimes: res})
     })
+
+    getTopManga().then(res => {
+      this.setState({topMangas: res})
+    })
  
   }
 
@@ -56,6 +60,12 @@ class HomePage extends React.Component {
         <div className='container-fluid movie-app'>
           <div className='row'>
               <AnimeList animes={this.state.topAnimes}/>
+          </div>
+        </div>
+
+        <div className='container-fluid movie-app'>
+          <div className='row'>
+              <AnimeList animes={this.state.topMangas}/>
           </div>
         </div>
 
