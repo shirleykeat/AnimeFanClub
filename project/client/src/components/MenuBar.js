@@ -52,11 +52,11 @@ function MenuBar(){
               </NavDropdown>
               <NavDropdown title="Rating" id="rating-dropdown">
                 <NavDropdown.Item onClick={()=>{redirect("rating", "G")}}>G</NavDropdown.Item>
-                <NavDropdown.Item onClick={()=>{redirect("type", "PG")}}>PG</NavDropdown.Item>
-                <NavDropdown.Item onClick={()=>{redirect("type", "PG-13")}}> PG-13</NavDropdown.Item>
-                <NavDropdown.Item onClick={()=>{redirect("type", "PG-17")}}>PG-17+</NavDropdown.Item>
-                <NavDropdown.Item onClick={()=>{redirect("type", "R")}}>R</NavDropdown.Item>
-                <NavDropdown.Item onClick={()=>{redirect("type", "Rx")}}>Rx</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("rating", "PG")}}>PG</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("rating", "PG-13")}}> PG-13</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("rating", "PG-17")}}>PG-17+</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("rating", "R")}}>R</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("rating", "Rx")}}>Rx</NavDropdown.Item>
               </NavDropdown>
             </Nav>
             <Nav.Link href="/">Advance Search</Nav.Link>
