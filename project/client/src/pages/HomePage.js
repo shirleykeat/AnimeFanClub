@@ -61,7 +61,7 @@ class HomePage extends React.Component {
     e.preventDefault();
 
     var titleInput = this.titleInput.current.value;
-    getTitle(titleInput).then(res =>{
+    getTitle(1,titleInput).then(res =>{
       this.setState({searchAnimes: res.results})
     })
 
@@ -84,7 +84,7 @@ class HomePage extends React.Component {
               aria-label="Title Search"
               ref = {this.titleInput}
             />
-            <Button variant="outline-success" type="submit" onClick={this.searchAnimes}>Search</Button>
+            <Button variant="outline-success" type="submit" onClick={this.getTitleSearch}>Search</Button>
           </Form>
         </div>
       
