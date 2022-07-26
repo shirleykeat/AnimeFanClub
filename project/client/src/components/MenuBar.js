@@ -1,9 +1,17 @@
 import React from 'react';
+import {useHistory} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Nav, Navbar, NavDropdown, Button, ButtonGroup} from 'react-bootstrap';
 
-class MenuBar extends React.Component {
-    render() {
+
+
+function MenuBar(){
+
+  const history = useHistory();
+  const redirect = (ty, place)=>{
+    history.push('../pages/AnimeListPage',{state: {type: ty, placeholder: place}});
+  }
+  
         return(
 
           <Navbar bg = "light" expand="lg">
@@ -12,44 +20,43 @@ class MenuBar extends React.Component {
             <Nav className="homePage">
               <Nav.Link href="/">Home</Nav.Link>
               <NavDropdown title="Genres" id="genres-dropdown">
-                <NavDropdown.Item >Action</NavDropdown.Item>
-                <NavDropdown.Item > Comedy</NavDropdown.Item>
-                <NavDropdown.Item >Drama</NavDropdown.Item>
-                <NavDropdown.Item >Mystery</NavDropdown.Item>
-                <NavDropdown.Item >Sci-Fi</NavDropdown.Item>
-                <NavDropdown.Item >Adventure</NavDropdown.Item>
-                <NavDropdown.Item >Supernatural</NavDropdown.Item>
-                <NavDropdown.Item >Magic</NavDropdown.Item>
-                <NavDropdown.Item >Fantasy</NavDropdown.Item>
-                <NavDropdown.Item >Sports</NavDropdown.Item>
-                <NavDropdown.Item >Romance</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("genre", "Action")}} >Action</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("genre", "Comedy")}}> Comedy</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("genre", "Drama")}}>Drama</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("genre", "Mystery")}}>Mystery</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("genre", "Sci-Fi")}}>Sci-Fi</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("genre", "Adventure")}}>Adventure</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("genre", "Supernatural")}}>Supernatural</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("genre", "Magic")}}>Magic</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("genre", "Fantacy")}}>Fantasy</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("genre", "Sports")}}>Sports</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("genre", "Romance")}}>Romance</NavDropdown.Item>
               </NavDropdown>
               <NavDropdown title="Sources" id="sources-dropdown">
-                <NavDropdown.Item >Original</NavDropdown.Item>
-                <NavDropdown.Item > Manga</NavDropdown.Item>
-                <NavDropdown.Item >Light novel</NavDropdown.Item>
-                <NavDropdown.Item >Visual novel</NavDropdown.Item>
-                <NavDropdown.Item >Game</NavDropdown.Item>
-                <NavDropdown.Item >Picture book</NavDropdown.Item>
-                <NavDropdown.Item >Book</NavDropdown.Item>
-                <NavDropdown.Item >Music</NavDropdown.Item>
-                <NavDropdown.Item >Unkown</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("source", "Original")}}>Original</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("source", "Manga")}}> Manga</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("source", "Light novel")}}>Light novel</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("source", "Visual novel")}}>Visual novel</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("source", "Game")}}>Game</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("source", "Picture book")}}>Picture book</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("source", "Book")}}>Book</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("source", "Music")}}>Music</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("source", "Unknown")}}>Unkown</NavDropdown.Item>
               </NavDropdown>
               <NavDropdown title="Types" id="types-dropdown">
-                <NavDropdown.Item >TV</NavDropdown.Item>
-                <NavDropdown.Item > Movie</NavDropdown.Item>
-                <NavDropdown.Item >OVA</NavDropdown.Item>
-                <NavDropdown.Item >Special</NavDropdown.Item>
-                <NavDropdown.Item >Movie</NavDropdown.Item>
-                <NavDropdown.Item >ONA</NavDropdown.Item>  
+                <NavDropdown.Item onClick={()=>{redirect("type", "TV")}}>TV</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("type", "Movie")}}> Movie</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("type", "OVA")}}>OVA</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("type", "Special")}}>Special</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("type", "ONA")}}>ONA</NavDropdown.Item>  
               </NavDropdown>
               <NavDropdown title="Rating" id="rating-dropdown">
-                <NavDropdown.Item>G</NavDropdown.Item>
-                <NavDropdown.Item >PG</NavDropdown.Item>
-                <NavDropdown.Item > PG-13</NavDropdown.Item>
-                <NavDropdown.Item >PG-17+</NavDropdown.Item>
-                <NavDropdown.Item >R</NavDropdown.Item>
-                <NavDropdown.Item>Rx</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("rating", "G")}}>G</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("type", "PG")}}>PG</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("type", "PG-13")}}> PG-13</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("type", "PG-17")}}>PG-17+</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("type", "R")}}>R</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{redirect("type", "Rx")}}>Rx</NavDropdown.Item>
               </NavDropdown>
             </Nav>
             <Nav.Link href="/">Advance Search</Nav.Link>
@@ -62,7 +69,7 @@ class MenuBar extends React.Component {
            </Container>
           </Navbar>
         )
-    }
+    
 }
 
 export default MenuBar
