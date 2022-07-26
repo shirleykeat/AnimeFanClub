@@ -59,7 +59,9 @@ class HomePage extends React.Component {
   getTitleSearch =(e)=>{
 
     e.preventDefault();
-    getTitle().then(res =>{
+
+    var titleInput = this.titleInput.current.value;
+    getTitle(titleInput).then(res =>{
       this.setState({searchAnimes: res.results})
     })
 
@@ -89,7 +91,7 @@ class HomePage extends React.Component {
       <Container>
         {this.searchAnimes?
         <div className='container-fluid movie-app'>
-          <p>Title Search result</p>
+          <p>Search result</p>
           <div className='row'>
               <AnimeList animes={this.state.searchAnimes}/>
           </div>

@@ -279,7 +279,7 @@ async function search_title(req, res){
     const pagenumber = page-1
     const title = req.query.title
 
-    var query = `SELECT SELECT Name, Score, Source, Rating, Episodes, Type, url
+    var query = `SELECT Name, Score, Source, Rating, Episodes, Type, url
     FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
     Where A.Name LIKE '%${title}%'
     ORDER BY Score
