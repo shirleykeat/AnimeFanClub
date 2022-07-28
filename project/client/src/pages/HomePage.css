@@ -3,9 +3,15 @@ body {
 	color: #ffffff;
 }
 
-.movie-app > .row {
-	overflow-x: auto;
-	flex-wrap: nowrap;
+.container-fluid{
+    display: grid;
+    gap: var(--size-1);
+    grid-auto-flow: column;
+    grid-auto-columns: 20%;
+
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    
 }
 
 .image-container {
@@ -22,14 +28,3 @@ body {
 	opacity: 1;
 }
 
-.overlay {
-	position: absolute;
-	background: rgba(0, 0, 0, 0.8);
-	width: 100%;
-	transition: 0.5s ease;
-	opacity: 0;
-	bottom: 0;
-	font-size: 20px;
-	padding: 20px;
-	text-align: center;
-}

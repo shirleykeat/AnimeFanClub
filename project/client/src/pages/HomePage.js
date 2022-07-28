@@ -2,7 +2,7 @@ import React from 'react';
 import MenuBar from '../components/MenuBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
-import {Form, Button, Container} from 'react-bootstrap';
+import {Form, Button} from 'react-bootstrap';
 import {getTitle, getTopAnime, getTopManga} from '../fetcher';
 import AnimeList from '../components/AnimeList';
 
@@ -68,7 +68,7 @@ class HomePage extends React.Component {
         </div>
       
     
-        <div className='container-fluid movie-app'>
+        <div className='container-fluid'>
           <p>Top Animes</p>
           <div className='row'>
               <AnimeList animes={this.state.topAnimes}/>
@@ -76,7 +76,7 @@ class HomePage extends React.Component {
         </div>
       
    
-        <div className='container-fluid movie-app'>
+        <div className='container-fluid'>
           <p>Top Mangas</p>
           <div className='row'>
               <AnimeList animes={this.state.topMangas}/>
