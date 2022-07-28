@@ -93,6 +93,7 @@ class AnimePage extends React.Component {
           {/* <CardBody> */}
 
             <Row gutter='30' justify='center'>
+              
 
               <Col span={4} style={{ textAlign: 'center' }}>
                 <Card style={{height: '25vh', width: '19vh'}}>  

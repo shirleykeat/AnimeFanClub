@@ -150,7 +150,8 @@ async function anime_userAlsoWatch(req, res) {
 
 async function anime_TopinsameGenres(req, res) {
     const animeid = req.query.id ? req.query.id : 1;
-    AnimeQuery = `WITH temp AS (
+    AnimeQuery = `
+    WITH temp AS (
         SELECT DISTINCT Genres
         FROM anime_genres
         WHERE Anime_id = ${animeid}
