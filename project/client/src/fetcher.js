@@ -43,49 +43,49 @@ const getUserRated = async (id) => {
 }
 
 const getGenre = async(page, genre) =>{
-    var res = await fetch(`http://${config.server_host}:${config.server_post}/main/genre?page=${page}&genre=${genre}`,{
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/main/genre?page=${page}&genre=${genre}`,{
         method:'GET',
     })
     return res.json()
 }
 
 const getSource = async(page, source) =>{
-    var res = await fetch(`http://${config.server_host}:${config.server_post}/main/source?page=${page}&source=${source}`,{
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/main/source?page=${page}&source=${source}`,{
         method:'GET',
     })
     return res.json()
 }
 
 const getType = async(page, type) =>{
-    var res = await fetch(`http://${config.server_host}:${config.server_post}/main/type?page=${page}&type=${type}`,{
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/main/type?page=${page}&type=${type}`,{
         method:'GET',
     })
     return res.json()
 }
 
 const getRating = async(page, rating) =>{
-    var res = await fetch(`http://${config.server_host}:${config.server_post}/main/type?page=${page}&rating=${rating}`,{
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/main/type?page=${page}&rating=${rating}`,{
         method:'GET',
     })
     return res.json()
 }
 
 const getTopAnime = async()=>{
-    var res = await fetch(`http://${config.server_host}:${config.server_post}/main/topAnime`,{
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/main/topAnime`,{
         method:'GET',
     })
     return res.json()
 }
 
 const getTopManga = async()=>{
-    var res = await fetch(`http://${config.server_host}:${config.server_post}/main/topManga`,{
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/main/topManga`,{
         method:'GET',
     })
     return res.json()
 }
 
 const  getTitle= async(page,title) =>{
-    var res = await fetch(`http://${config.server_host}:${config.server_post}/main/title?page=${page}&title=${title}`,
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/main/title?page=${page}&title=${title}`,
      {method:'GET',
     })
     return res.json()

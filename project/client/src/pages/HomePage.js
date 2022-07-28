@@ -1,6 +1,7 @@
 import React from 'react';
 import MenuBar from '../components/MenuBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './HomePage.css';
 import {Form, Button, Container} from 'react-bootstrap';
 import {getTitle, getTopAnime, getTopManga} from '../fetcher';
 import AnimeList from '../components/AnimeList';
@@ -21,25 +22,7 @@ class HomePage extends React.Component {
     this.titleInput = React.createRef();
 
   }
-  /*topAnimesReq = async() =>{
-
-    const url = "http://127.0.0.1:8080/main/topAnime"
-    const res = await fetch(url);
-    const resJson = await res.json()
-    console.log(resJson)
-    this.setState({topAnimes: resJson})
-  };
-
-  topMangasReq = async() =>{
-
-    const url = "http://127.0.0.1:8080/main/topManga"
-    const res = await fetch(url);
-    const resJson = await res.json()
-    console.log(resJson)
-    this.setState({topMangas: resJson})
-  };*/
- 
-
+  
   componentDidMount() {
 
    getTopAnime().then(res =>{
@@ -50,10 +33,6 @@ class HomePage extends React.Component {
       this.setState({topMangas: res.results})
     })
      
-    //this.topAnimesReq();
-    //this.topMangasReq();
-    
-
   }
 
   getTitleSearch =(e)=>{
@@ -88,34 +67,22 @@ class HomePage extends React.Component {
           </Form>
         </div>
       
-      <Container>
-        {this.searchAnimes?
-        <div className='container-fluid movie-app'>
-          <p>Search result</p>
-          <div className='row'>
-              <AnimeList animes={this.state.searchAnimes}/>
-          </div>
-        </div>:
-        <></>
-        }
-      </Container>
-      
-      <Container>
+    
         <div className='container-fluid movie-app'>
           <p>Top Animes</p>
           <div className='row'>
               <AnimeList animes={this.state.topAnimes}/>
           </div>
         </div>
-      </Container>
-      <Container>
+      
+   
         <div className='container-fluid movie-app'>
           <p>Top Mangas</p>
           <div className='row'>
               <AnimeList animes={this.state.topMangas}/>
           </div>
         </div>
-      </Container>
+
       </div>
        
     )
