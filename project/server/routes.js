@@ -159,7 +159,7 @@ async function anime_TopinsameGenres(req, res) {
         SELECT DISTINCT Anime_id
         FROM anime_genres
         WHERE Anime_id <> ${animeid} and Genres in (SELECT Genres FROM temp)
-    ),
+    )
     SELECT a.Anime_id, a.Name, au.url
     FROM anime a LEFT JOIN anime_url au ON a.Anime_ID = au.Anime_ID
     WHERE a.Anime_id in (SELECT Anime_id FROM animeID)
