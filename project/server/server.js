@@ -19,6 +19,7 @@ app.get('/user/profile', routes.user_profile)
 
 // ANIME-SPECIFIC ROUTES
 app.get('/anime', routes.anime_property)
+app.get('/anime/description', routes.anime_description)
 app.get('/anime/animegenres', routes.anime_genres)
 app.get('/anime/useralsowatch', routes.anime_userAlsoWatch)
 app.get('/anime/topinsameGenres', routes.anime_TopinsameGenres)

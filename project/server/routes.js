@@ -108,6 +108,30 @@ async function anime_property(req, res) {
 
 }
 
+async function anime_description(req, res) {
+    const animeid = req.query.id ? req.query.id : 1;
+    AnimeQuery = `SELECT aws.synopsis
+    FROM anime a LEFT JOIN anime_with_synopsis aws ON a.Anime_ID = aws.Anime_ID
+    WHERE a.Anime_ID = ${animeid}`;
+
+    if (animeid === null) {
+        res.json({ results: [] })
+    } else {
+        connection.query(AnimeQuery,
+            function (error, results, fields) {
+
+                if (error) {
+                    console.log(error)
+                    res.json({ error: error })
+                } else if (results) {
+                    res.json({ results: results })
+                }
+            })
+    }
+
+
+}
+
 
 async function anime_genres(req, res) {
     const animeid = req.query.id ? req.query.id : 1;
@@ -421,6 +445,7 @@ module.exports = {
     user_watching,
     user_rated,
     anime_property,
+    anime_description,
     anime_genres,
     anime_userAlsoWatch,
     anime_TopinsameGenres,
