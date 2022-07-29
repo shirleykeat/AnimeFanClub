@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Card, CardBody} from "shards-react";
+import { LikeOutlined } from '@ant-design/icons';
 import {
+  Tooltip,
+  Tag,
+  Statistic,
+  Rate,
+  Form,
   Row,
   Col,
   Divider,
@@ -8,12 +14,24 @@ import {
 import {BrowserRouter as Router, Link, NavLink} from 'react-router-dom';
 import 'antd/dist/antd.min.css';
 
-
 // import { RadarChart } from 'react-vis';
 // import { format } from 'd3-format';
 
 import MenuBar from '../components/MenuBar';
-import { getAnime, animeGenres, anime_userAlsoWatch, anime_TopinsameGenres } from '../fetcher';
+
+import { getAnime, getAnimeGenres ,anime_userAlsoWatch, anime_TopinsameGenres } from '../fetcher';
+
+
+// const { CheckableTag } = Tag;
+// const tagsData = ['Comedy', 'Music', 'Action', 'Kids', 'Fantasy', 'Slice of Life', 'Adventure', 'Drama', 'Sci-Fi', 'School'];
+// const handleChange = (tag, checked) => {
+//   const nextSelectedTags = checked
+//     ? [...selectedTags, tag]
+//     : selectedTags.filter((t) => t !== tag);
+//   console.log('You are interested in: ', nextSelectedTags);
+//   setSelectedTags(nextSelectedTags);
+// };
+// const [selectedTags, setSelectedTags] = useState(['Books']);
 
 // const wideFormat = format('.3r');
 
@@ -31,13 +49,18 @@ class AnimePage extends React.Component {
     }
   }
 
+
+  
+
+
+
   componentDidMount() {
     
     getAnime(this.state.selectedAnimeId).then(res => {
       this.setState({ selectedAnimeDetails: res.results[0] })
     })  
 
-    animeGenres(this.state.selectedAnimeId).then(res => {
+    getAnimeGenres(this.state.selectedAnimeId).then(res => {
       this.setState({ selectedAnimeGenres: res.results })
     })
 
@@ -49,10 +72,12 @@ class AnimePage extends React.Component {
       this.setState({ TopScoreAnimeInSameGenresDetails: res.results})
     })
 
+    
   }
 
-
+  
   render() {
+    
 
     return (
       <div>
@@ -78,13 +103,36 @@ class AnimePage extends React.Component {
 
                 <Col flex={2} style={{ textAlign: 'left' }}>
                 <h3>{this.state.selectedAnimeDetails.Name}</h3>
-                <h5>{this.state.selectedAnimeDetails.Japanese_name}</h5>
+                {/* <h5>{this.state.selectedAnimeDetails.Japanese_name}</h5> */}
                 <h5>{this.state.selectedAnimeDetails.Type}</h5>
+                <Rate disabled defaultValue={this.state.selectedAnimeDetails.Score/2} />
+                <Divider />
 
-  
-                {/* <Table dataSource={this.state.selectedAnimeGenres} style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}/> */}
+                  <Row gutter={16}>
+                  <Col span={12}>  
+                  <Statistic title="Favorite" value={this.state.selectedAnimeDetails.Favorites} prefix={<LikeOutlined />} />
+                  </Col>
+                  <Col span={12}>  
+                  <Statistic title="Completed" value={this.state.selectedAnimeDetails.Completed}/>
+                  </Col>
+                  </Row>
+
+                {/* {this.state.selectedAnimeGenres.map((tag) => (
+                <CheckableTag
+                  key={tag}
+                  checked={selectedTags.indexOf(tag) > -1}
+                  onChange={(checked) => handleChange(tag, checked)}
+                >
+                  {tag}
+                </CheckableTag>
+                ))} */}
+
+{/* const tags = JSON.parse(this.state.selectedAnimeGenres); */}
+
+
 
                 </Col>
+                
 
             </Row>
             
@@ -94,14 +142,11 @@ class AnimePage extends React.Component {
           </div> : null}
 
 
-          <Divider />
-         
-
-
+        
           {this.state.userAlsoWatchDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
 
-            <h3>People Also Watch</h3>
-            <Divider />
+            <Divider><h4> People Also Watch</h4></Divider>
+            
 
             <Row gutter='30' justify='center'>
               
@@ -176,13 +221,9 @@ class AnimePage extends React.Component {
           </div> : null}
 
 
-          <Divider />
-
-
           {this.state.TopScoreAnimeInSameGenresDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
 
-              <h3>Top Score Anime in Same Genres</h3>
-              <Divider />
+              <Divider><h4> Top Score Anime in Same Genres </h4></Divider>
 
   
               <Row gutter='30' justify='center'>
