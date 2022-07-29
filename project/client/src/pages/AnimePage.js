@@ -13,7 +13,7 @@ import 'antd/dist/antd.min.css';
 // import { format } from 'd3-format';
 
 import MenuBar from '../components/MenuBar';
-import { getAnime, animeGenres, anime_userAlsoWatch, anime_TopinsameGenres } from '../fetcher';
+import { getAnime, getAnimeGenres, anime_userAlsoWatch, anime_TopinsameGenres } from '../fetcher';
 
 // const wideFormat = format('.3r');
 
@@ -37,7 +37,7 @@ class AnimePage extends React.Component {
       this.setState({ selectedAnimeDetails: res.results[0] })
     })  
 
-    animeGenres(this.state.selectedAnimeId).then(res => {
+    getAnimeGenres(this.state.selectedAnimeId).then(res => {
       this.setState({ selectedAnimeGenres: res.results })
     })
 

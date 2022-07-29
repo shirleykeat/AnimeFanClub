@@ -60,7 +60,6 @@ function MenuBar(){
               </NavDropdown>
             </Nav>
             <Nav.Link href="/search" >Advanced Search</Nav.Link>
-            <Nav.Link href="/">Advance Search</Nav.Link>
             <Nav>
               <ButtonGroup className="mb-2">
               <Button variant="outline-secondary">Sign In</Button>
