@@ -59,6 +59,7 @@ function MenuBar(){
                 <NavDropdown.Item onClick={()=>{redirect("rating", "Rx")}}>Rx</NavDropdown.Item>
               </NavDropdown>
             </Nav>
+            <Nav.Link href="/search" >Advanced Search</Nav.Link>
             <Nav.Link href="/">Advance Search</Nav.Link>
             <Nav>
               <ButtonGroup className="mb-2">

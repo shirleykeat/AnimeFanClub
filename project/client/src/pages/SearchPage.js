@@ -7,6 +7,8 @@ import AnimeList from '../components/AnimeList';
 
 
 
+
+
 class SearchPage extends React.Component {
 
   constructor(props) {
@@ -65,6 +67,30 @@ class SearchPage extends React.Component {
                 <Button variant="outline-success" type="submit" onClick={this.getTitleSearch}>Search</Button>
             </Form>
             </div>
+
+            <div class="container">
+              <div class="row">
+                  <form class="col-md-4">
+                      <label>Select genre</label>
+                      <select class="form-control select2">
+                        <option>Action</option> 
+                        <option>Adventure</option> 
+                        <option>Comedy</option> 
+                        <option>Drama</option> 
+                        <option>Sci-Fi</option> 
+                      </select>
+                  </form>
+              </div>
+            </div>
+            <script>
+                $('.select2').select2();
+            </script>
+
+
+
+
+
+
         </div>
     )
   }
