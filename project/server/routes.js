@@ -109,6 +109,30 @@ async function anime_property(req, res) {
 }
 
 
+async function anime_genres(req, res) {
+    const animeid = req.query.id ? req.query.id : 1;
+    AnimeQuery = `SELECT ag.genres
+    FROM anime a LEFT JOIN anime_genres ag ON a.Anime_ID = ag.Anime_ID
+    WHERE a.Anime_ID = ${animeid}`;
+
+    if (animeid === null) {
+        res.json({ results: [] })
+    } else {
+        connection.query(AnimeQuery,
+            function (error, results, fields) {
+
+                if (error) {
+                    console.log(error)
+                    res.json({ error: error })
+                } else if (results) {
+                    res.json({ results: results })
+                }
+            })
+    }
+
+
+}
+
 async function anime_userAlsoWatch(req, res) {
     const animeid = req.query.id ? req.query.id : 1;
     AnimeQuery = `WITH temp AS (
@@ -397,6 +421,7 @@ module.exports = {
     user_watching,
     user_rated,
     anime_property,
+    anime_genres,
     anime_userAlsoWatch,
     anime_TopinsameGenres,
     get_genre,
