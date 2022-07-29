@@ -67,20 +67,19 @@ class HomePage extends React.Component {
           </Form>
         </div>
       
-    
-        <div className='container-fluid'>
-          <p>Top Animes</p>
-          <div className='row'>
+        <div class="text-center">
+          <h4>Top Animes</h4>
+        </div>
+        <div className='container-fluid' style={{overflow:"auto"}} >
               <AnimeList animes={this.state.topAnimes}/>
-          </div>
         </div>
       
-   
-        <div className='container-fluid'>
-          <p>Top Mangas</p>
-          <div className='row'>
+        <div class="text-center">
+          <h4>Top Mangas</h4>
+        </div>
+        <div className='container-fluid'  style={{overflow:"auto"}}>
               <AnimeList animes={this.state.topMangas}/>
-          </div>
+    
         </div>
 
       </div>

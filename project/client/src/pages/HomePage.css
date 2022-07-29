@@ -8,8 +8,7 @@ body {
     gap: var(--size-1);
     grid-auto-flow: column;
     grid-auto-columns: 20%;
-
-    overflow-x: auto;
+    overflow-x: scroll;
     overscroll-behavior-inline: contain;
     
 }
