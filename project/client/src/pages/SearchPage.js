@@ -71,7 +71,7 @@ class SearchPage extends React.Component {
             <div class="container">
               <div class="row">
                   <form class="col-md-4">
-                      <label>Select genre</label>
+                      <label>Select Genre</label>
                       <select class="form-control select2">
                         <option>Action</option> 
                         <option>Adventure</option> 
@@ -86,10 +86,59 @@ class SearchPage extends React.Component {
                 $('.select2').select2();
             </script>
 
+            <div class="container">
+              <div class="row">
+                  <form class="col-md-4">
+                      <label>Select Licensor</label>
+                      <select class="form-control select2">
+                        <option>Bandai Entertainment</option> 
+                        <option>Sony Pictures Entertainment</option> 
+                        <option>VIZ Media</option> 
+                        <option>Funimation</option> 
+                        <option>Netflix</option> 
+                      </select>
+                  </form>
+              </div>
+            </div>
+            <script>
+                $('.select2').select2();
+            </script>
 
+            <div class="container">
+              <div class="row">
+                  <form class="col-md-4">
+                      <label>Select Producer</label>
+                      <select class="form-control select2">
+                        <option>Bandai Visual</option> 
+                        <option>TV Tokyo</option> 
+                        <option>Fuji TV</option> 
+                        <option>CBC</option> 
+                        <option>Marvelous</option> 
+                      </select>
+                  </form>
+              </div>
+            </div>
+            <script>
+                $('.select2').select2();
+            </script>
 
-
-
+            <div class="container">
+              <div class="row">
+                  <form class="col-md-4">
+                      <label>Select Studio</label>
+                      <select class="form-control select2">
+                        <option>Sunrise</option> 
+                        <option>Gallop</option> 
+                        <option>Toei Animation</option> 
+                        <option>Nippon Animation</option> 
+                        <option>AIC</option> 
+                      </select>
+                  </form>
+              </div>
+            </div>
+            <script>
+                $('.select2').select2();
+            </script>
 
         </div>
     )

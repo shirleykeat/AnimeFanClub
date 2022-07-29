@@ -13,7 +13,7 @@ import 'antd/dist/antd.min.css';
 // import { format } from 'd3-format';
 
 import MenuBar from '../components/MenuBar';
-import { getAnime, animeGenres ,anime_userAlsoWatch, anime_TopinsameGenres } from '../fetcher';
+import { getAnime, animeGenres, anime_userAlsoWatch, anime_TopinsameGenres } from '../fetcher';
 
 // const wideFormat = format('.3r');
 
