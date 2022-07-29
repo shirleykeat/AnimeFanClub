@@ -226,10 +226,6 @@ class SearchPage extends React.Component {
 
 
 
-
-
-
-
         </div>
     )
   }
