@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Nav, Navbar, NavDropdown, Button, ButtonGroup} from 'react-bootstrap';
 
 
-
 function MenuBar(){
 
   const history = useHistory();
@@ -13,12 +12,11 @@ function MenuBar(){
   }
   
         return(
-
-          <Navbar bg = "light" expand="lg">
+          <Navbar bg = "dark" variant='dark'>
            <Container>
-            <Navbar.Brand href="/">My Anime Fan Club</Navbar.Brand>
+            <Navbar.Brand href="/" style = {{color: "white"}}>My Anime Fan Club</Navbar.Brand>
             <Nav className="homePage">
-              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/" style = {{color: "white"}}>Home</Nav.Link>
               <NavDropdown title="Genres" id="genres-dropdown">
                 <NavDropdown.Item onClick={()=>{redirect("genre", "Action")}} >Action</NavDropdown.Item>
                 <NavDropdown.Item onClick={()=>{redirect("genre", "Comedy")}}> Comedy</NavDropdown.Item>
@@ -59,11 +57,11 @@ function MenuBar(){
                 <NavDropdown.Item onClick={()=>{redirect("rating", "Rx")}}>Rx</NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <Nav.Link href="/search" >Advanced Search</Nav.Link>
+            <Nav.Link href="/search" style = {{color: "white"}}>Advanced Search</Nav.Link>
             <Nav>
               <ButtonGroup className="mb-2">
-              <Button variant="outline-secondary">Sign In</Button>
-              <Button variant="outline-secondary">Sign Up</Button>
+              <Button variant="outline-secondary" style = {{color: "white"}}>Sign In</Button>
+              <Button variant="outline-secondary" style = {{color: "white"}}>Sign Up</Button>
               </ButtonGroup>
             </Nav>
            </Container>

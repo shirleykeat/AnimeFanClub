@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, CardBody} from "shards-react";
 import {
+  Space,
   Tooltip,
   Tag,
   Statistic,
@@ -18,7 +19,7 @@ import { LikeOutlined } from '@ant-design/icons';
 // import { format } from 'd3-format';
 
 import MenuBar from '../components/MenuBar';
-import { getAnime, getAnimeGenres ,anime_userAlsoWatch, anime_TopinsameGenres } from '../fetcher';
+import { getAnime, getAnimeDescription, getAnimeGenres ,anime_userAlsoWatch, anime_TopinsameGenres } from '../fetcher';
 import Item from 'antd/lib/list/Item';
 
 
@@ -42,6 +43,7 @@ class AnimePage extends React.Component {
     this.state = {
       selectedAnimeId: window.location.search ? window.location.search.substring(1).split('=')[1] : 1,
       selectedAnimeDetails: null,
+      selectedAnimeDescription: null,
       selectedAnimeGenres: null,
       Genreslist: null,
       userAlsoWatchDetails: null,
@@ -57,6 +59,10 @@ class AnimePage extends React.Component {
     getAnime(this.state.selectedAnimeId).then(res => {
       this.setState({ selectedAnimeDetails: res.results[0] })
     })  
+
+    getAnimeDescription(this.state.selectedAnimeId).then(res => {
+      this.setState({ selectedAnimeDescription: res.results[0] })
+    })
 
     getAnimeGenres(this.state.selectedAnimeId).then(res => {
       this.setState({ selectedAnimeGenres: res.results })
@@ -76,11 +82,10 @@ class AnimePage extends React.Component {
   render() {
 
     return (
-      <div>
+      <div style={{backgroundColor: 'lightgrey'}}>
         <MenuBar />
         {/* background setting  */}
         <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh', backgroundImage: `url()`}}> 
-          <h3>Anime</h3>
 
           <Divider />
 
@@ -96,12 +101,26 @@ class AnimePage extends React.Component {
                 </Card>
                 </Col>
 
+
                 <Col flex={2} style={{ textAlign: 'left' }}>
                 <h3>{this.state.selectedAnimeDetails.Name}</h3>
                 <h5>{this.state.selectedAnimeDetails.Type}</h5>
 
                 <Rate disabled defaultValue={this.state.selectedAnimeDetails.Score/2} />
                 <Divider />
+
+                <Space direction="vertical" size="middle" style={{ display: 'flex', height: '20vh', width: '90vh', overflow:'auto'}}>
+                {/* <Card style={{height: '20vh', width: '80vh', overflow:'auto'}} bordered={false}> */}
+                  {this.state.selectedAnimeDescription ? <div>
+                  <p style={{fontSize: 13}}>{this.state.selectedAnimeDescription.synopsis}</p>
+                  </div> : null}
+                {/* </Card> */}
+                </Space>
+
+
+                <Divider />
+
+
 
                   <Row gutter={16}>
                   <Col span={12}>  
@@ -297,6 +316,7 @@ class AnimePage extends React.Component {
   
             </div> : null}
 
+            <Divider />
 
         </div>
       </div>
