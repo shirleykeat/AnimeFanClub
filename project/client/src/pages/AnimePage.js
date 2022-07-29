@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Card, CardBody} from "shards-react";
-import { LikeOutlined } from '@ant-design/icons';
 import {
   Button,
   Tooltip,
@@ -14,12 +13,13 @@ import {
 } from 'antd'
 import {BrowserRouter as Router, Link, NavLink} from 'react-router-dom';
 import 'antd/dist/antd.min.css';
+import { LikeOutlined } from '@ant-design/icons';
+
 
 // import { RadarChart } from 'react-vis';
 // import { format } from 'd3-format';
 
 import MenuBar from '../components/MenuBar';
-
 import { getAnime, getAnimeGenres ,anime_userAlsoWatch, anime_TopinsameGenres } from '../fetcher';
 import Item from 'antd/lib/list/Item';
 
@@ -59,8 +59,6 @@ class AnimePage extends React.Component {
     console.log(this.state.Genreslist)
   }
 
-  
-
 
 
   componentDidMount() {
@@ -81,12 +79,10 @@ class AnimePage extends React.Component {
       this.setState({ TopScoreAnimeInSameGenresDetails: res.results})
     })
 
-    
   }
 
-  
+
   render() {
-    
 
     return (
       <div>
@@ -111,8 +107,9 @@ class AnimePage extends React.Component {
 
                 <Col flex={2} style={{ textAlign: 'left' }}>
                 <h3>{this.state.selectedAnimeDetails.Name}</h3>
-                {/* <h5>{this.state.selectedAnimeDetails.Japanese_name}</h5> */}
+                <h5>{this.state.selectedAnimeDetails.Japanese_name}</h5>
                 <h5>{this.state.selectedAnimeDetails.Type}</h5>
+
                 <Rate disabled defaultValue={this.state.selectedAnimeDetails.Score/2} />
                 <Divider />
 
@@ -138,8 +135,8 @@ class AnimePage extends React.Component {
                   </Row>
                   </div>: null}
 
+
                 </Col>
-                
 
             </Row>
             
@@ -149,11 +146,14 @@ class AnimePage extends React.Component {
           </div> : null}
 
 
-        
+          <Divider />
+         
+
+
           {this.state.userAlsoWatchDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
 
-            <Divider><h4> People Also Watch</h4></Divider>
-            
+            <h3>People Also Watch</h3>
+            <Divider />
 
             <Row gutter='30' justify='center'>
               
@@ -228,9 +228,13 @@ class AnimePage extends React.Component {
           </div> : null}
 
 
+          <Divider />
+
+
           {this.state.TopScoreAnimeInSameGenresDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
 
-              <Divider><h4> Top Score Anime in Same Genres </h4></Divider>
+              <h3>Top Score Anime in Same Genres</h3>
+              <Divider />
 
   
               <Row gutter='30' justify='center'>

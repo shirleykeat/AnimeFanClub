@@ -7,8 +7,6 @@ import AnimeList from '../components/AnimeList';
 
 
 
-
-
 class SearchPage extends React.Component {
 
   constructor(props) {
@@ -72,7 +70,7 @@ class SearchPage extends React.Component {
               <div class="row">
                   <form class="col-md-4">
                       <label>Select Genre</label>
-                      <select class="form-control select2">
+                      <select class="form-control select1">
                         <option>Action</option> 
                         <option>Adventure</option> 
                         <option>Comedy</option> 
@@ -83,7 +81,7 @@ class SearchPage extends React.Component {
               </div>
             </div>
             <script>
-                $('.select2').select2();
+                $('.select1').select1();
             </script>
 
             <div class="container">
@@ -108,7 +106,7 @@ class SearchPage extends React.Component {
               <div class="row">
                   <form class="col-md-4">
                       <label>Select Producer</label>
-                      <select class="form-control select2">
+                      <select class="form-control select3">
                         <option>Bandai Visual</option> 
                         <option>TV Tokyo</option> 
                         <option>Fuji TV</option> 
@@ -119,14 +117,14 @@ class SearchPage extends React.Component {
               </div>
             </div>
             <script>
-                $('.select2').select2();
+                $('.select3').select3();
             </script>
 
             <div class="container">
               <div class="row">
                   <form class="col-md-4">
                       <label>Select Studio</label>
-                      <select class="form-control select2">
+                      <select class="form-control select4">
                         <option>Sunrise</option> 
                         <option>Gallop</option> 
                         <option>Toei Animation</option> 
@@ -137,8 +135,96 @@ class SearchPage extends React.Component {
               </div>
             </div>
             <script>
-                $('.select2').select2();
+                $('.select4').select4();
             </script>
+
+            <div class="container-xl">
+                <div class="table-responsive">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-8"><h2>Search Results</h2></div>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name <i class="fa fa-sort"></i></th>
+                                    <th>Genre <i class="fa fa-sort"></i></th>
+                                    <th>Type <i class="fa fa-sort"></i></th>
+                                    <th>Producer <i class="fa fa-sort"></i></th>
+                                    <th>Score <i class="fa fa-sort"></i></th>
+                                    <th>Rating <i class="fa fa-sort"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>name</td>
+                                    <td>genre A</td>
+                                    <td>type A</td>
+                                    <td>producer A</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>name</td>
+                                    <td>genre A</td>
+                                    <td>type A</td>
+                                    <td>producer A</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>name</td>
+                                    <td>genre A</td>
+                                    <td>type A</td>
+                                    <td>producer A</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>name</td>
+                                    <td>genre A</td>
+                                    <td>type A</td>
+                                    <td>producer A</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>name</td>
+                                    <td>genre A</td>
+                                    <td>type A</td>
+                                    <td>producer A</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                </tr>       
+                            </tbody>
+                        </table>
+                        <div class="clearfix">
+                            <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                            <ul class="pagination">
+                                <li class="page-item disabled"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                                <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                                <li class="page-item"><a href="#" class="page-link">4</a></li>
+                                <li class="page-item"><a href="#" class="page-link">5</a></li>
+                                <li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>  
+            </div>   
+
+
+
+
 
         </div>
     )
