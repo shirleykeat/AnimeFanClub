@@ -1,9 +1,9 @@
 {
-  "short_name": "FIFA Client",
-  "name": "CIS 550 - HW2 FIFA Client",
+  "short_name": "My Anime Fan Club Client",
+  "name": "CIS 5500 - Project My Anime Fan Club Client",
   "icons": [
     {
-      "src": "football.svg",
+      "src": "Anime_log.svg",
       "type": "image/png",
       "sizes": "512x512"
     }

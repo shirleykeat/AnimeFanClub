@@ -103,8 +103,8 @@ class AnimePage extends React.Component {
 
 
                 <Col flex={2} style={{ textAlign: 'left' }}>
-                <h3>{this.state.selectedAnimeDetails.Name}</h3>
-                <h5>{this.state.selectedAnimeDetails.Type}</h5>
+                <h3 style={{fontFamily: 'arial'}}>{this.state.selectedAnimeDetails.Name}</h3>
+                <h5 style={{fontFamily: 'arial'}}>{this.state.selectedAnimeDetails.Type}</h5>
 
                 <Rate disabled defaultValue={this.state.selectedAnimeDetails.Score/2} />
                 <Divider />
@@ -161,7 +161,7 @@ class AnimePage extends React.Component {
 
           {this.state.userAlsoWatchDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
 
-          <Divider><h4>People Also Watch</h4></Divider>
+          <Divider><h4 style={{fontSize: 20, fontFamily: 'arial'}}>People Also Watch</h4></Divider>
           
             <Row gutter='30' justify='center'>
               
@@ -173,7 +173,7 @@ class AnimePage extends React.Component {
                   <img src={this.state.userAlsoWatchDetails[0].url} referrerpolicy="no-referrer" alt={"Alsowatch1"} style={{height:'25vh'}}/>
                 )}
                 </Card>
-                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[0].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
+                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[0].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
                 {this.state.userAlsoWatchDetails[0].Name}
                 </NavLink>
               </Col>
@@ -186,7 +186,7 @@ class AnimePage extends React.Component {
                   <img src={this.state.userAlsoWatchDetails[1].url} referrerpolicy="no-referrer" alt={"Alsowatch2"} style={{height:'25vh'}}/>
                 )}
                 </Card>
-                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[1].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
+                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[1].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
                 {this.state.userAlsoWatchDetails[1].Name}
                 </NavLink>
               </Col>
@@ -199,7 +199,7 @@ class AnimePage extends React.Component {
                   <img src={this.state.userAlsoWatchDetails[2].url} referrerpolicy="no-referrer" alt={"Alsowatch3"} style={{height:'25vh'}}/>
                 )}
                 </Card>
-                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[2].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
+                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[2].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
                 {this.state.userAlsoWatchDetails[2].Name}
                 </NavLink>
               </Col>
@@ -212,7 +212,7 @@ class AnimePage extends React.Component {
                   <img src={this.state.userAlsoWatchDetails[3].url} referrerpolicy="no-referrer" alt={"Alsowatch4"} style={{height:'25vh'}}/>
                 )}
                 </Card>
-                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[3].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
+                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[3].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
                 {this.state.userAlsoWatchDetails[3].Name}
                 </NavLink>
               </Col>
@@ -225,7 +225,7 @@ class AnimePage extends React.Component {
                   <img src={this.state.userAlsoWatchDetails[4].url} referrerpolicy="no-referrer" alt={"Alsowatch5"} style={{height:'25vh'}}/>
                 )}
                 </Card>
-                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[4].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
+                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[4].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
                 {this.state.userAlsoWatchDetails[4].Name}
                 </NavLink>
               </Col>
@@ -240,7 +240,7 @@ class AnimePage extends React.Component {
 
           {this.state.TopScoreAnimeInSameGenresDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
 
-              <Divider><h4>Top Score Anime in Same Genres</h4></Divider>
+              <Divider><h4 style={{fontSize: 20, fontFamily: 'arial'}}>Top Score Anime in Same Genres</h4></Divider>
 
   
               <Row gutter='30' justify='center'>
@@ -254,7 +254,7 @@ class AnimePage extends React.Component {
                     <img src={this.state.TopScoreAnimeInSameGenresDetails[0].url} referrerpolicy="no-referrer" alt={"Alsowatch1"} style={{height:'25vh'}}/>
                   )}
                   </Card>
-                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[0].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
+                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[0].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
                   {this.state.TopScoreAnimeInSameGenresDetails[0].Name}
                   </NavLink>
                 </Col>
@@ -267,7 +267,7 @@ class AnimePage extends React.Component {
                     <img src={this.state.TopScoreAnimeInSameGenresDetails[1].url} referrerpolicy="no-referrer" alt={"Alsowatch2"} style={{height:'25vh'}}/>
                   )}
                   </Card>
-                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[1].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
+                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[1].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
                   {this.state.TopScoreAnimeInSameGenresDetails[1].Name}
                   </NavLink>
                 </Col>
@@ -280,7 +280,7 @@ class AnimePage extends React.Component {
                     <img src={this.state.TopScoreAnimeInSameGenresDetails[2].url} referrerpolicy="no-referrer" alt={"Alsowatch3"} style={{height:'25vh'}}/>
                   )}
                   </Card>
-                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[2].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
+                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[2].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
                   {this.state.TopScoreAnimeInSameGenresDetails[2].Name}
                   </NavLink>
                 </Col>
@@ -294,7 +294,7 @@ class AnimePage extends React.Component {
                     <img src={this.state.TopScoreAnimeInSameGenresDetails[3].url} referrerpolicy="no-referrer" alt={"Alsowatch4"} style={{height:'25vh'}}/>
                   )}
                   </Card>
-                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[3].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
+                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[3].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
                   {this.state.TopScoreAnimeInSameGenresDetails[3].Name}
                   </NavLink>
                 </Col>
@@ -307,7 +307,7 @@ class AnimePage extends React.Component {
                     <img src={this.state.TopScoreAnimeInSameGenresDetails[4].url} referrerpolicy="no-referrer" alt={"Alsowatch5"} style={{height:'25vh'}}/>
                   )}
                   </Card>
-                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[4].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
+                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[4].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
                   {this.state.TopScoreAnimeInSameGenresDetails[4].Name}
                   </NavLink> 
                 </Col>
