@@ -1,12 +1,10 @@
 import React from 'react';
 import {Card, CardBody} from "shards-react";
 import {
-  Button,
   Tooltip,
   Tag,
   Statistic,
   Rate,
-  Form,
   Row,
   Col,
   Divider,
@@ -50,15 +48,8 @@ class AnimePage extends React.Component {
       TopScoreAnimeInSameGenresDetails: null
 
     }
-    this.handleGenres = this.handleGenres.bind(this)
 
   }
-
-  handleGenres() {
-    this.setState({ Genreslist: JSON.parse(this.state.selectedAnimeGenres)})
-    console.log(this.state.Genreslist)
-  }
-
 
 
   componentDidMount() {
@@ -107,7 +98,6 @@ class AnimePage extends React.Component {
 
                 <Col flex={2} style={{ textAlign: 'left' }}>
                 <h3>{this.state.selectedAnimeDetails.Name}</h3>
-                <h5>{this.state.selectedAnimeDetails.Japanese_name}</h5>
                 <h5>{this.state.selectedAnimeDetails.Type}</h5>
 
                 <Rate disabled defaultValue={this.state.selectedAnimeDetails.Score/2} />
@@ -146,18 +136,16 @@ class AnimePage extends React.Component {
           </div> : null}
 
 
-          <Divider />
+
          
 
 
           {this.state.userAlsoWatchDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
 
-            <h3>People Also Watch</h3>
-            <Divider />
-
+          <Divider><h4>People Also Watch</h4></Divider>
+          
             <Row gutter='30' justify='center'>
               
-
               <Col span={4} style={{ textAlign: 'center', overflow:'auto'}}>
                 <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>  
                 {!this.state.userAlsoWatchDetails[0] ? (
@@ -228,13 +216,12 @@ class AnimePage extends React.Component {
           </div> : null}
 
 
-          <Divider />
+          
 
 
           {this.state.TopScoreAnimeInSameGenresDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
 
-              <h3>Top Score Anime in Same Genres</h3>
-              <Divider />
+              <Divider><h4>Top Score Anime in Same Genres</h4></Divider>
 
   
               <Row gutter='30' justify='center'>
