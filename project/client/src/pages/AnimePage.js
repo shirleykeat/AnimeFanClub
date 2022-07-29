@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {Card, CardBody} from "shards-react";
 import { LikeOutlined } from '@ant-design/icons';
 import {
+  Button,
   Tooltip,
   Tag,
   Statistic,
@@ -20,6 +21,7 @@ import 'antd/dist/antd.min.css';
 import MenuBar from '../components/MenuBar';
 
 import { getAnime, getAnimeGenres ,anime_userAlsoWatch, anime_TopinsameGenres } from '../fetcher';
+import Item from 'antd/lib/list/Item';
 
 
 // const { CheckableTag } = Tag;
@@ -43,12 +45,19 @@ class AnimePage extends React.Component {
       selectedAnimeId: window.location.search ? window.location.search.substring(1).split('=')[1] : 1,
       selectedAnimeDetails: null,
       selectedAnimeGenres: null,
+      Genreslist: null,
       userAlsoWatchDetails: null,
       TopScoreAnimeInSameGenresDetails: null
 
     }
+    this.handleGenres = this.handleGenres.bind(this)
+
   }
 
+  handleGenres() {
+    this.setState({ Genreslist: JSON.parse(this.state.selectedAnimeGenres)})
+    console.log(this.state.Genreslist)
+  }
 
   
 
@@ -87,7 +96,6 @@ class AnimePage extends React.Component {
           <h3>Anime</h3>
 
           <Divider />
-          <Divider />
 
           {this.state.selectedAnimeDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
           <Card>
@@ -96,8 +104,8 @@ class AnimePage extends React.Component {
             <Row gutter='30' align='middle' justify='center'>
                 
                 <Col flex={2} style={{ textAlign: 'left', overflow:'auto'}}>
-                <Card style={{height: '60vh', width: '45vh', overflow:'auto'}}>
-                <img src={this.state.selectedAnimeDetails.url} referrerpolicy="no-referrer" alt={"MainPic"} style={{height:'60vh'}}/>
+                <Card style={{height: '47vh', width: '34vh', overflow:'auto'}}>
+                <img src={this.state.selectedAnimeDetails.url} referrerpolicy="no-referrer" alt={"MainPic"} style={{height:'47vh'}}/>
                 </Card>
                 </Col>
 
@@ -117,19 +125,18 @@ class AnimePage extends React.Component {
                   </Col>
                   </Row>
 
-                {/* {this.state.selectedAnimeGenres.map((tag) => (
-                <CheckableTag
-                  key={tag}
-                  checked={selectedTags.indexOf(tag) > -1}
-                  onChange={(checked) => handleChange(tag, checked)}
-                >
-                  {tag}
-                </CheckableTag>
-                ))} */}
 
-{/* const tags = JSON.parse(this.state.selectedAnimeGenres); */}
+                <Divider />
 
-
+                {this.state.selectedAnimeGenres ? <div>
+                  <Row gutter={16}>
+                  {this.state.selectedAnimeGenres.map((item, i) => (
+                    <Tooltip key={i}>
+                      <Tag>{item.genres}</Tag>
+                    </Tooltip>
+                  ))}
+                  </Row>
+                  </div>: null}
 
                 </Col>
                 
@@ -237,7 +244,9 @@ class AnimePage extends React.Component {
                     <img src={this.state.TopScoreAnimeInSameGenresDetails[0].url} referrerpolicy="no-referrer" alt={"Alsowatch1"} style={{height:'25vh'}}/>
                   )}
                   </Card>
+                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[0].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
                   {this.state.TopScoreAnimeInSameGenresDetails[0].Name}
+                  </NavLink>
                 </Col>
   
                 <Col span={4} style={{ textAlign: 'center' }}>
@@ -248,7 +257,9 @@ class AnimePage extends React.Component {
                     <img src={this.state.TopScoreAnimeInSameGenresDetails[1].url} referrerpolicy="no-referrer" alt={"Alsowatch2"} style={{height:'25vh'}}/>
                   )}
                   </Card>
+                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[1].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
                   {this.state.TopScoreAnimeInSameGenresDetails[1].Name}
+                  </NavLink>
                 </Col>
   
                 <Col span={4} style={{ textAlign: 'center' }}>
@@ -259,7 +270,9 @@ class AnimePage extends React.Component {
                     <img src={this.state.TopScoreAnimeInSameGenresDetails[2].url} referrerpolicy="no-referrer" alt={"Alsowatch3"} style={{height:'25vh'}}/>
                   )}
                   </Card>
+                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[2].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
                   {this.state.TopScoreAnimeInSameGenresDetails[2].Name}
+                  </NavLink>
                 </Col>
   
   
@@ -271,7 +284,9 @@ class AnimePage extends React.Component {
                     <img src={this.state.TopScoreAnimeInSameGenresDetails[3].url} referrerpolicy="no-referrer" alt={"Alsowatch4"} style={{height:'25vh'}}/>
                   )}
                   </Card>
+                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[3].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
                   {this.state.TopScoreAnimeInSameGenresDetails[3].Name}
+                  </NavLink>
                 </Col>
   
                 <Col span={4} style={{ textAlign: 'center' }}>
@@ -282,7 +297,9 @@ class AnimePage extends React.Component {
                     <img src={this.state.TopScoreAnimeInSameGenresDetails[4].url} referrerpolicy="no-referrer" alt={"Alsowatch5"} style={{height:'25vh'}}/>
                   )}
                   </Card>
-                  {this.state.TopScoreAnimeInSameGenresDetails[4].Name}  
+                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[4].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
+                  {this.state.TopScoreAnimeInSameGenresDetails[4].Name}
+                  </NavLink> 
                 </Col>
               </Row>
 
