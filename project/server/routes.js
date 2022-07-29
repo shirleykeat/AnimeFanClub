@@ -147,6 +147,44 @@ async function anime_userAlsoWatch(req, res) {
 }
 
 
+
+async function anime_TopinsameGenres(req, res) {
+    const animeid = req.query.id ? req.query.id : 1;
+    AnimeQuery = `
+    WITH temp AS (
+        SELECT DISTINCT Genres
+        FROM anime_genres
+        WHERE Anime_id = ${animeid}
+    ),
+        animeID AS (
+        SELECT DISTINCT Anime_id
+        FROM anime_genres
+        WHERE Anime_id <> ${animeid} and Genres in (SELECT Genres FROM temp)
+    )
+    SELECT a.Anime_id, a.Name, au.url
+    FROM anime a LEFT JOIN anime_url au ON a.Anime_ID = au.Anime_ID
+    WHERE a.Anime_id in (SELECT Anime_id FROM animeID)
+    group by a.Anime_id, a.Name
+    ORDER BY a.Score desc
+    LIMIT 10
+    `;
+
+    if (animeid === null) {
+        res.json({ results: [] })
+    } else {
+        connection.query(AnimeQuery,
+            function (error, results, fields) {
+
+                if (error) {
+                    console.log(error)
+                    res.json({ error: error })
+                } else if (results) {
+                    res.json({ results: results })
+                }
+            })
+    }
+}
+
 // ********************************************
 //             MAIN PAGE ROUTES
 // ********************************************
@@ -360,6 +398,7 @@ module.exports = {
     user_rated,
     anime_property,
     anime_userAlsoWatch,
+    anime_TopinsameGenres,
     get_genre,
     get_type,
     get_rating,

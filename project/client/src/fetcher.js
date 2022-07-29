@@ -14,6 +14,14 @@ const anime_userAlsoWatch = async (id) => {
     return res.json()
 }
 
+const anime_TopinsameGenres = async (id) => {
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/anime/topinsameGenres?id=${id}`, {
+        method: 'GET',
+    })
+    return res.json()
+}
+
+
 const getUserProfile = async (id) => {
     var res = await fetch(`http://${config.server_host}:${config.server_port}/user/profile?id=${id}`, {
         method: 'GET',
@@ -95,6 +103,7 @@ const  getTitle= async(page,title) =>{
 export {
     getAnime,
     anime_userAlsoWatch,
+    anime_TopinsameGenres,
     getUserProfile,
     getUserWatched,
     getUserWatching,
