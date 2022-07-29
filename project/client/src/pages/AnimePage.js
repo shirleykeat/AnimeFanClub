@@ -13,7 +13,7 @@ import 'antd/dist/antd.min.css';
 // import { format } from 'd3-format';
 
 import MenuBar from '../components/MenuBar';
-import { getAnime, anime_userAlsoWatch, anime_TopinsameGenres } from '../fetcher';
+import { getAnime, animeGenres ,anime_userAlsoWatch, anime_TopinsameGenres } from '../fetcher';
 
 // const wideFormat = format('.3r');
 
@@ -24,6 +24,7 @@ class AnimePage extends React.Component {
     this.state = {
       selectedAnimeId: window.location.search ? window.location.search.substring(1).split('=')[1] : 1,
       selectedAnimeDetails: null,
+      selectedAnimeGenres: null,
       userAlsoWatchDetails: null,
       TopScoreAnimeInSameGenresDetails: null
 
@@ -36,6 +37,10 @@ class AnimePage extends React.Component {
       this.setState({ selectedAnimeDetails: res.results[0] })
     })  
 
+    animeGenres(this.state.selectedAnimeId).then(res => {
+      this.setState({ selectedAnimeGenres: res.results })
+    })
+
     anime_userAlsoWatch(this.state.selectedAnimeId).then(res => {
       this.setState({ userAlsoWatchDetails: res.results})
     })
@@ -43,7 +48,6 @@ class AnimePage extends React.Component {
     anime_TopinsameGenres(this.state.selectedAnimeId).then(res => {
       this.setState({ TopScoreAnimeInSameGenresDetails: res.results})
     })
-
 
   }
 
@@ -76,6 +80,10 @@ class AnimePage extends React.Component {
                 <h3>{this.state.selectedAnimeDetails.Name}</h3>
                 <h5>{this.state.selectedAnimeDetails.Japanese_name}</h5>
                 <h5>{this.state.selectedAnimeDetails.Type}</h5>
+
+  
+                {/* <Table dataSource={this.state.selectedAnimeGenres} style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}/> */}
+
                 </Col>
 
             </Row>

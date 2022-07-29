@@ -112,7 +112,7 @@ async function anime_property(req, res) {
 async function anime_genres(req, res) {
     const animeid = req.query.id ? req.query.id : 1;
     AnimeQuery = `SELECT ag.genres
-    FROM anime a LEFT JOIN anime_Genres ag ON a.Anime_ID = ag.Anime_ID
+    FROM anime a LEFT JOIN anime_genres ag ON a.Anime_ID = ag.Anime_ID
     WHERE a.Anime_ID = ${animeid}`;
 
     if (animeid === null) {
