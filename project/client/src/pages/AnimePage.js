@@ -51,7 +51,8 @@ class AnimePage extends React.Component {
     return (
       <div>
         <MenuBar />
-        <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
+        {/* background setting  */}
+        <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh', backgroundImage: `url()`}}> 
           <h3>Anime</h3>
 
           <Divider />
@@ -63,7 +64,7 @@ class AnimePage extends React.Component {
 
             <Row gutter='30' align='middle' justify='center'>
                 
-                <Col flex={2} style={{ textAlign: 'left' }}>
+                <Col flex={2} style={{ textAlign: 'left', overflow:'auto'}}>
                 <img src={this.state.selectedAnimeDetails.url} referrerpolicy="no-referrer" alt={"MainPic"} style={{height:'60vh'}}/>
                 </Col>
 
@@ -87,16 +88,14 @@ class AnimePage extends React.Component {
 
           {this.state.userAlsoWatchDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
 
-          {/* <Card> */}
             <h3>People Also Watch</h3>
             <Divider />
-          {/* <CardBody> */}
 
             <Row gutter='30' justify='center'>
               
 
               <Col span={4} style={{ textAlign: 'center' }}>
-                <Card style={{height: '25vh', width: '19vh'}}>  
+                <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>  
                 {!this.state.userAlsoWatchDetails[0] ? (
                   <h5> No results found </h5>
                 ) : (
@@ -107,7 +106,7 @@ class AnimePage extends React.Component {
               </Col>
 
               <Col span={4} style={{ textAlign: 'center' }}>
-                <Card style={{height: '25vh', width: '19vh'}}>
+                <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
                 {!this.state.userAlsoWatchDetails[1] ? (
                   <h5> No results found </h5>
                 ) : (
@@ -118,7 +117,7 @@ class AnimePage extends React.Component {
               </Col>
 
               <Col span={4} style={{ textAlign: 'center' }}>
-                <Card style={{height: '25vh', width: '19vh'}}>
+                <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
                 {!this.state.userAlsoWatchDetails[2] ? (
                   <h5> No results found </h5>
                 ) : (
@@ -129,7 +128,7 @@ class AnimePage extends React.Component {
               </Col>
 
               <Col span={4} style={{ textAlign: 'center' }}>
-                <Card style={{height: '25vh', width: '19vh'}}>
+                <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
                 {!this.state.userAlsoWatchDetails[3] ? (
                   <h5> No results found </h5>
                 ) : (
@@ -140,7 +139,7 @@ class AnimePage extends React.Component {
               </Col>
 
               <Col span={4} style={{ textAlign: 'center' }}>
-                <Card style={{height: '25vh', width: '19vh'}}>
+                <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
                 {!this.state.userAlsoWatchDetails[4] ? (
                   <h5> No results found </h5>
                 ) : (
@@ -151,9 +150,6 @@ class AnimePage extends React.Component {
               </Col>
             </Row>
 
-
-          {/* </CardBody>
-          </Card> */}
 
           </div> : null}
 
@@ -171,7 +167,7 @@ class AnimePage extends React.Component {
 
 
                 <Col span={4} style={{ textAlign: 'center' }}>
-                  <Card style={{height: '25vh', width: '19vh'}}>
+                  <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
                   {!this.state.TopScoreAnimeInSameGenresDetails[0] ? (
                     <h5> No results found </h5>
                   ) : (
@@ -182,7 +178,7 @@ class AnimePage extends React.Component {
                 </Col>
   
                 <Col span={4} style={{ textAlign: 'center' }}>
-                  <Card style={{height: '25vh', width: '19vh'}}>
+                  <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
                   {!this.state.TopScoreAnimeInSameGenresDetails[1] ? (
                     <h5> No results found </h5>
                   ) : (
@@ -193,7 +189,7 @@ class AnimePage extends React.Component {
                 </Col>
   
                 <Col span={4} style={{ textAlign: 'center' }}>
-                  <Card style={{height: '25vh', width: '19vh'}}>
+                  <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
                   {!this.state.TopScoreAnimeInSameGenresDetails[2] ? (
                     <h5> No results found </h5>
                   ) : (
@@ -205,7 +201,7 @@ class AnimePage extends React.Component {
   
   
                 <Col span={4} style={{ textAlign: 'center' }}>
-                  <Card style={{height: '25vh', width: '19vh'}}>  
+                  <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>  
                   {!this.state.TopScoreAnimeInSameGenresDetails[3] ? (
                     <h5> No results found </h5>
                   ) : (
@@ -216,7 +212,7 @@ class AnimePage extends React.Component {
                 </Col>
   
                 <Col span={4} style={{ textAlign: 'center' }}>
-                  <Card style={{height: '25vh', width: '19vh'}}>
+                  <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
                   {!this.state.TopScoreAnimeInSameGenresDetails[4] ? (
                     <h5> No results found </h5>
                   ) : (
