@@ -5,6 +5,7 @@ import {
   Col,
   Divider,
 } from 'antd'
+import {BrowserRouter as Router, Link, NavLink} from 'react-router-dom';
 import 'antd/dist/antd.min.css';
 
 
@@ -43,6 +44,7 @@ class AnimePage extends React.Component {
       this.setState({ TopScoreAnimeInSameGenresDetails: res.results})
     })
 
+
   }
 
 
@@ -65,7 +67,9 @@ class AnimePage extends React.Component {
             <Row gutter='30' align='middle' justify='center'>
                 
                 <Col flex={2} style={{ textAlign: 'left', overflow:'auto'}}>
+                <Card style={{height: '60vh', width: '45vh', overflow:'auto'}}>
                 <img src={this.state.selectedAnimeDetails.url} referrerpolicy="no-referrer" alt={"MainPic"} style={{height:'60vh'}}/>
+                </Card>
                 </Col>
 
                 <Col flex={2} style={{ textAlign: 'left' }}>
@@ -94,7 +98,7 @@ class AnimePage extends React.Component {
             <Row gutter='30' justify='center'>
               
 
-              <Col span={4} style={{ textAlign: 'center' }}>
+              <Col span={4} style={{ textAlign: 'center', overflow:'auto'}}>
                 <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>  
                 {!this.state.userAlsoWatchDetails[0] ? (
                   <h5> No results found </h5>
@@ -102,7 +106,9 @@ class AnimePage extends React.Component {
                   <img src={this.state.userAlsoWatchDetails[0].url} referrerpolicy="no-referrer" alt={"Alsowatch1"} style={{height:'25vh'}}/>
                 )}
                 </Card>
+                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[0].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
                 {this.state.userAlsoWatchDetails[0].Name}
+                </NavLink>
               </Col>
 
               <Col span={4} style={{ textAlign: 'center' }}>
@@ -113,7 +119,9 @@ class AnimePage extends React.Component {
                   <img src={this.state.userAlsoWatchDetails[1].url} referrerpolicy="no-referrer" alt={"Alsowatch2"} style={{height:'25vh'}}/>
                 )}
                 </Card>
+                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[1].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
                 {this.state.userAlsoWatchDetails[1].Name}
+                </NavLink>
               </Col>
 
               <Col span={4} style={{ textAlign: 'center' }}>
@@ -124,7 +132,9 @@ class AnimePage extends React.Component {
                   <img src={this.state.userAlsoWatchDetails[2].url} referrerpolicy="no-referrer" alt={"Alsowatch3"} style={{height:'25vh'}}/>
                 )}
                 </Card>
-                {this.state.userAlsoWatchDetails[2].Name} 
+                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[2].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
+                {this.state.userAlsoWatchDetails[2].Name}
+                </NavLink>
               </Col>
 
               <Col span={4} style={{ textAlign: 'center' }}>
@@ -135,7 +145,9 @@ class AnimePage extends React.Component {
                   <img src={this.state.userAlsoWatchDetails[3].url} referrerpolicy="no-referrer" alt={"Alsowatch4"} style={{height:'25vh'}}/>
                 )}
                 </Card>
+                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[3].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
                 {this.state.userAlsoWatchDetails[3].Name}
+                </NavLink>
               </Col>
 
               <Col span={4} style={{ textAlign: 'center' }}>
@@ -146,7 +158,9 @@ class AnimePage extends React.Component {
                   <img src={this.state.userAlsoWatchDetails[4].url} referrerpolicy="no-referrer" alt={"Alsowatch5"} style={{height:'25vh'}}/>
                 )}
                 </Card>
+                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[4].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold'}}>
                 {this.state.userAlsoWatchDetails[4].Name}
+                </NavLink>
               </Col>
             </Row>
 
