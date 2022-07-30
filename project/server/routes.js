@@ -385,7 +385,7 @@ async function search_title(req, res){
 //             SEARCH PAGE ROUTES
 // ********************************************
 
-async function advance_search(req, res) {
+async function get_search_results(req, res) {
     const genre = req.query.genre ? req.query.genre : '';
     const licensor = req.query.id ? req.query.id : '';
     const producer = req.query.id ? req.query.id : '';
@@ -458,5 +458,5 @@ module.exports = {
     top_manga,
     top_anime,
     search_title,
-    advance_search
+    get_search_results
 }
