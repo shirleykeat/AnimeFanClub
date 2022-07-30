@@ -16,6 +16,7 @@ import SearchPage from './pages/SearchPage';
 import 'antd/dist/antd.min.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css"
+import AnimeListPage from './pages/AnimeListPage';
 
 ReactDOM.render(
   <div>
@@ -46,6 +47,11 @@ ReactDOM.render(
 							render={() => (
 								<SearchPage />
 							)}/>
+		<Route exact 
+		                   path="/animelist"
+						   render={() => (
+							   <AnimeListPage />
+						   )}/>
       </Switch>
     </Router>
   </div>,

@@ -1,7 +1,7 @@
 import React from 'react';
 import MenuBar from '../components/MenuBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Form, Button, Container} from 'react-bootstrap';
+import {Container, Col, Row} from 'react-bootstrap';
 import {getGenre, getSource, getType, getRating} from '../fetcher';
 
 
@@ -11,12 +11,10 @@ class AnimeListPage extends React.Component{
         super(props)
         this.state = {
 
-            type: null,
-            placeholder: null,
-            AnimesGenre: [],
-            AnimesSource:[],
-            AnimesType: [],
-            AnimesRating: []
+            type: this.props.location.state.type,
+            placeholder: this.props.location.state.placeholder,
+            Animes: [],
+           
 
         }
         
@@ -24,41 +22,65 @@ class AnimeListPage extends React.Component{
 
     componentDidMount(){
 
-        if(type == "genre" && placeholder !== null){
+        if(this.state.type == "genre" ){
                     
-            const genre = placeholder
-            getGenre(genre).then(res=>{
-                this.setState({AnimesGenre: res.results});
+            const genre = this.state.placeholder
+            getGenre(1,genre).then(res=>{
+                this.setState({Animes: res.results});
             })
         }
 
-        if(type == "source" && placeholder !== null){
+        if(this.state.type == "source"){
                             
-            const source = placeholder
-            getType(source).then(res=>{
-                this.setState({AnimesSource: res.results});
+            const source = this.state.placeholder
+            getSource(1,source).then(res=>{
+                this.setState({Animes: res.results});
             })
         }
 
 
-        if(type == "type" && placeholder !== null){
+        if(this.state.type == "type"){
                         
-            const type = placeholder
-            getType(type).then(res=>{
-                this.setState({AnimesType: res.results});
+            const type = this.state.placeholder
+            getType(1,type).then(res=>{
+                this.setState({Animes: res.results});
             })
         }
 
-        if(type == "rating" && placeholder !== null){
+        if(this.state.type == "rating"){
                         
-            const rating = placeholder
-            getType(rating).then(res=>{
-                this.setState({AnimesRating: res.results});
+            const rating = this.state.placeholder
+            getRating(1,rating).then(res=>{
+                this.setState({Animes: res.results});
             })
         }
     }
 
+    getAnime = (anime, index) =>{
+            
+        return(
+              <Col key ={index}>
+                <img src={anime.url} alt='anime'></img>
+              </Col>
+        );
+    }
+    
     render(){
+
+        return(
+        <div>
+            <div> 
+                <MenuBar/>
+            </div>
+            <div>
+                <Container>
+                    <Row>
+                        {this.state.Animes.map(this.getAnime)}
+                    </Row>
+                </Container>
+            </div>
+        </div> 
+        )
 
     }
 

@@ -360,16 +360,12 @@ async function top_anime(req, res){
 }
 
 async function search_title(req, res){
-
-    const page = req.query.page?req.query.page:1
-    const pagenumber = page-1
     const title = req.query.title
 
     var query = `SELECT Name, Score, Source, Rating, Episodes, Type, url
     FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
     Where A.Name LIKE '%${title}%'
-    ORDER BY Score
-    LIMIT ${pagenumber*10}, 10;`;
+    ORDER BY Score`;
     connection.query(query, function(error, results, fields){
 
         if(error){

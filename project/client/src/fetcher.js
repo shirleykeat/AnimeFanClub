@@ -107,7 +107,7 @@ const getTopManga = async()=>{
 }
 
 const  getTitle= async(page,title) =>{
-    var res = await fetch(`http://${config.server_host}:${config.server_port}/main/title?page=${page}&title=${title}`,
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/main/title?title=${title}`,
      {method:'GET',
     })
     return res.json()

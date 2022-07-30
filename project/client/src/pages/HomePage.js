@@ -40,9 +40,15 @@ class HomePage extends React.Component {
     e.preventDefault();
 
     var titleInput = this.titleInput.current.value;
-    getTitle(1,titleInput).then(res =>{
-      this.setState({searchAnimes: res.results})
-    })
+
+    if (titleInput===""){
+      this.setState({searchAnimes: null});
+    } 
+    else{
+      getTitle(1,titleInput).then(res =>{
+        this.setState({searchAnimes: res.results})
+      })
+    }
 
   }
 
@@ -66,7 +72,21 @@ class HomePage extends React.Component {
             <Button variant="outline-success" type="submit" onClick={this.getTitleSearch}>Search</Button>
           </Form>
         </div>
-      
+
+        
+        {this.state.searchAnimes? 
+          <div>
+          <div class="text-center">
+          <h4>Title Search Results</h4>
+          </div>
+          <div className='container-fluid' style={{overflow:"auto"}} >
+              <AnimeList animes={this.state.searchAnimes}/>
+          </div>
+          </div>:
+          <></>
+         }
+     
+
         <div class="text-center">
           <h4>Top Animes</h4>
         </div>
