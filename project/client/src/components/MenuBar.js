@@ -8,7 +8,7 @@ function MenuBar(){
 
   const history = useHistory();
   const redirect = (ty, place)=>{
-    history.push({pathname:'../pages/AnimeListPage', 
+    history.push({pathname:'/animelist', 
     state: {type: ty, placeholder: place}});
   }
   
