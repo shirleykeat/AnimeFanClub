@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardBody} from "shards-react";
+import { Card, CardBody } from "shards-react";
 import {
   Space,
   Tooltip,
@@ -10,7 +10,7 @@ import {
   Col,
   Divider,
 } from 'antd'
-import {BrowserRouter as Router, Link, NavLink} from 'react-router-dom';
+import { BrowserRouter as Router, Link, NavLink } from 'react-router-dom';
 import 'antd/dist/antd.min.css';
 import { LikeOutlined } from '@ant-design/icons';
 
@@ -19,7 +19,7 @@ import { LikeOutlined } from '@ant-design/icons';
 // import { format } from 'd3-format';
 
 import MenuBar from '../components/MenuBar';
-import { getAnime, getAnimeDescription, getAnimeGenres ,anime_userAlsoWatch, anime_TopinsameGenres } from '../fetcher';
+import { getAnime, getAnimeDescription, getAnimeGenres, anime_userAlsoWatch, anime_TopinsameGenres } from '../fetcher';
 import Item from 'antd/lib/list/Item';
 
 
@@ -31,7 +31,7 @@ import Item from 'antd/lib/list/Item';
 //     : selectedTags.filter((t) => t !== tag);
 //   console.log('You are interested in: ', nextSelectedTags);
 //   setSelectedTags(nextSelectedTags);
-// };
+// }; 
 // const [selectedTags, setSelectedTags] = useState(['Books']);
 
 // const wideFormat = format('.3r');
@@ -55,10 +55,10 @@ class AnimePage extends React.Component {
 
 
   componentDidMount() {
-    
+
     getAnime(this.state.selectedAnimeId).then(res => {
       this.setState({ selectedAnimeDetails: res.results[0] })
-    })  
+    })
 
     getAnimeDescription(this.state.selectedAnimeId).then(res => {
       this.setState({ selectedAnimeDescription: res.results[0] })
@@ -69,11 +69,11 @@ class AnimePage extends React.Component {
     })
 
     anime_userAlsoWatch(this.state.selectedAnimeId).then(res => {
-      this.setState({ userAlsoWatchDetails: res.results})
+      this.setState({ userAlsoWatchDetails: res.results })
     })
 
     anime_TopinsameGenres(this.state.selectedAnimeId).then(res => {
-      this.setState({ TopScoreAnimeInSameGenresDetails: res.results})
+      this.setState({ TopScoreAnimeInSameGenresDetails: res.results })
     })
 
   }
@@ -82,151 +82,149 @@ class AnimePage extends React.Component {
   render() {
 
     return (
-      <div style={{backgroundColor: 'lightgrey'}}>
+      <div style={{ backgroundColor: 'lightgrey' }}>
         <MenuBar />
-        {/* background setting  */}
-        <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh', backgroundImage: `url()`}}> 
+        {/* background setting if needed */}
+        <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh', backgroundImage: `url()` }}>
 
           <Divider />
 
           {this.state.selectedAnimeDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
-          <Card>
-          <CardBody>
+            <Card>
+              <CardBody>
 
-            <Row gutter='30' align='middle' justify='center'>
-                
-                <Col flex={2} style={{ textAlign: 'left', overflow:'auto'}}>
-                <Card style={{height: '47vh', width: '34vh', overflow:'auto'}}>
-                <img src={this.state.selectedAnimeDetails.url} referrerpolicy="no-referrer" alt={"MainPic"} style={{height:'47vh'}}/>
-                </Card>
-                </Col>
+                <Row gutter='30' align='middle' justify='center'>
 
-
-                <Col flex={2} style={{ textAlign: 'left' }}>
-                <h3 style={{fontFamily: 'arial'}}>{this.state.selectedAnimeDetails.Name}</h3>
-                <h5 style={{fontFamily: 'arial'}}>{this.state.selectedAnimeDetails.Type}</h5>
-
-                <Rate disabled defaultValue={this.state.selectedAnimeDetails.Score/2} />
-                <Divider />
-
-                <Space direction="vertical" size="middle" style={{ display: 'flex', height: '20vh', width: '90vh', overflow:'auto'}}>
-                {/* <Card style={{height: '20vh', width: '80vh', overflow:'auto'}} bordered={false}> */}
-                  {this.state.selectedAnimeDescription ? <div>
-                  <p style={{fontSize: 13}}>{this.state.selectedAnimeDescription.synopsis}</p>
-                  </div> : null}
-                {/* </Card> */}
-                </Space>
-
-
-                <Divider />
-
-
-
-                  <Row gutter={16}>
-                  <Col span={12}>  
-                  <Statistic title="Favorite" value={this.state.selectedAnimeDetails.Favorites} prefix={<LikeOutlined />} />
+                  {/* Main picture */}
+                  <Col flex={2} style={{ textAlign: 'left', overflow: 'auto' }}>
+                    <Card style={{ height: '47vh', width: '34vh', overflow: 'auto' }}>
+                      <img src={this.state.selectedAnimeDetails.url} referrerpolicy="no-referrer" alt={"MainPic"} style={{ height: '47vh' }} />
+                    </Card>
                   </Col>
-                  <Col span={12}>  
-                  <Statistic title="Completed" value={this.state.selectedAnimeDetails.Completed}/>
+
+                  {/* Anime Name */}
+                  <Col flex={2} style={{ textAlign: 'left' }}>
+                    <h3 style={{ fontFamily: 'arial' }}>{this.state.selectedAnimeDetails.Name}</h3>
+                    <h5 style={{ fontFamily: 'arial' }}>{this.state.selectedAnimeDetails.Type}</h5>
+                    {/* Anime Score */}
+                    <Rate disabled defaultValue={this.state.selectedAnimeDetails.Score / 2} />
+
+                    <Divider />
+
+                    {/* Anime description */}
+                    <Space direction="vertical" size="middle" style={{ display: 'flex', height: '20vh', width: '90vh', overflow: 'auto' }}>
+                      {/* <Card style={{height: '20vh', width: '80vh', overflow:'auto'}} bordered={false}> */}
+                      {this.state.selectedAnimeDescription ? <div>
+                        <p style={{ fontSize: 13 }}>{this.state.selectedAnimeDescription.synopsis}</p>
+                      </div> : null}
+                      {/* </Card> */}
+                    </Space>
+
+                    <Divider />
+
+                    {/* Favorite and Completed Num of person */}
+                    <Row gutter={16}>
+                      <Col span={12}>
+                        <Statistic title="Favorite" value={this.state.selectedAnimeDetails.Favorites} prefix={<LikeOutlined />} />
+                      </Col>
+                      <Col span={12}>
+                        <Statistic title="Completed" value={this.state.selectedAnimeDetails.Completed} />
+                      </Col>
+                    </Row>
+
+                    <Divider />
+
+                    {/* Anime type */}
+                    {this.state.selectedAnimeGenres ? <div>
+                      <Row gutter={16}>
+                        {this.state.selectedAnimeGenres.map((item, i) => (
+                          <Tooltip key={i}>
+                            <Tag>{item.genres}</Tag>
+                          </Tooltip>
+                        ))}
+                      </Row>
+                    </div> : null}
+
                   </Col>
-                  </Row>
-
-
-                <Divider />
-
-                {this.state.selectedAnimeGenres ? <div>
-                  <Row gutter={16}>
-                  {this.state.selectedAnimeGenres.map((item, i) => (
-                    <Tooltip key={i}>
-                      <Tag>{item.genres}</Tag>
-                    </Tooltip>
-                  ))}
-                  </Row>
-                  </div>: null}
-
-
-                </Col>
-
-            </Row>
-            
-          </CardBody>
-          </Card>
+                </Row>
+              </CardBody>
+            </Card>
 
           </div> : null}
 
 
 
-         
+
 
 
           {this.state.userAlsoWatchDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
 
-          <Divider><h4 style={{fontSize: 20, fontFamily: 'arial'}}>People Also Watch</h4></Divider>
-          
+            <Divider><h4 style={{ fontSize: 20, fontFamily: 'arial' }}>People Also Watch</h4></Divider>
+
             <Row gutter='30' justify='center'>
-              
-              <Col span={4} style={{ textAlign: 'center', overflow:'auto'}}>
-                <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>  
-                {!this.state.userAlsoWatchDetails[0] ? (
-                  <h5> No results found </h5>
-                ) : (
-                  <img src={this.state.userAlsoWatchDetails[0].url} referrerpolicy="no-referrer" alt={"Alsowatch1"} style={{height:'25vh'}}/>
-                )}
+
+              <Col span={4} style={{ textAlign: 'center', overflow: 'auto' }}>
+                <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                  {!this.state.userAlsoWatchDetails[0] ? (
+                    <h5> No results found </h5>
+                  ) : (
+                    <img src={this.state.userAlsoWatchDetails[0].url} referrerpolicy="no-referrer" alt={"Alsowatch1"} style={{ height: '25vh' }} />
+                  )}
                 </Card>
-                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[0].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
-                {this.state.userAlsoWatchDetails[0].Name}
+                <NavLink to={{ pathname: '/anime?id=' + this.state.userAlsoWatchDetails[0].Anime_ID }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                  {this.state.userAlsoWatchDetails[0].Name}
                 </NavLink>
               </Col>
 
               <Col span={4} style={{ textAlign: 'center' }}>
-                <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
-                {!this.state.userAlsoWatchDetails[1] ? (
-                  <h5> No results found </h5>
-                ) : (
-                  <img src={this.state.userAlsoWatchDetails[1].url} referrerpolicy="no-referrer" alt={"Alsowatch2"} style={{height:'25vh'}}/>
-                )}
+                <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                  {!this.state.userAlsoWatchDetails[1] ? (
+                    <h5> No results found </h5>
+                  ) : (
+                    <img src={this.state.userAlsoWatchDetails[1].url} referrerpolicy="no-referrer" alt={"Alsowatch2"} style={{ height: '25vh' }} />
+                  )}
                 </Card>
-                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[1].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
-                {this.state.userAlsoWatchDetails[1].Name}
+                <NavLink to={{ pathname: '/anime?id=' + this.state.userAlsoWatchDetails[1].Anime_ID }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                  {this.state.userAlsoWatchDetails[1].Name}
                 </NavLink>
               </Col>
 
               <Col span={4} style={{ textAlign: 'center' }}>
-                <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
-                {!this.state.userAlsoWatchDetails[2] ? (
-                  <h5> No results found </h5>
-                ) : (
-                  <img src={this.state.userAlsoWatchDetails[2].url} referrerpolicy="no-referrer" alt={"Alsowatch3"} style={{height:'25vh'}}/>
-                )}
+                <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                  {!this.state.userAlsoWatchDetails[2] ? (
+                    <h5> No results found </h5>
+                  ) : (
+                    <img src={this.state.userAlsoWatchDetails[2].url} referrerpolicy="no-referrer" alt={"Alsowatch3"} style={{ height: '25vh' }} />
+                  )}
                 </Card>
-                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[2].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
-                {this.state.userAlsoWatchDetails[2].Name}
+                <NavLink to={{ pathname: '/anime?id=' + this.state.userAlsoWatchDetails[2].Anime_ID }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                  {this.state.userAlsoWatchDetails[2].Name}
                 </NavLink>
               </Col>
 
               <Col span={4} style={{ textAlign: 'center' }}>
-                <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
-                {!this.state.userAlsoWatchDetails[3] ? (
-                  <h5> No results found </h5>
-                ) : (
-                  <img src={this.state.userAlsoWatchDetails[3].url} referrerpolicy="no-referrer" alt={"Alsowatch4"} style={{height:'25vh'}}/>
-                )}
+                <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                  {!this.state.userAlsoWatchDetails[3] ? (
+                    <h5> No results found </h5>
+                  ) : (
+                    <img src={this.state.userAlsoWatchDetails[3].url} referrerpolicy="no-referrer" alt={"Alsowatch4"} style={{ height: '25vh' }} />
+                  )}
                 </Card>
-                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[3].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
-                {this.state.userAlsoWatchDetails[3].Name}
+                <NavLink to={{ pathname: '/anime?id=' + this.state.userAlsoWatchDetails[3].Anime_ID }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                  {this.state.userAlsoWatchDetails[3].Name}
                 </NavLink>
               </Col>
 
               <Col span={4} style={{ textAlign: 'center' }}>
-                <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
-                {!this.state.userAlsoWatchDetails[4] ? (
-                  <h5> No results found </h5>
-                ) : (
-                  <img src={this.state.userAlsoWatchDetails[4].url} referrerpolicy="no-referrer" alt={"Alsowatch5"} style={{height:'25vh'}}/>
-                )}
+                <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                  {!this.state.userAlsoWatchDetails[4] ? (
+                    <h5> No results found </h5>
+                  ) : (
+                    <img src={this.state.userAlsoWatchDetails[4].url} referrerpolicy="no-referrer" alt={"Alsowatch5"} style={{ height: '25vh' }} />
+                  )}
                 </Card>
-                <NavLink to={{pathname: '/anime?id=' + this.state.userAlsoWatchDetails[4].Anime_ID}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
-                {this.state.userAlsoWatchDetails[4].Name}
+                <NavLink to={{ pathname: '/anime?id=' + this.state.userAlsoWatchDetails[4].Anime_ID }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                  {this.state.userAlsoWatchDetails[4].Name}
                 </NavLink>
               </Col>
             </Row>
@@ -235,88 +233,88 @@ class AnimePage extends React.Component {
           </div> : null}
 
 
-          
+
 
 
           {this.state.TopScoreAnimeInSameGenresDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
 
-              <Divider><h4 style={{fontSize: 20, fontFamily: 'arial'}}>Top Score Anime in Same Genres</h4></Divider>
-
-  
-              <Row gutter='30' justify='center'>
+            <Divider><h4 style={{ fontSize: 20, fontFamily: 'arial' }}>Top Score Anime in Same Genres</h4></Divider>
 
 
-                <Col span={4} style={{ textAlign: 'center' }}>
-                  <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
+            <Row gutter='30' justify='center'>
+
+
+              <Col span={4} style={{ textAlign: 'center' }}>
+                <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
                   {!this.state.TopScoreAnimeInSameGenresDetails[0] ? (
                     <h5> No results found </h5>
                   ) : (
-                    <img src={this.state.TopScoreAnimeInSameGenresDetails[0].url} referrerpolicy="no-referrer" alt={"Alsowatch1"} style={{height:'25vh'}}/>
+                    <img src={this.state.TopScoreAnimeInSameGenresDetails[0].url} referrerpolicy="no-referrer" alt={"Alsowatch1"} style={{ height: '25vh' }} />
                   )}
-                  </Card>
-                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[0].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
+                </Card>
+                <NavLink to={{ pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[0].Anime_id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
                   {this.state.TopScoreAnimeInSameGenresDetails[0].Name}
-                  </NavLink>
-                </Col>
-  
-                <Col span={4} style={{ textAlign: 'center' }}>
-                  <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
+                </NavLink>
+              </Col>
+
+              <Col span={4} style={{ textAlign: 'center' }}>
+                <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
                   {!this.state.TopScoreAnimeInSameGenresDetails[1] ? (
                     <h5> No results found </h5>
                   ) : (
-                    <img src={this.state.TopScoreAnimeInSameGenresDetails[1].url} referrerpolicy="no-referrer" alt={"Alsowatch2"} style={{height:'25vh'}}/>
+                    <img src={this.state.TopScoreAnimeInSameGenresDetails[1].url} referrerpolicy="no-referrer" alt={"Alsowatch2"} style={{ height: '25vh' }} />
                   )}
-                  </Card>
-                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[1].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
+                </Card>
+                <NavLink to={{ pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[1].Anime_id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
                   {this.state.TopScoreAnimeInSameGenresDetails[1].Name}
-                  </NavLink>
-                </Col>
-  
-                <Col span={4} style={{ textAlign: 'center' }}>
-                  <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
+                </NavLink>
+              </Col>
+
+              <Col span={4} style={{ textAlign: 'center' }}>
+                <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
                   {!this.state.TopScoreAnimeInSameGenresDetails[2] ? (
                     <h5> No results found </h5>
                   ) : (
-                    <img src={this.state.TopScoreAnimeInSameGenresDetails[2].url} referrerpolicy="no-referrer" alt={"Alsowatch3"} style={{height:'25vh'}}/>
+                    <img src={this.state.TopScoreAnimeInSameGenresDetails[2].url} referrerpolicy="no-referrer" alt={"Alsowatch3"} style={{ height: '25vh' }} />
                   )}
-                  </Card>
-                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[2].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
+                </Card>
+                <NavLink to={{ pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[2].Anime_id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
                   {this.state.TopScoreAnimeInSameGenresDetails[2].Name}
-                  </NavLink>
-                </Col>
-  
-  
-                <Col span={4} style={{ textAlign: 'center' }}>
-                  <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>  
+                </NavLink>
+              </Col>
+
+
+              <Col span={4} style={{ textAlign: 'center' }}>
+                <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
                   {!this.state.TopScoreAnimeInSameGenresDetails[3] ? (
                     <h5> No results found </h5>
                   ) : (
-                    <img src={this.state.TopScoreAnimeInSameGenresDetails[3].url} referrerpolicy="no-referrer" alt={"Alsowatch4"} style={{height:'25vh'}}/>
+                    <img src={this.state.TopScoreAnimeInSameGenresDetails[3].url} referrerpolicy="no-referrer" alt={"Alsowatch4"} style={{ height: '25vh' }} />
                   )}
-                  </Card>
-                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[3].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
+                </Card>
+                <NavLink to={{ pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[3].Anime_id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
                   {this.state.TopScoreAnimeInSameGenresDetails[3].Name}
-                  </NavLink>
-                </Col>
-  
-                <Col span={4} style={{ textAlign: 'center' }}>
-                  <Card style={{height: '25vh', width: '19vh', overflow:'auto'}}>
+                </NavLink>
+              </Col>
+
+              <Col span={4} style={{ textAlign: 'center' }}>
+                <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
                   {!this.state.TopScoreAnimeInSameGenresDetails[4] ? (
                     <h5> No results found </h5>
                   ) : (
-                    <img src={this.state.TopScoreAnimeInSameGenresDetails[4].url} referrerpolicy="no-referrer" alt={"Alsowatch5"} style={{height:'25vh'}}/>
+                    <img src={this.state.TopScoreAnimeInSameGenresDetails[4].url} referrerpolicy="no-referrer" alt={"Alsowatch5"} style={{ height: '25vh' }} />
                   )}
-                  </Card>
-                  <NavLink to={{pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[4].Anime_id}} style={{ textDecoration: 'none' , color: 'brown', fontWeight: 'bold', fontSize: 13}}>
+                </Card>
+                <NavLink to={{ pathname: '/anime?id=' + this.state.TopScoreAnimeInSameGenresDetails[4].Anime_id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
                   {this.state.TopScoreAnimeInSameGenresDetails[4].Name}
-                  </NavLink> 
-                </Col>
-              </Row>
+                </NavLink>
+              </Col>
+            </Row>
 
-  
-            </div> : null}
 
-            <Divider />
+          </div> : null}
+
+          <Divider />
 
         </div>
       </div>
