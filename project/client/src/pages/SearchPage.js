@@ -2,9 +2,7 @@ import React from 'react';
 import MenuBar from '../components/MenuBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Form, Button} from 'react-bootstrap';
-import {getTitle, getTopAnime, getTopManga} from '../fetcher';
-import AnimeList from '../components/AnimeList';
-
+import {getSearchResults} from '../fetcher';
 
 
 class SearchPage extends React.Component {
@@ -12,22 +10,24 @@ class SearchPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            selectedName: null,
             selectedGenre: null,
             selectedLicensor: null,
             selectedProducer: null,
             selectedStudio: null, 
-            searchedKeyWord: null
+            selectedScore: null
         }
     }
   
   componentDidMount() {
 
    getSearchResults().then(res =>{
-        this.setState({ selectedGenre: res.results[0] })
-        this.setState({ selectedLicensor: res.results[1] })
-        this.setState({ selectedProducer: res.results[2] })
-        this.setState({ selectedStudio: res.results[3] })
-        this.setState({ searchedKeyWord: res.results[4] })
+        this.setState({ selectedName: res.results[0] })
+        this.setState({ selectedGenre: res.results[1] })
+        this.setState({ selectedLicensor: res.results[2] })
+        this.setState({ selectedProducer: res.results[3] })
+        this.setState({ selectedStudio: res.results[4] })
+        this.setState({ selectedScore: res.results[5] })
     })
 
 }
