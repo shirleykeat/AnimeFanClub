@@ -34,7 +34,7 @@ app.get('/main/topAnime', routes.top_anime)
 app.get('/main/title',routes.search_title)
 
 // SEARCH PAGE ROUTES
-app.get('/search/advance_search',routes.advance_search)
+app.get('/search/advance_search',routes.get_search_results)
 
 app.listen(config.server_port, () => {
     console.log(`Server running at http://${config.server_host}:${config.server_port}/`);
