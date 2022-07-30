@@ -107,33 +107,33 @@ class UserPage extends React.Component {
                     <Row gutter={16}>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userwatchedDetails0.url} alt={"animePic"} />}>
-                                <a href="../anime?id=${this.state.userwatchedDetails0.Anime_ID}">{this.state.userwatchedDetails0.Name}</a>
+                                <a href={"../anime?id=" + this.state.userwatchedDetails0.Anime_ID}>{this.state.userwatchedDetails0.Name}</a>
                             </Card>
 
                         </Col>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userwatchedDetails1.url} alt={"animePic"} />}>
-                                <a href="../anime?id=${this.state.userwatchedDetails1.Anime_ID}">{this.state.userwatchedDetails1.Name}</a>
+                                <a href={"../anime?id=" + this.state.userwatchedDetails1.Anime_ID}>{this.state.userwatchedDetails1.Name}</a>
                             </Card>
                         </Col>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userwatchedDetails2.url} alt={"animePic"} />}>
-                                <a href="../anime?id=${this.state.userwatchedDetails2.Anime_ID}">{this.state.userwatchedDetails2.Name}</a>
+                                <a href={"../anime?id=" + this.state.userwatchedDetails2.Anime_ID}>{this.state.userwatchedDetails2.Name}</a>
                             </Card>
                         </Col>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userwatchedDetails3.url} alt={"animePic"} />}>
-                                {this.state.userwatchedDetails3.Name}
+                                <a href={"../anime?id=" + this.state.userwatchedDetails3.Anime_ID}>{this.state.userwatchedDetails3.Name}</a>
                             </Card>
                         </Col>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userwatchedDetails4.url} alt={"animePic"} />}>
-                                {this.state.userwatchedDetails4.Name}
+                                <a href={"../anime?id=" + this.state.userwatchedDetails4.Anime_ID}>{this.state.userwatchedDetails4.Name}</a>
                             </Card>
                         </Col>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userwatchedDetails5.url} alt={"animePic"} />}>
-                                {this.state.userwatchedDetails5.Name}
+                                <a href={"../anime?id=" + this.state.userwatchedDetails5.Anime_ID}>{this.state.userwatchedDetails5.Name}</a>
                             </Card>
                         </Col>
                     </Row>
@@ -146,33 +146,33 @@ class UserPage extends React.Component {
                     <Row gutter={16}>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userwatchingDetails0.url} alt={"animePic"} />}>
-                                {this.state.userwatchingDetails0.Name}
+                                <a href={"../anime?id=" + this.state.userwatchingDetails0.Anime_ID}>{this.state.userwatchingDetails0.Name}</a>
                             </Card>
 
                         </Col>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userwatchingDetails1.url} alt={"animePic"} />}>
-                                {this.state.userwatchingDetails1.Name}
+                                <a href={"../anime?id=" + this.state.userwatchingDetails1.Anime_ID}>{this.state.userwatchingDetails1.Name}</a>
                             </Card>
                         </Col>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userwatchingDetails2.url} alt={"animePic"} />}>
-                                {this.state.userwatchingDetails2.Name}
+                                <a href={"../anime?id=" + this.state.userwatchingDetails2.Anime_ID}>{this.state.userwatchingDetails2.Name}</a>
                             </Card>
                         </Col>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userwatchingDetails3.url} alt={"animePic"} />}>
-                                {this.state.userwatchingDetails3.Name}
+                                <a href={"../anime?id=" + this.state.userwatchingDetails3.Anime_ID}>{this.state.userwatchingDetails3.Name}</a>
                             </Card>
                         </Col>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userwatchingDetails4.url} alt={"animePic"} />}>
-                                {this.state.userwatchingDetails4.Name}
+                                <a href={"../anime?id=" + this.state.userwatchingDetails4.Anime_ID}>{this.state.userwatchingDetails4.Name}</a>
                             </Card>
                         </Col>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userwatchingDetails5.url} alt={"animePic"} />}>
-                                {this.state.userwatchingDetails5.Name}
+                                <a href={"../anime?id=" + this.state.userwatchingDetails5.Anime_ID}>{this.state.userwatchingDetails5.Name}</a>
                             </Card>
                         </Col>
                     </Row>
@@ -184,33 +184,33 @@ class UserPage extends React.Component {
                     <Row gutter={16}>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userratedDetails0.url} alt={"animePic"} />}>
-                                {this.state.userratedDetails0.Name}
+                                <a href={"../anime?id=" + this.state.userratedDetails0.Anime_ID}>{this.state.userratedDetails0.Name}</a>
                             </Card>
 
                         </Col>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userratedDetails1.url} alt={"animePic"} />}>
-                                {this.state.userratedDetails1.Name}
+                                <a href={"../anime?id=" + this.state.userratedDetails1.Anime_ID}>{this.state.userratedDetails1.Name}</a>
                             </Card>
                         </Col>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userratedDetails2.url} alt={"animePic"} />}>
-                                {this.state.userratedDetails2.Name}
+                                <a href={"../anime?id=" + this.state.userratedDetails2.Anime_ID}>{this.state.userratedDetails2.Name}</a>
                             </Card>
                         </Col>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userratedDetails3.url} alt={"animePic"} />}>
-                                {this.state.userratedDetails3.Name}
+                                <a href={"../anime?id=" + this.state.userratedDetails3.Anime_ID}>{this.state.userratedDetails3.Name}</a>
                             </Card>
                         </Col>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userratedDetails4.url} alt={"animePic"} />}>
-                                {this.state.userratedDetails4.Name}
+                                <a href={"../anime?id=" + this.state.userratedDetails4.Anime_ID}>{this.state.userratedDetails4.Name}</a>
                             </Card>
                         </Col>
                         <Col span={4}>
                             <Card cover={<img src={this.state.userratedDetails5.url} alt={"animePic"} />}>
-                                {this.state.userratedDetails5.Name}
+                                <a href={"../anime?id=" + this.state.userratedDetails5.Anime_ID}>{this.state.userratedDetails5.Name}</a>
                             </Card>
                         </Col>
                     </Row>

@@ -381,7 +381,7 @@ async function search_title(req, res){
 //             SEARCH PAGE ROUTES
 // ********************************************
 
-async function advance_search(req, res) {
+async function get_search_results(req, res) {
     const genre = req.query.genre ? req.query.genre : '';
     const licensor = req.query.id ? req.query.id : '';
     const producer = req.query.id ? req.query.id : '';
@@ -407,9 +407,11 @@ async function advance_search(req, res) {
         FROM anime_studios
         WHERE Studios LIKE '%${studio}%'
         )
-    SELECT anime.Name AS name, anime.Score AS score, anime.Type AS type, anime.Rating AS rating,
-           anime.Ranked AS ranked, anime.Popularity AS popularity, anime.Favorites AS favorites,
-           anime_with_synopsis.Synopsis AS synopsis
+    SELECT anime.Name AS name, genre.Genres AS genre, licensor.Licensors AS licensor,
+        producer.Producers AS producer, studio.Studios AS studio,
+        anime.Type AS type, anime.Score AS score, anime.Rating AS rating,
+        anime.Ranked AS ranked, anime.Popularity AS popularity, anime.Favorites AS favorites,
+        anime_with_synopsis.Synopsis AS synopsis
     FROM anime
     INNER JOIN genre ON anime.Anime_ID = genre.Anime_ID
     INNER JOIN licensor ON anime.Anime_ID = licensor.Anime_ID
@@ -452,5 +454,5 @@ module.exports = {
     top_manga,
     top_anime,
     search_title,
-    advance_search
+    get_search_results
 }

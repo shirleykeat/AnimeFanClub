@@ -113,6 +113,12 @@ const  getTitle= async(page,title) =>{
     return res.json()
 }
 
+const getSearchResults = async()=>{
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/search`,{
+        method:'GET',
+    })
+    return res.json()
+}
 
 export {
     getAnime,
@@ -130,6 +136,7 @@ export {
     getType,
     getTopAnime,
     getTopManga,
-    getTitle
+    getTitle,
+    getSearchResults
     
 }

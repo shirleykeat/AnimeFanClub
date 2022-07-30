@@ -2,48 +2,35 @@ import React from 'react';
 import MenuBar from '../components/MenuBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Form, Button} from 'react-bootstrap';
-import {getTitle, getTopAnime, getTopManga} from '../fetcher';
-import AnimeList from '../components/AnimeList';
-
+import {getSearchResults} from '../fetcher';
 
 
 class SearchPage extends React.Component {
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-         topAnimes:[],
-         topMangas:[],
-         searchAnimes:null
+    constructor(props) {
+        super(props)
+        this.state = {
+            selectedName: null,
+            selectedGenre: null,
+            selectedLicensor: null,
+            selectedProducer: null,
+            selectedStudio: null, 
+            selectedScore: null
+        }
     }
-
-    this.titleInput = React.createRef();
-
-  }
   
   componentDidMount() {
 
-   getTopAnime().then(res =>{
-      this.setState({topAnimes: res.results})
+   getSearchResults().then(res =>{
+        this.setState({ selectedName: res.results[0] })
+        this.setState({ selectedGenre: res.results[1] })
+        this.setState({ selectedLicensor: res.results[2] })
+        this.setState({ selectedProducer: res.results[3] })
+        this.setState({ selectedStudio: res.results[4] })
+        this.setState({ selectedScore: res.results[5] })
     })
 
-   getTopManga().then(res => {
-      this.setState({topMangas: res.results})
-    })
-     
-  }
-
-  getTitleSearch =(e)=>{
-
-    e.preventDefault();
-
-    var titleInput = this.titleInput.current.value;
-    getTitle(1,titleInput).then(res =>{
-      this.setState({searchAnimes: res.results})
-    })
-
-  }
+}
 
   render() {
 
