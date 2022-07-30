@@ -11,7 +11,7 @@ import AnimeList from '../components/AnimeList';
 class HomePage extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
          topAnimes:[],
@@ -74,7 +74,7 @@ class HomePage extends React.Component {
         </div>
 
         
-        {this.state.searchAnimes? 
+        {this.state.searchAnimes && this.state.searchAnimes.length !==0? 
           <div>
           <div class="text-center">
           <h4>Title Search Results</h4>

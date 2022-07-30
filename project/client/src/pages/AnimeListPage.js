@@ -81,11 +81,9 @@ class AnimeListPage extends React.Component{
             </div>
         </div> 
         )
-
     }
 
 
 }
-
 
 export default AnimeListPage
