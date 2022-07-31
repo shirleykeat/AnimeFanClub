@@ -53,9 +53,9 @@ class GenresPage extends React.Component{
                 <Col>
                     <Card>
                         <Card.Img variant = "top" src={anime.url} alt='anime'/>
-                        <Card.Body>
+                        <div class="text-center" style={{fontSize:"12px"}}>
                             <Card.Link href={"../anime?id=" + anime.id}  >{anime.Name}</Card.Link>
-                        </Card.Body>
+                        </div>
                     </Card>
                 </Col>
             ))

@@ -8,9 +8,9 @@ const AnimeList = (props) =>{
         <div className='image-container d-flex justify-content-start m-3'>
             <Card>
             <Card.Img variant = "top" src={anime.url} alt='anime'/>
-            <Card.Body>
-                <Card.Link href={"../anime?id=" + anime.id}  >{anime.Name}</Card.Link>
-            </Card.Body>
+            <div class="text-center" style={{fontSize:"12px"}}>
+            <Card.Link href={"../anime?id=" + anime.id}  >{anime.Name}</Card.Link>
+            </div>
             </Card>
             </div>
             ))}
