@@ -2,6 +2,7 @@ import React from 'react';
 import MenuBar from '../components/MenuBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Col, Row, Button} from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
 import {getGenre} from '../fetcher';
 
 

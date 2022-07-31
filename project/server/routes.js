@@ -241,7 +241,7 @@ async function get_genre(req, res){
     const page = req.query.page?req.query.page:1
     const pagenumber = page-1
     const genre = req.query.genre
-    var query = `SELECT Name, Score, Source, Rating, Type, Episodes, url
+    var query = `SELECT A.Anime_ID AS id, Name, Score, Source, Rating, Type, Episodes, url
     FROM anime A INNER JOIN anime_genres G ON G.Anime_ID = A.Anime_ID
     INNER JOIN anime_url U on G.Anime_ID = U.Anime_ID
     WHERE G.Genres = ${genre}
@@ -263,7 +263,7 @@ async function get_source(req, res){
     const page = req.query.page?req.query.page:1
     const pagenumber = page-1
     const source = req.query.source 
-    var query = `SELECT Name, Score, Source, Rating, Episodes, Type, url
+    var query = `SELECT A.Anime_ID AS id, Name, Score, Source, Rating, Episodes, Type, url
     FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
     WHERE A.Source = ${source}
     ORDER BY Score
@@ -284,7 +284,7 @@ async function get_type(req, res){
     const pagenumber = page-1
     const type = req.query.type
     
-    var query = `SELECT Name, Score, Source, Rating, Episodes, Type, url
+    var query = `SELECT A.Anime_ID AS id, Name, Score, Source, Rating, Episodes, Type, url
     FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
     WHERE A.Type = ${type}
     ORDER BY Score
@@ -306,7 +306,7 @@ async function get_rating(req,res){
     const pagenumber = page-1
     const rating = req.query.rating
 
-    var query = `SELECT Name, Score, Source, Rating, Episodes, Type, url
+    var query = `SELECT A.Anime_ID AS id, Name, Score, Source, Rating, Episodes, Type, url
     FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
     WHERE A.Rating LIKE '%${rating}%'
     ORDER BY Score
@@ -325,7 +325,7 @@ async function get_rating(req,res){
 
 async function top_manga(req, res){
 
-    var query = `SELECT Name, Score, Episodes, url
+    var query = `SELECT A.Anime_ID AS id, Name, Score, Episodes, url
     FROM anime A JOIN anime_url AU ON A.Anime_ID = AU.Anime_ID
     WHERE A.Source = 'Manga'
     ORDER BY Ranked
@@ -343,7 +343,7 @@ async function top_manga(req, res){
 
 async function top_anime(req, res){
      
-    var query = `SELECT Name, Score, Episodes, url
+    var query = `SELECT A.Anime_ID AS id, Name, Score, Episodes, url
     FROM anime A JOIN anime_url AU ON A.Anime_ID = AU.Anime_ID
     WHERE A.Source <> 'Manga'
     ORDER BY Ranked
@@ -362,7 +362,7 @@ async function top_anime(req, res){
 async function search_title(req, res){
     const title = req.query.title
 
-    var query = `SELECT Name, Score, Source, Rating, Episodes, Type, url
+    var query = `SELECT A.Anime_ID AS id, Name, Score, Source, Rating, Episodes, Type, url
     FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
     Where A.Name LIKE '%${title}%'
     ORDER BY Score`;
