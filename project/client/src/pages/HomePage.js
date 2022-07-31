@@ -6,8 +6,6 @@ import {Form, Button} from 'react-bootstrap';
 import {getTitle, getTopAnime, getTopManga} from '../fetcher';
 import AnimeList from '../components/AnimeList';
 
-
-
 class HomePage extends React.Component {
 
   constructor(props) {
@@ -52,6 +50,12 @@ class HomePage extends React.Component {
 
   }
 
+  resetSearch =()=>{
+    
+    this.setState({searchAnimes: null});
+
+  }
+
   render() {
 
     return (
@@ -70,6 +74,7 @@ class HomePage extends React.Component {
               ref = {this.titleInput}
             />
             <Button variant="outline-success" type="submit" onClick={this.getTitleSearch}>Search</Button>
+            <Button variant="outline-success" type="submit" onClick={this.resetSearch}>Reset</Button>
           </Form>
         </div>
 
