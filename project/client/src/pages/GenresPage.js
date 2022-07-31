@@ -51,7 +51,12 @@ class GenresPage extends React.Component{
         return(
             animes.map((anime, index)=>(
                 <Col>
-                    <img src={anime.url} alt='anime'></img>
+                    <Card>
+                        <Card.Img variant = "top" src={anime.url} alt='anime'/>
+                        <Card.Body>
+                            <Card.Link href={"../anime?id=" + anime.id}  >{anime.Name}</Card.Link>
+                        </Card.Body>
+                    </Card>
                 </Col>
             ))
         );
