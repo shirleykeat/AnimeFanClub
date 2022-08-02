@@ -17,6 +17,7 @@ import 'antd/dist/antd.min.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css"
 import GenresPage from './pages/GenresPage';
+import TypesPage from './pages/TypesPage'
 
 ReactDOM.render(
   <div>
@@ -51,6 +52,11 @@ ReactDOM.render(
 		                   path="/genres"
 						   render={() => (
 							   <GenresPage />
+						   )}/>
+	    <Route exact 
+		                   path="/types"
+						   render={() => (
+							   <TypesPage />
 						   )}/>
       </Switch>
     </Router>

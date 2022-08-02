@@ -16,26 +16,18 @@ class GenresPage extends React.Component{
             page:1,
             type:"Action",
             genreAnimes: []
-        
         }
         
     }
 
    componentDidMount(){
 
-       getGenre(this.state.page,this.state.type).then(res => {
+       getGenre(this.state.page, this.state.type).then(res => {
         this.setState({genreAnimes: res.results})
       })
-
+       
     }
 
-   /* getGenreAnimes =async(ty) =>{
-
-       const url = `http://127.0.0.1:8080/main/genre?page=${this.state.page}&genre=${ty}`
-       const res = await fetch(url, {method:'GET',})
-       const resJson = await res.json()
-       this.setState({genreAnimes: resJson.results})
-    }  */
 
     getGenreAnimes =(ty) =>{
 
@@ -84,16 +76,14 @@ class GenresPage extends React.Component{
                 <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Romance")}}>Romance</Button>{' '}
             </div>
             
-            {this.state.genreAnimes && this.state.genreAnimes.length !==0? 
+            
             <div>
                 <Container>
                     <Row>
                         {this.getAnime(this.state.genreAnimes)}
                     </Row>
                 </Container>
-            </div>:
-            <></>
-            }
+            </div>
         </div> 
         )
     }
