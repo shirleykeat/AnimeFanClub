@@ -1,9 +1,9 @@
 import React from 'react';
 import MenuBar from '../components/MenuBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Form, FormInput, FormGroup, Button} from "shards-react";
-import {format} from 'd3-format';
-import {getSearchResults} from '../fetcher';
+import { Form, FormInput, FormGroup, Button } from "shards-react";
+import { format } from 'd3-format';
+import { getSearchResults } from '../fetcher';
 
 import {
     Table,
@@ -13,70 +13,77 @@ import {
     Col,
     Divider,
     Slider,
-    Rate 
+    Rate
 } from 'antd'
 
 const wideFormat = format('.3r');
 
 const animeColumns = [
-    {   title: 'Name',
-        dataIndex: 'Name',
-        key: 'Name',
-        sorter: (a, b) => a.Name.localeCompare(b.Name),
+    {
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
+        sorter: (a, b) => a.name.localeCompare(b.name)
     },
-    {   title: 'Genre',
-        dataIndex: 'Genre',
-        key: 'Genre',
-        sorter: (a, b) => a.Genre.localeCompare(b.Genre)
+    {
+        title: 'Genre',
+        dataIndex: 'genre',
+        key: 'genre',
+        sorter: (a, b) => a.genre.localeCompare(b.genre)
     },
-    {   title: 'Licensor',
-        dataIndex: 'Licensor',
-        key: 'Licensor',
-        sorter: (a, b) => a.Licensor.localeCompare(b.Licensor)
+    {
+        title: 'Licensor',
+        dataIndex: 'licensor',
+        key: 'licensor',
+        sorter: (a, b) => a.licensor.localeCompare(b.licensor)
     },
-    {   title: 'Producer',
-        dataIndex: 'Producer',
-        key: 'Producer',
-        sorter: (a, b) => a.Producer.localeCompare(b.Producer)
+    {
+        title: 'Producer',
+        dataIndex: 'producer',
+        key: 'producer',
+        sorter: (a, b) => a.producer.localeCompare(b.producer)
     },
-    {   title: 'Studio',
-        dataIndex: 'Studio',
-        key: 'Studio',
-        sorter: (a, b) => a.Studio.localeCompare(b.Studio)
+    {
+        title: 'Studio',
+        dataIndex: 'studio',
+        key: 'studio',
+        sorter: (a, b) => a.studio.localeCompare(b.studio)
     },
-    {   title: 'Type',
-        dataIndex: 'Type',
-        key: 'Type',
-        sorter: (a, b) => a.Type.localeCompare(b.Type)
-    },    
-    {   title: 'Rating',
-        dataIndex: 'Rating',
-        key: 'Rating',
-        sorter: (a, b) => a.Rating.localeCompare(b.Rating)
+    {
+        title: 'Type',
+        dataIndex: 'type',
+        key: 'type',
+        sorter: (a, b) => a.type.localeCompare(b.type)
     },
-    {   title: 'Score',
-        dataIndex: 'Score',
-        key: 'Score',
-        sorter: (a, b) => a.Score - b.Score
+    {
+        title: 'Rating',
+        dataIndex: 'rating',
+        key: 'rating',
+        sorter: (a, b) => a.rating.localeCompare(b.rating)
     },
-    {   title: 'Ranked',
-        dataIndex: 'Ranked',
-        key: 'Ranked',
-        sorter: (a, b) => a.Ranked - b.Ranked
-    },    
-    {   title: 'Popularity',
-        dataIndex: 'Popularity',
-        key: 'Popularity',
-        sorter: (a, b) => a.Popularity - b.Popularity
-    },    
-    {   title: 'Favorites',
-        dataIndex: 'Favorites',
-        key: 'Favorites',
-        sorter: (a, b) => a.Favorites - b.Favorites
-    },    
-    {   title: 'Synopsis',
-        dataIndex: 'Synopsis',
-        key: 'Synopsis',
+    {
+        title: 'Score',
+        dataIndex: 'score',
+        key: 'score',
+        sorter: (a, b) => a.score - b.score
+    },
+    {
+        title: 'Ranked',
+        dataIndex: 'ranked',
+        key: 'ranked',
+        sorter: (a, b) => a.ranked - b.ranked
+    },
+    {
+        title: 'Popularity',
+        dataIndex: 'popularity',
+        key: 'popularity',
+        sorter: (a, b) => a.popularity - b.popularity
+    },
+    {
+        title: 'Favorites',
+        dataIndex: 'favorites',
+        key: 'favorites',
+        sorter: (a, b) => a.favorites - b.favorites
     }
 ];
 
@@ -91,17 +98,18 @@ class SearchPage extends React.Component {
             licensorQuery: '',
             producerQuery: '',
             studioQuery: '',
-            scoreHighQuery: 10,
-            scoreLowQuery: 0,
-            playersResults: []
+            // scoreHighQuery: 10,
+            // scoreLowQuery: 0,
+            animeResults: []
+
         }
 
         this.updateSearchResults = this.updateSearchResults.bind(this)
         this.handleNameQueryChange = this.handleNameQueryChange.bind(this)
         this.handleGenreQueryChange = this.handleGenreQueryChange.bind(this)
         this.handleLicensorQueryChange = this.handleLicensorQueryChange.bind(this)
-        this.handleProducerChange = this.handleProducerQueryChange.bind(this)
-        this.handleStudioChange = this.handleStudioQueryChange.bind(this)
+        this.handleProducerQueryChange = this.handleProducerQueryChange.bind(this)
+        this.handleStudioQueryChange = this.handleStudioQueryChange.bind(this)
         // this.handleScoreChange = this.handleScoreChange.bind(this)
     }
 
@@ -114,7 +122,7 @@ class SearchPage extends React.Component {
     }
 
     handleLicensorQueryChange(event) {
-        this.setState({ licensoryQuery: event.target.value })
+        this.setState({ licensorQuery: event.target.value })
     }
 
     handleProducerQueryChange(event) {
@@ -131,19 +139,19 @@ class SearchPage extends React.Component {
     // }
 
     updateSearchResults() {
-        getSearchResults(this.state.nameQuery, this.state.genreQuery, this.state.licensorQuery, 
-                        this.state.producerQuery, this.state.studioQuery, 
-                        // this.state.scoreHighQuery, this.state.scoreLowQuery, 
-                        null, null).then(res => {
+        getSearchResults(this.state.genreQuery, this.state.licensorQuery,
+            this.state.producerQuery, this.state.studioQuery, this.state.nameQuery
+            // this.state.scoreHighQuery, this.state.scoreLowQuery, 
+        ).then(res => {
             this.setState({ animeResults: res.results })
         })
     }
 
     componentDidMount() {
-        getSearchResults(this.state.nameQuery, this.state.genreQuery, this.state.licensorQuery, 
-                        this.state.producerQuery, this.state.studioQuery, 
-                        // this.state.scoreHighQuery, this.state.scoreLowQuery, 
-                        null, null).then(res => {
+        getSearchResults(this.state.genreQuery, this.state.licensorQuery,
+            this.state.producerQuery, this.state.studioQuery, this.state.nameQuery
+            // this.state.scoreHighQuery, this.state.scoreLowQuery, 
+        ).then(res => {
             this.setState({ animeResults: res.results })
         })
     }
@@ -161,7 +169,7 @@ class SearchPage extends React.Component {
                         <Col flex={2}><FormGroup style={{ width: '40vw', margin: '0 auto' }}>
                             <label>Synopsis</label>
                             <FormInput placeholder="Synopsis" value={this.state.synopsisQuery} onChange={this.handleSynopsisQueryChange} />
-                        </FormGroup></Col>  
+                        </FormGroup></Col>
                     </Row>
                     <br></br>
                     <Row>
@@ -180,7 +188,8 @@ class SearchPage extends React.Component {
                         <Col flex={2}><FormGroup style={{ width: '15vw', margin: '0 auto' }}>
                             <label>Studio</label>
                             <FormInput placeholder="Studio" value={this.state.studioQuery} onChange={this.handleStudioQueryChange} />
-                        </FormGroup></Col>                    
+                        </FormGroup></Col>
+
                     </Row>
                     <br></br>
                     <Row>
@@ -196,8 +205,8 @@ class SearchPage extends React.Component {
                 </Form>
                 <Divider />
                 <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
-                <h3>Animes</h3>
-                <Table dataSource={this.state.animeResults} columns={animeColumns} pagination={{ pageSizeOptions:[5, 10], defaultPageSize: 5, showQuickJumper:true }}/>
+                    <h3>Animes</h3>
+                    <Table dataSource={this.state.animeResults} columns={animeColumns} pagination={{ pageSizeOptions: [5, 10], defaultPageSize: 5, showQuickJumper: true }} />
                 </div>
             </div>
         )

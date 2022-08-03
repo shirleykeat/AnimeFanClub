@@ -50,7 +50,7 @@ ReactDOM.render(
 						<AnimePage />
 					)} />
 				<Route exact
-					path="/search"
+					path="/search/advance_search"
 					render={() => (
 						<SearchPage />
 					)} />
