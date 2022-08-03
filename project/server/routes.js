@@ -410,15 +410,13 @@ async function get_search_results(req, res) {
     SELECT anime.Name AS name, genre.Genres AS genre, licensor.Licensors AS licensor,
         producer.Producers AS producer, studio.Studios AS studio,
         anime.Type AS type, anime.Rating AS rating, anime.Score AS score, 
-        anime.Ranked AS ranked, anime.Popularity AS popularity, anime.Favorites AS favorites,
-        anime_with_synopsis.Synopsis AS synopsis
+        anime.Ranked AS ranked, anime.Popularity AS popularity, anime.Favorites AS favorites
     FROM anime
     INNER JOIN genre ON anime.Anime_ID = genre.Anime_ID
     INNER JOIN licensor ON anime.Anime_ID = licensor.Anime_ID
     INNER JOIN producer ON anime.Anime_ID = producer.Anime_ID
     INNER JOIN studio ON anime.Anime_ID = studio.Anime_ID
-    INNER JOIN anime_with_synopsis ON anime.Anime_ID = anime_with_synopsis.Anime_ID
-    WHERE anime.Name LIKE '%${keyword}%' OR Synopsis LIKE '%${keyword}%';
+    WHERE anime.Name LIKE '%${keyword}%';
     `;
 
     connection.query(SearchQuery,
