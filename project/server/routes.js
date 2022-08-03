@@ -244,7 +244,7 @@ async function get_genre(req, res) {
     var query = `SELECT A.Anime_ID AS id, Name, Score, Source, Rating, Type, Episodes, url
     FROM anime A INNER JOIN anime_genres G ON G.Anime_ID = A.Anime_ID
     INNER JOIN anime_url U on G.Anime_ID = U.Anime_ID
-    WHERE G.Genres = ${genre}
+    WHERE G.Genres = '${genre}'
     ORDER BY Ranked
     LIMIT ${pagenumber * 10}, 10;`;
 

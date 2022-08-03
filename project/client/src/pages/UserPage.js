@@ -101,19 +101,22 @@ class UserPage extends React.Component {
                 <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
                     <h3>You have watched</h3>
                 </div>
-                <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
+
+
+
+                {this.state.userwatchedDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
                     <Row gutter={16}>
                         <Col span={4} style={{ textAlign: 'center' }}>
 
                             <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
-                                {!this.state.userwatchedDetails0 ? (
+                                {!this.state.userwatchedDetails[0] ? (
                                     <h5> No results found </h5>
                                 ) : (
-                                    <img src={this.state.userwatchedDetails0.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                    <img src={this.state.userwatchedDetails[0].url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
                                 )}
                             </Card>
-                            <NavLink to={{ pathname: '/anime?id=' + this.state.userwatchedDetails0.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
-                                {this.state.userwatchedDetails0.Name}
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userwatchedDetails[0].id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userwatchedDetails[0].Name}
                             </NavLink>
 
                         </Col>
@@ -181,7 +184,7 @@ class UserPage extends React.Component {
 
                         </Col>
                     </Row>
-                </div>
+                </div> : null}
 
                 <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
                     <h3>You are watching</h3>
