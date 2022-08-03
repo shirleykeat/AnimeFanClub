@@ -25,9 +25,9 @@ app.get('/anime/useralsowatch', routes.anime_userAlsoWatch)
 app.get('/anime/topinsameGenres', routes.anime_TopinsameGenres)
 
 // MAIN PAGE ROUTES
-app.get('/main/genre', routes.get_genre)
-app.get('/main/type', routes.get_type)
-app.get('/main/rating', routes.get_rating)
+app.get('/main/genres', routes.get_genre)
+app.get('/main/types', routes.get_type)
+app.get('/main/ratings', routes.get_rating)
 app.get('/main/source', routes.get_source)
 app.get('/main/topManga',routes.top_manga)
 app.get('/main/topAnime', routes.top_anime)

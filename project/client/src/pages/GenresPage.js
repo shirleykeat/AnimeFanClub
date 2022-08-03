@@ -76,14 +76,16 @@ class GenresPage extends React.Component{
                 <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Romance")}}>Romance</Button>{' '}
             </div>
             
-            
+            {this.state.genreAnimes?
             <div>
                 <Container>
                     <Row>
                         {this.getAnime(this.state.genreAnimes)}
                     </Row>
                 </Container>
-            </div>
+            </div>:
+            <></>
+            }
         </div> 
         )
     }

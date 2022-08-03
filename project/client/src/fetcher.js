@@ -64,29 +64,29 @@ const getUserRated = async (id) => {
     return res.json()
 }
 
-const getGenre = async(page, genre) =>{
-    var res = await fetch(`http://${config.server_host}:${config.server_port}/main/genre?page=${page}&genre=${genre}`,{
+const getGenre = async (page, genre) => {
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/main/genres?page=${page}&genre=${genre}`,{
         method:'GET',
     })
     return res.json()
 }
 
-const getSource = async(page, source) =>{
+const getSource = async (page, source) => {
     var res = await fetch(`http://${config.server_host}:${config.server_port}/main/source?page=${page}&source=${source}`,{
         method:'GET',
     })
     return res.json()
 }
 
-const getType = async(page, type) =>{
-    var res = await fetch(`http://${config.server_host}:${config.server_port}/main/type?page=${page}&type=${type}`,{
+const getType = async (page, type) => {
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/main/types?page=${page}&type=${type}`,{
         method:'GET',
     })
     return res.json()
 }
 
 const getRating = async(page, rating) =>{
-    var res = await fetch(`http://${config.server_host}:${config.server_port}/main/type?page=${page}&rating=${rating}`,{
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/main/ratings?page=${page}&rating=${rating}`,{
         method:'GET',
     })
     return res.json()
@@ -106,7 +106,7 @@ const getTopManga = async()=>{
     return res.json()
 }
 
-const  getTitle= async(page,title) =>{
+const  getTitle= async(title) =>{
     var res = await fetch(`http://${config.server_host}:${config.server_port}/main/title?title=${title}`,
      {method:'GET',
     })

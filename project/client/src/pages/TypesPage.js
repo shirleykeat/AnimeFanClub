@@ -72,14 +72,16 @@ class TypesPage extends React.Component{
                 <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getTypeAnimes("ONA")}}>ONA</Button>{' '}
             </div>
             
-            
+            {this.state.typeAnimes?
             <div>
                 <Container>
                     <Row>
                         {this.getAnime(this.state.typeAnimes)}
                     </Row>
                 </Container>
-            </div>
+            </div>:
+            <></>
+             }
         </div> 
         )
     }
