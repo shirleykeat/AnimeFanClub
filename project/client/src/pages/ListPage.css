@@ -1,12 +1,8 @@
-
-.container-fluid{
+.container{
     display: grid;
-    gap: var(--size-1);
-    grid-auto-flow: column;
-    grid-auto-columns: 15%;
-    overflow-x: scroll;
-    overscroll-behavior-inline: contain;
-    
+    gap: var(--size-2);
+    grid-auto-columns: auto;
+    grid-auto-flow: column;   
 }
 
 .image-container {
@@ -22,4 +18,3 @@
 .image-container:hover .overlay {
 	opacity: 1;
 }
-

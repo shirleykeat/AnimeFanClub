@@ -1,9 +1,15 @@
 import React from 'react';
 import MenuBar from '../components/MenuBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Container, Col, Row, Button} from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
+import {Button} from 'react-bootstrap';
+import { Card} from "shards-react";
+import {NavLink} from 'react-router-dom';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import './HomePage.css';
 import {getGenre} from '../fetcher';
+
 
 
 
@@ -42,14 +48,18 @@ class GenresPage extends React.Component{
             
         return(
             animes.map((anime, index)=>(
+                <div className='image-container d-flex justify-content-start m-3'>
                 <Col>
-                    <Card>
-                        <Card.Img variant = "top" src={anime.url} alt='anime'/>
-                        <div class="text-center" style={{fontSize:"12px"}}>
-                            <Card.Link href={"../anime?id=" + anime.id}  >{anime.Name}</Card.Link>
-                        </div>
+                    <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                        
+                    <img src={anime.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
                     </Card>
+                    <NavLink to={{ pathname: '/anime?id=' + anime.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                        {anime.Name}
+                     </NavLink>
+                    
                 </Col>
+                </div>
             ))
         );
     }
@@ -76,16 +86,15 @@ class GenresPage extends React.Component{
                 <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Romance")}}>Romance</Button>{' '}
             </div>
             
-            {this.state.genreAnimes?
-            <div>
-                <Container>
-                    <Row>
-                        {this.getAnime(this.state.genreAnimes)}
-                    </Row>
-                </Container>
-            </div>:
-            <></>
-            }
+            
+
+            <Container>
+                <Row md ={6}>
+                    {this.getAnime(this.state.genreAnimes)}
+                </Row>
+                   
+            </Container>
+            
         </div> 
         )
     }

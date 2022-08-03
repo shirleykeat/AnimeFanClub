@@ -14,8 +14,8 @@ function MenuBar() {
           <NavDropdown title="Categories" id="category-dropdown">
             <NavDropdown.Item href="/genres">Genres</NavDropdown.Item>
             <NavDropdown.Item href="/types"> Types</NavDropdown.Item>
-            <NavDropdown.Item >Sources</NavDropdown.Item>
-            <NavDropdown.Item >Ratings</NavDropdown.Item>
+            <NavDropdown.Item href="/source">Sources</NavDropdown.Item>
+            <NavDropdown.Item href="rating">Ratings</NavDropdown.Item>
           </NavDropdown>
 
 

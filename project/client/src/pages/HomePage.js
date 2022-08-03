@@ -3,7 +3,7 @@ import MenuBar from '../components/MenuBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 import {Form, Button} from 'react-bootstrap';
-import {getTitle, getTopAnime, getTopManga, getGenre} from '../fetcher';
+import {getTitle, getTopAnime, getTopManga} from '../fetcher';
 import AnimeList from '../components/AnimeList';
 
 class HomePage extends React.Component {

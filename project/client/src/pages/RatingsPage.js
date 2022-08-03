@@ -7,37 +7,38 @@ import {NavLink} from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import './ListPage.css';
-import {getType} from '../fetcher';
+import './HomePage.css';
+import {getRating} from '../fetcher';
 
 
 
-class TypesPage extends React.Component{
+
+class RatingsPage extends React.Component{
 
     constructor(props){
         super(props);
         this.state = {
             
             page:1,
-            type:"TV",
-            typeAnimes: []
+            rating:"PG-13",
+            ratingsAnimes: []
         }
         
     }
 
    componentDidMount(){
 
-       getType(this.state.page, this.state.type).then(res => {
-        this.setState({typeAnimes: res.results})
+       getRating(this.state.page, this.state.rating).then(res => {
+        this.setState({ratingsAnimes: res.results})
       })
        
     }
 
 
-    getTypeAnimes =(ty) =>{
+    getRatingsAnimes =(ty) =>{
 
-        getType(this.state.page,ty).then(res => {
-            this.setState({typeAnimes: res.results})
+        getRating(this.state.page,ty).then(res => {
+            this.setState({ratingsAnimes: res.results})
           })
 
     }
@@ -73,26 +74,28 @@ class TypesPage extends React.Component{
             </div>
 
 
-            <div className='mx-auto p-2' style={{width: '450px'}}>
-                <Button variant="outline-secondary" type="submit" size="sm" onClick={()=>{this.getTypeAnimes("TV")}}>TV</Button>{' '}
-                <Button variant="outline-secondary" type="submit" size="sm" onClick={()=>{this.getTypeAnimes("Movie")}}>Movie</Button>{' '}
-                <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getTypeAnimes("OVA")}}>OVA</Button>{' '}
-                <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getTypeAnimes("Special")}}>Special</Button>{' '}
-                <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getTypeAnimes("ONA")}}>ONA</Button>{' '}
+            <div className='mx-auto p-2' style={{width: '600px'}}>
+                <Button variant="outline-secondary" type="submit" size="sm" onClick={()=>{this.getRatingsAnimes("G - All Ages")}}>G-All Ages</Button>{' '}
+                <Button variant="outline-secondary" type="submit" size="sm" onClick={()=>{this.getRatingsAnimes("PG - Children")}}>PG-Children</Button>{' '}
+                <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getRatingsAnimes("PG-13")}}>PG-13</Button>{' '}
+                <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getRatingsAnimes("R - 17+ (violence & profanity)")}}>R-17+</Button>{' '}
+                <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getRatingsAnimes("R+ - Mild Nudity")}}>R+</Button>{' '}
+                <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getRatingsAnimes("Rx - Hentai")}}>Rx</Button>{' '}
             </div>
             
             
+
             <Container>
-                    <Row md ={6}>
-                        {this.getAnime(this.state.typeAnimes)}
-                    </Row>
+                <Row md ={6}>
+                    {this.getAnime(this.state.ratingsAnimes)}
+                </Row>
+                   
             </Container>
-          
-    
+            
         </div> 
         )
     }
 
 }
 
-export default TypesPage
+export default RatingsPage

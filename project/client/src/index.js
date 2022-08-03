@@ -18,7 +18,9 @@ import 'antd/dist/antd.min.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css"
 import GenresPage from './pages/GenresPage';
-import TypesPage from './pages/TypesPage'
+import TypesPage from './pages/TypesPage';
+import SourcePage from './pages/SourcePage';
+import RatingsPage from './pages/RatingsPage';
 
 ReactDOM.render(
 	<div>
@@ -63,6 +65,16 @@ ReactDOM.render(
 					path="/types"
 					render={() => (
 						<TypesPage />
+					)} />
+				<Route exact
+					path="/source"
+					render={() => (
+						<SourcePage />
+					)} />
+				<Route exact
+					path="/rating"
+					render={() => (
+						<RatingsPage />
 					)} />
 			</Switch>
 		</Router>
