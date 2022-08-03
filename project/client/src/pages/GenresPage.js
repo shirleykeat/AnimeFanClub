@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import './HomePage.css';
 import {getGenre} from '../fetcher';
-
+import Pagination from 'react-bootstrap/Pagination';
 
 
 
@@ -74,14 +74,16 @@ class GenresPage extends React.Component{
             </div>
 
 
-            <div className='mx-auto p-2' style={{width: '800px'}}>
+            <div className='mx-auto p-2' style={{width: '1000px'}}>
                 <Button variant="outline-secondary" type="submit" size="sm" onClick={()=>{this.getGenreAnimes("Action")}}>Action</Button>{' '}
                 <Button variant="outline-secondary" type="submit" size="sm" onClick={()=>{this.getGenreAnimes("Comedy")}}>Comedy</Button>{' '}
                 <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Drama")}}>Drama</Button>{' '}
                 <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Sci-Fi")}}>Sci-Fi</Button>{' '}
                 <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Supernatural")}}>Supernatural</Button>{' '}
                 <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Magic")}}>Magic</Button>{' '}
-                <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Fantacy")}}>Fantacy</Button>{' '}
+                <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Fantasy")}}>Fantasy</Button>{' '}
+                <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Drama")}}>Drama</Button>{' '}
+                <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Super Power")}}>Super Power</Button>{' '}
                 <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Sports")}}>Sports</Button>{' '}
                 <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Romance")}}>Romance</Button>{' '}
             </div>
@@ -94,6 +96,22 @@ class GenresPage extends React.Component{
                 </Row>
                    
             </Container>
+
+            <div class="d-flex justify-content-center">
+                <Pagination>
+                    <Pagination.First />
+                    <Pagination.Prev />
+                    <Pagination.Item>{1}</Pagination.Item>
+                    <Pagination.Item>{2}</Pagination.Item>
+                    <Pagination.Item>{3}</Pagination.Item>
+                    <Pagination.Item>{4}</Pagination.Item>
+                    <Pagination.Ellipsis />
+
+                    <Pagination.Item>{10}</Pagination.Item>
+                    <Pagination.Next />
+                    <Pagination.Last />
+                </Pagination>
+            </div>
             
         </div> 
         )
