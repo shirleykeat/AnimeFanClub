@@ -1,24 +1,16 @@
 import React from 'react';
-import { Form, FormInput, FormGroup, Button, CardTitle, Progress } from "shards-react";
+import { Card, CardBody } from "shards-react";
 
 import {
-    Table,
-    Pagination,
-    Select,
-    Card,
     Row,
-    Col,
-    Divider,
-    Slider,
-    Rate
-} from 'antd'
-
-import { format } from 'd3-format';
-
+    Col
+} from 'antd';
+import { BrowserRouter as Router, Link, NavLink } from 'react-router-dom';
 import MenuBar from '../components/MenuBar';
 import { getUserProfile, getUserWatched, getUserWatching, getUserRated } from '../fetcher';
-const wideFormat = format('.3r');
-const { Meta } = Card;
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './HomePage.css';
+import AnimeList from '../components/AnimeList';
 
 class UserPage extends React.Component {
 
@@ -27,18 +19,21 @@ class UserPage extends React.Component {
         this.state = {
             selectedUserId: window.location.search ? window.location.search.substring(1).split('=')[1] : 1,
             userprofileDetails: [],
+            userwatchedDetails: null,
             userwatchedDetails0: [],
             userwatchedDetails1: [],
             userwatchedDetails2: [],
             userwatchedDetails3: [],
             userwatchedDetails4: [],
             userwatchedDetails5: [],
+            userwatchingDetails: null,
             userwatchingDetails0: [],
             userwatchingDetails1: [],
             userwatchingDetails2: [],
             userwatchingDetails3: [],
             userwatchingDetails4: [],
             userwatchingDetails5: [],
+            userratedDetails: null,
             userratedDetails0: [],
             userratedDetails1: [],
             userratedDetails2: [],
@@ -55,6 +50,7 @@ class UserPage extends React.Component {
         })
 
         getUserWatched(this.state.selectedUserId).then(res => {
+            this.setState({ userwatchedDetails: res.results })
             this.setState({ userwatchedDetails0: res.results[0] })
             this.setState({ userwatchedDetails1: res.results[1] })
             this.setState({ userwatchedDetails2: res.results[2] })
@@ -64,6 +60,7 @@ class UserPage extends React.Component {
         })
 
         getUserWatching(this.state.selectedUserId).then(res => {
+            this.setState({ userwatchingDetails: res.results })
             this.setState({ userwatchingDetails0: res.results[0] })
             this.setState({ userwatchingDetails1: res.results[1] })
             this.setState({ userwatchingDetails2: res.results[2] })
@@ -73,6 +70,7 @@ class UserPage extends React.Component {
         })
 
         getUserRated(this.state.selectedUserId).then(res => {
+            this.setState({ userratedDetails: res.results })
             this.setState({ userratedDetails0: res.results[0] })
             this.setState({ userratedDetails1: res.results[1] })
             this.setState({ userratedDetails2: res.results[2] })
@@ -103,77 +101,169 @@ class UserPage extends React.Component {
                 <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
                     <h3>You have watched</h3>
                 </div>
-                <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
+
+
+
+                {this.state.userwatchedDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
                     <Row gutter={16}>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userwatchedDetails0.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userwatchedDetails0.Anime_ID}>{this.state.userwatchedDetails0.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userwatchedDetails[0] ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userwatchedDetails[0].url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userwatchedDetails[0].id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userwatchedDetails[0].Name}
+                            </NavLink>
 
                         </Col>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userwatchedDetails1.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userwatchedDetails1.Anime_ID}>{this.state.userwatchedDetails1.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userwatchedDetails1 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userwatchedDetails1.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userwatchedDetails1.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userwatchedDetails1.Name}
+                            </NavLink>
                         </Col>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userwatchedDetails2.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userwatchedDetails2.Anime_ID}>{this.state.userwatchedDetails2.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userwatchedDetails2 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userwatchedDetails2.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userwatchedDetails2.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userwatchedDetails2.Name}
+                            </NavLink>
                         </Col>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userwatchedDetails3.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userwatchedDetails3.Anime_ID}>{this.state.userwatchedDetails3.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userwatchedDetails3 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userwatchedDetails3.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userwatchedDetails3.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userwatchedDetails3.Name}
+                            </NavLink>
+
                         </Col>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userwatchedDetails4.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userwatchedDetails4.Anime_ID}>{this.state.userwatchedDetails4.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userwatchedDetails4 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userwatchedDetails4.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userwatchedDetails4.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userwatchedDetails4.Name}
+                            </NavLink>
+
                         </Col>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userwatchedDetails5.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userwatchedDetails5.Anime_ID}>{this.state.userwatchedDetails5.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userwatchedDetails5 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userwatchedDetails5.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userwatchedDetails5.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userwatchedDetails5.Name}
+                            </NavLink>
+
                         </Col>
                     </Row>
-                </div>
+                </div> : null}
 
                 <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
                     <h3>You are watching</h3>
                 </div>
                 <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
                     <Row gutter={16}>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userwatchingDetails0.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userwatchingDetails0.Anime_ID}>{this.state.userwatchingDetails0.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userwatchingDetails0 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userwatchingDetails0.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userwatchingDetails0.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userwatchingDetails0.Name}
+                            </NavLink>
+
 
                         </Col>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userwatchingDetails1.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userwatchingDetails1.Anime_ID}>{this.state.userwatchingDetails1.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userwatchingDetails1 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userwatchingDetails1.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userwatchingDetails1.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userwatchingDetails1.Name}
+                            </NavLink>
                         </Col>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userwatchingDetails2.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userwatchingDetails2.Anime_ID}>{this.state.userwatchingDetails2.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userwatchingDetails2 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userwatchingDetails2.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userwatchingDetails2.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userwatchingDetails2.Name}
+                            </NavLink>
                         </Col>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userwatchingDetails3.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userwatchingDetails3.Anime_ID}>{this.state.userwatchingDetails3.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userwatchingDetails3 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userwatchingDetails3.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userwatchingDetails3.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userwatchingDetails3.Name}
+                            </NavLink>
                         </Col>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userwatchingDetails4.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userwatchingDetails4.Anime_ID}>{this.state.userwatchingDetails4.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userwatchingDetails4 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userwatchingDetails4.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userwatchingDetails4.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userwatchingDetails4.Name}
+                            </NavLink>
                         </Col>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userwatchingDetails5.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userwatchingDetails5.Anime_ID}>{this.state.userwatchingDetails5.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userwatchingDetails5 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userwatchingDetails5.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userwatchingDetails5.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userwatchingDetails5.Name}
+                            </NavLink>
                         </Col>
                     </Row>
                 </div>
@@ -182,39 +272,82 @@ class UserPage extends React.Component {
                 </div>
                 <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
                     <Row gutter={16}>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userratedDetails0.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userratedDetails0.Anime_ID}>{this.state.userratedDetails0.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userratedDetails0 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userratedDetails0.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userratedDetails0.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userratedDetails0.Name}
+                            </NavLink>
 
                         </Col>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userratedDetails1.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userratedDetails1.Anime_ID}>{this.state.userratedDetails1.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userratedDetails1 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userratedDetails1.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userratedDetails1.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userratedDetails1.Name}
+                            </NavLink>
                         </Col>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userratedDetails2.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userratedDetails2.Anime_ID}>{this.state.userratedDetails2.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userratedDetails2 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userratedDetails2.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userratedDetails2.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userratedDetails2.Name}
+                            </NavLink>
                         </Col>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userratedDetails3.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userratedDetails3.Anime_ID}>{this.state.userratedDetails3.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userratedDetails3 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userratedDetails3.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userratedDetails3.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userratedDetails3.Name}
+                            </NavLink>
                         </Col>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userratedDetails4.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userratedDetails4.Anime_ID}>{this.state.userratedDetails4.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userratedDetails4 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userratedDetails4.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userratedDetails4.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userratedDetails4.Name}
+                            </NavLink>
                         </Col>
-                        <Col span={4}>
-                            <Card cover={<img src={this.state.userratedDetails5.url} alt={"animePic"} />}>
-                                <a href={"../anime?id=" + this.state.userratedDetails5.Anime_ID}>{this.state.userratedDetails5.Name}</a>
+                        <Col span={4} style={{ textAlign: 'center' }}>
+                            <Card style={{ height: '25vh', width: '19vh', overflow: 'auto' }}>
+                                {!this.state.userratedDetails5 ? (
+                                    <h5> No results found </h5>
+                                ) : (
+                                    <img src={this.state.userratedDetails5.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
+                                )}
                             </Card>
+                            <NavLink to={{ pathname: '/anime?id=' + this.state.userratedDetails5.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                                {this.state.userratedDetails5.Name}
+                            </NavLink>
                         </Col>
                     </Row>
                 </div>
+
             </div>
         )
     }
