@@ -1,8 +1,84 @@
 import React from 'react';
 import MenuBar from '../components/MenuBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Form, Button} from 'react-bootstrap';
+import {Form, FormInput, FormGroup, Button} from "shards-react";
+import {format} from 'd3-format';
 import {getSearchResults} from '../fetcher';
+
+import {
+    Table,
+    Pagination,
+    Select,
+    Row,
+    Col,
+    Divider,
+    Slider,
+    Rate 
+} from 'antd'
+
+const wideFormat = format('.3r');
+
+const animeColumns = [
+    {   title: 'Name',
+        dataIndex: 'Name',
+        key: 'Name',
+        sorter: (a, b) => a.Name.localeCompare(b.Name),
+    },
+    {   title: 'Genre',
+        dataIndex: 'Genre',
+        key: 'Genre',
+        sorter: (a, b) => a.Genre.localeCompare(b.Genre)
+    },
+    {   title: 'Licensor',
+        dataIndex: 'Licensor',
+        key: 'Licensor',
+        sorter: (a, b) => a.Licensor.localeCompare(b.Licensor)
+    },
+    {   title: 'Producer',
+        dataIndex: 'Producer',
+        key: 'Producer',
+        sorter: (a, b) => a.Producer.localeCompare(b.Producer)
+    },
+    {   title: 'Studio',
+        dataIndex: 'Studio',
+        key: 'Studio',
+        sorter: (a, b) => a.Studio.localeCompare(b.Studio)
+    },
+    {   title: 'Type',
+        dataIndex: 'Type',
+        key: 'Type',
+        sorter: (a, b) => a.Type.localeCompare(b.Type)
+    },    
+    {   title: 'Rating',
+        dataIndex: 'Rating',
+        key: 'Rating',
+        sorter: (a, b) => a.Rating.localeCompare(b.Rating)
+    },
+    {   title: 'Score',
+        dataIndex: 'Score',
+        key: 'Score',
+        sorter: (a, b) => a.Score - b.Score
+    },
+    {   title: 'Ranked',
+        dataIndex: 'Ranked',
+        key: 'Ranked',
+        sorter: (a, b) => a.Ranked - b.Ranked
+    },    
+    {   title: 'Popularity',
+        dataIndex: 'Popularity',
+        key: 'Popularity',
+        sorter: (a, b) => a.Popularity - b.Popularity
+    },    
+    {   title: 'Favorites',
+        dataIndex: 'Favorites',
+        key: 'Favorites',
+        sorter: (a, b) => a.Favorites - b.Favorites
+    },    
+    {   title: 'Synopsis',
+        dataIndex: 'Synopsis',
+        key: 'Synopsis',
+    }
+];
 
 
 class SearchPage extends React.Component {
@@ -10,212 +86,125 @@ class SearchPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedName: null,
-            selectedGenre: null,
-            selectedLicensor: null,
-            selectedProducer: null,
-            selectedStudio: null, 
-            selectedScore: null
+            nameQuery: '',
+            genreQuery: '',
+            licensorQuery: '',
+            producerQuery: '',
+            studioQuery: '',
+            scoreHighQuery: 10,
+            scoreLowQuery: 0,
+            playersResults: []
         }
+
+        this.updateSearchResults = this.updateSearchResults.bind(this)
+        this.handleNameQueryChange = this.handleNameQueryChange.bind(this)
+        this.handleGenreQueryChange = this.handleGenreQueryChange.bind(this)
+        this.handleLicensorQueryChange = this.handleLicensorQueryChange.bind(this)
+        this.handleProducerChange = this.handleProducerQueryChange.bind(this)
+        this.handleStudioChange = this.handleStudioQueryChange.bind(this)
+        // this.handleScoreChange = this.handleScoreChange.bind(this)
     }
-  
-  componentDidMount() {
 
-   getSearchResults().then(res =>{
-        this.setState({ selectedName: res.results[0] })
-        this.setState({ selectedGenre: res.results[1] })
-        this.setState({ selectedLicensor: res.results[2] })
-        this.setState({ selectedProducer: res.results[3] })
-        this.setState({ selectedStudio: res.results[4] })
-        this.setState({ selectedScore: res.results[5] })
-    })
+    handleNameQueryChange(event) {
+        this.setState({ nameQuery: event.target.value })
+    }
 
-}
+    handleGenreQueryChange(event) {
+        this.setState({ genreQuery: event.target.value })
+    }
 
-  render() {
+    handleLicensorQueryChange(event) {
+        this.setState({ licensoryQuery: event.target.value })
+    }
 
-    return (
-        <div>
+    handleProducerQueryChange(event) {
+        this.setState({ producerQuery: event.target.value })
+    }
+
+    handleStudioQueryChange(event) {
+        this.setState({ studioQuery: event.target.value })
+    }
+
+    // handleScoreChange(value) {
+    //     this.setState({ scoreLowQuery: value[0] })
+    //     this.setState({ scoreHighQuery: value[1] })
+    // }
+
+    updateSearchResults() {
+        getSearchResults(this.state.nameQuery, this.state.genreQuery, this.state.licensorQuery, 
+                        this.state.producerQuery, this.state.studioQuery, 
+                        // this.state.scoreHighQuery, this.state.scoreLowQuery, 
+                        null, null).then(res => {
+            this.setState({ animeResults: res.results })
+        })
+    }
+
+    componentDidMount() {
+        getSearchResults(this.state.nameQuery, this.state.genreQuery, this.state.licensorQuery, 
+                        this.state.producerQuery, this.state.studioQuery, 
+                        // this.state.scoreHighQuery, this.state.scoreLowQuery, 
+                        null, null).then(res => {
+            this.setState({ animeResults: res.results })
+        })
+    }
+
+    render() {
+        return (
             <div>
-            <MenuBar/>
-            </div> 
-            
-            <div className='mx-auto p-4' style={{width:"800px"}}>
-            <Form className="d-flex">
-                <Form.Control
-                type="search"
-                placeholder="Type keyword here"
-                className="me-2"
-                aria-label="Type keyword here"
-                ref = {this.titleInput}
-                />
-                <Button variant="outline-success" type="submit" onClick={this.getTitleSearch}>Search</Button>
-            </Form>
+                <MenuBar />
+                <Form style={{ width: '80vw', margin: '0 auto', marginTop: '5vh' }}>
+                    <Row>
+                        <Col flex={2}><FormGroup style={{ width: '20vw', margin: '0 auto' }}>
+                            <label>Name</label>
+                            <FormInput placeholder="Name" value={this.state.nameQuery} onChange={this.handleNameQueryChange} />
+                        </FormGroup></Col>
+                        <Col flex={2}><FormGroup style={{ width: '40vw', margin: '0 auto' }}>
+                            <label>Synopsis</label>
+                            <FormInput placeholder="Synopsis" value={this.state.synopsisQuery} onChange={this.handleSynopsisQueryChange} />
+                        </FormGroup></Col>  
+                    </Row>
+                    <br></br>
+                    <Row>
+                        <Col flex={2}><FormGroup style={{ width: '15vw', margin: '0 auto' }}>
+                            <label>Genre</label>
+                            <FormInput placeholder="Genre" value={this.state.genreQuery} onChange={this.handleGenreQueryChange} />
+                        </FormGroup></Col>
+                        <Col flex={2}><FormGroup style={{ width: '15vw', margin: '0 auto' }}>
+                            <label>Licensor</label>
+                            <FormInput placeholder="Licensor" value={this.state.licensorQuery} onChange={this.handleLicensorQueryChange} />
+                        </FormGroup></Col>
+                        <Col flex={2}><FormGroup style={{ width: '15vw', margin: '0 auto' }}>
+                            <label>Producer</label>
+                            <FormInput placeholder="Producer" value={this.state.producerQuery} onChange={this.handleProducerQueryChange} />
+                        </FormGroup></Col>
+                        <Col flex={2}><FormGroup style={{ width: '15vw', margin: '0 auto' }}>
+                            <label>Studio</label>
+                            <FormInput placeholder="Studio" value={this.state.studioQuery} onChange={this.handleStudioQueryChange} />
+                        </FormGroup></Col>                    
+                    </Row>
+                    <br></br>
+                    <Row>
+                        <Col flex={2}><FormGroup style={{ width: '20vw', margin: '0 auto' }}>
+                            <label>Score</label>
+                            <Slider range defaultValue={[0, 10]} onChange={this.handleScoreChange} />
+                        </FormGroup></Col>
+                        <Col flex={2}><FormGroup style={{ width: '10vw' }}>
+                            <Button style={{ marginTop: '4vh' }} onClick={this.updateSearchResults}>Search</Button>
+                        </FormGroup></Col>
+                    </Row>
+
+                </Form>
+                <Divider />
+                <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
+                <h3>Animes</h3>
+                <Table dataSource={this.state.animeResults} columns={animeColumns} pagination={{ pageSizeOptions:[5, 10], defaultPageSize: 5, showQuickJumper:true }}/>
+                </div>
             </div>
-
-            <div class="container">
-              <div class="row">
-                  <form class="col-md-4">
-                      <label>Select Genre</label>
-                      <select class="form-control select1">
-                        <option>Action</option> 
-                        <option>Adventure</option> 
-                        <option>Comedy</option> 
-                        <option>Drama</option> 
-                        <option>Sci-Fi</option> 
-                      </select>
-                  </form>
-              </div>
-            </div>
-            <script>
-                $('.select1').select1();
-            </script>
-
-            <div class="container">
-              <div class="row">
-                  <form class="col-md-4">
-                      <label>Select Licensor</label>
-                      <select class="form-control select2">
-                        <option>Bandai Entertainment</option> 
-                        <option>Sony Pictures Entertainment</option> 
-                        <option>VIZ Media</option> 
-                        <option>Funimation</option> 
-                        <option>Netflix</option> 
-                      </select>
-                  </form>
-              </div>
-            </div>
-            <script>
-                $('.select2').select2();
-            </script>
-
-            <div class="container">
-              <div class="row">
-                  <form class="col-md-4">
-                      <label>Select Producer</label>
-                      <select class="form-control select3">
-                        <option>Bandai Visual</option> 
-                        <option>TV Tokyo</option> 
-                        <option>Fuji TV</option> 
-                        <option>CBC</option> 
-                        <option>Marvelous</option> 
-                      </select>
-                  </form>
-              </div>
-            </div>
-            <script>
-                $('.select3').select3();
-            </script>
-
-            <div class="container">
-              <div class="row">
-                  <form class="col-md-4">
-                      <label>Select Studio</label>
-                      <select class="form-control select4">
-                        <option>Sunrise</option> 
-                        <option>Gallop</option> 
-                        <option>Toei Animation</option> 
-                        <option>Nippon Animation</option> 
-                        <option>AIC</option> 
-                      </select>
-                  </form>
-              </div>
-            </div>
-            <script>
-                $('.select4').select4();
-            </script>
-
-            <div class="container-xl">
-                <div class="table-responsive">
-                    <div class="table-wrapper">
-                        <div class="table-title">
-                            <div class="row">
-                                <div class="col-sm-8"><h2>Search Results</h2></div>
-                            </div>
-                        </div>
-                        <table class="table table-striped table-hover table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Name <i class="fa fa-sort"></i></th>
-                                    <th>Genre <i class="fa fa-sort"></i></th>
-                                    <th>Type <i class="fa fa-sort"></i></th>
-                                    <th>Producer <i class="fa fa-sort"></i></th>
-                                    <th>Score <i class="fa fa-sort"></i></th>
-                                    <th>Rating <i class="fa fa-sort"></i></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>name</td>
-                                    <td>genre A</td>
-                                    <td>type A</td>
-                                    <td>producer A</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>name</td>
-                                    <td>genre A</td>
-                                    <td>type A</td>
-                                    <td>producer A</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>name</td>
-                                    <td>genre A</td>
-                                    <td>type A</td>
-                                    <td>producer A</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>name</td>
-                                    <td>genre A</td>
-                                    <td>type A</td>
-                                    <td>producer A</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>name</td>
-                                    <td>genre A</td>
-                                    <td>type A</td>
-                                    <td>producer A</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                </tr>       
-                            </tbody>
-                        </table>
-                        <div class="clearfix">
-                            <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                            <ul class="pagination">
-                                <li class="page-item disabled"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
-                                <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                                <li class="page-item"><a href="#" class="page-link">4</a></li>
-                                <li class="page-item"><a href="#" class="page-link">5</a></li>
-                                <li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>  
-            </div>   
-
-
-
-
-
-        </div>
-    )
-  }
+        )
+    }
 }
 
 export default SearchPage
+
+
+

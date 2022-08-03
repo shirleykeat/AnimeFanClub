@@ -409,7 +409,7 @@ async function get_search_results(req, res) {
         )
     SELECT anime.Name AS name, genre.Genres AS genre, licensor.Licensors AS licensor,
         producer.Producers AS producer, studio.Studios AS studio,
-        anime.Type AS type, anime.Score AS score, anime.Rating AS rating,
+        anime.Type AS type, anime.Rating AS rating, anime.Score AS score, 
         anime.Ranked AS ranked, anime.Popularity AS popularity, anime.Favorites AS favorites,
         anime_with_synopsis.Synopsis AS synopsis
     FROM anime
