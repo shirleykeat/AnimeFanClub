@@ -2,14 +2,13 @@ import React from 'react';
 import MenuBar from '../components/MenuBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button} from 'react-bootstrap';
-import { Card} from "shards-react";
+import {Card} from "shards-react";
 import {NavLink} from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import './HomePage.css';
 import {getSource} from '../fetcher';
-import Pagination from 'react-bootstrap/Pagination'
 
 
 
@@ -95,23 +94,7 @@ class SourcePage extends React.Component{
                 </Row>
                    
             </Container>
-
-            <div class="d-flex justify-content-center">
-                <Pagination>
-                    <Pagination.First />
-                    <Pagination.Prev />
-                    <Pagination.Item>{1}</Pagination.Item>
-                    <Pagination.Item>{2}</Pagination.Item>
-                    <Pagination.Item>{3}</Pagination.Item>
-                    <Pagination.Item>{4}</Pagination.Item>
-                    <Pagination.Ellipsis />
-
-                    <Pagination.Item>{10}</Pagination.Item>
-                    <Pagination.Next />
-                    <Pagination.Last />
-                </Pagination>
-            </div>
-            
+  
         </div> 
         )
     }
