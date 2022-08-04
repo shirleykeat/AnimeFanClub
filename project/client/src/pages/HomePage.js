@@ -44,7 +44,7 @@ class HomePage extends React.Component {
       this.setState({searchAnimes: null});
     } 
     else{
-      getTitle(1,titleInput).then(res =>{
+      getTitle(titleInput).then(res =>{
         this.setState({searchAnimes: res.results})
       })
     }
