@@ -173,7 +173,7 @@ async function anime_userAlsoWatch(req, res) {
         ORDER BY count(*) DESC
         LIMIT 10
     )
-    SELECT a.Anime_ID, a.Name, au.url
+    SELECT a.Anime_id, a.Name, au.url
     FROM anime a LEFT JOIN anime_url au ON a.Anime_ID = au.Anime_ID
     WHERE a.Anime_ID in (select Anime_id from animeID)
     `;
@@ -237,141 +237,141 @@ async function anime_TopinsameGenres(req, res) {
 //             MAIN PAGE ROUTES
 // ********************************************
 
-async function get_genre(req, res){
-    const page = req.query.page?req.query.page:1
-    const pagenumber = page-1
+async function get_genre(req, res) {
+    const page = req.query.page ? req.query.page : 1
+    const pagenumber = page - 1
     const genre = req.query.genre
     var query = `SELECT A.Anime_ID AS id, Name, Score, Source, Rating, Type, Episodes, url
     FROM anime A INNER JOIN anime_genres G ON G.Anime_ID = A.Anime_ID
     INNER JOIN anime_url U on A.Anime_ID = U.Anime_ID
     WHERE G.Genres = '${genre}'
-    ORDER BY A.Popularity;`;
-   // LIMIT ${pagenumber*20} 20;`
+    ORDER BY Ranked
+    LIMIT ${pagenumber * 20}, 20;`;
 
-    connection.query(query, function(error, results, fields){
+    connection.query(query, function (error, results, fields) {
 
-        if(error){
-            res.json({error:error})
-        }else if(results){
-            res.json({results:results})
+        if (error) {
+            res.json({ error: error })
+        } else if (results) {
+            res.json({ results: results })
         }
     });
 
 }
 
-async function get_source(req, res){
-    const page = req.query.page?req.query.page:1
-    const pagenumber = page-1
-    const source = req.query.source 
+async function get_source(req, res) {
+    const page = req.query.page ? req.query.page : 1
+    const pagenumber = page - 1
+    const source = req.query.source
     var query = `SELECT A.Anime_ID AS id, Name, Score, Source, Rating, Episodes, Type, url
     FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
     WHERE A.Source = '${source}'
-    ORDER BY A.Popularity;`;
-    //LIMIT ${pagenumber*20};`
+    ORDER BY Ranked
+    LIMIT ${pagenumber * 20}, 20;`;
 
-    connection.query(query, function(error, results, fields){
+    connection.query(query, function (error, results, fields) {
 
-        if(error){
-            res.json({error:error})
-        }else if(results){
-            res.json({results:results})
+        if (error) {
+            res.json({ error: error })
+        } else if (results) {
+            res.json({ results: results })
         }
     });
 }
 
-async function get_type(req, res){
-    const page = req.query.page?req.query.page:1
-    const pagenumber = page-1
+async function get_type(req, res) {
+    const page = req.query.page ? req.query.page : 1
+    const pagenumber = page - 1
     const type = req.query.type
-    
+
     var query = `SELECT A.Anime_ID AS id, Name, Score, Source, Rating, Episodes, Type, url
     FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
     WHERE A.Type = '${type}'
-    ORDER BY A.popularity;`;
-    //LIMIT ${pagenumber*20};`
+    ORDER BY Ranked
+    LIMIT ${pagenumber * 20}, 20;`;
 
-    connection.query(query, function(error, results, fields){
+    connection.query(query, function (error, results, fields) {
 
-        if(error){
-            res.json({error:error})
-        }else if(results){
-            res.json({results:results})
+        if (error) {
+            res.json({ error: error })
+        } else if (results) {
+            res.json({ results: results })
         }
     });
 
 }
 
-async function get_rating(req,res){
-    const page = req.query.page?req.query.page:1
-    const pagenumber = page-1
+async function get_rating(req, res) {
+    const page = req.query.page ? req.query.page : 1
+    const pagenumber = page - 1
     const rating = req.query.rating
 
     var query = `SELECT A.Anime_ID AS id, Name, Score, Source, Rating, Episodes, Type, url
     FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
     WHERE A.Rating LIKE '%${rating}%'
-    ORDER BY A.popularity;`
-    //LIMIT ${pagenumber*20};`
+    ORDER BY Ranked
+    LIMIT ${pagenumber * 20}, 20;`;
 
-    connection.query(query, function(error, results, fields){
+    connection.query(query, function (error, results, fields) {
 
-        if(error){
-            res.json({error:error})
-        }else if(results){
-            res.json({results:results})
+        if (error) {
+            res.json({ error: error })
+        } else if (results) {
+            res.json({ results: results })
         }
     });
 
 }
 
-async function top_manga(req, res){
+async function top_manga(req, res) {
 
     var query = `SELECT A.Anime_ID AS id, Name, Score, Episodes, url
     FROM anime A JOIN anime_url AU ON A.Anime_ID = AU.Anime_ID
     WHERE A.Source = 'Manga'
     ORDER BY Ranked
     LIMIT 10;`;
-    
-    connection.query(query, function(error, results, fields){
 
-        if(error){
-            res.json({error:error})
-        }else if(results){
-            res.json({results:results})
+    connection.query(query, function (error, results, fields) {
+
+        if (error) {
+            res.json({ error: error })
+        } else if (results) {
+            res.json({ results: results })
         }
     });
 }
 
-async function top_anime(req, res){
-     
+async function top_anime(req, res) {
+
     var query = `SELECT A.Anime_ID AS id, Name, Score, Episodes, url
     FROM anime A JOIN anime_url AU ON A.Anime_ID = AU.Anime_ID
     WHERE A.Source <> 'Manga'
     ORDER BY Ranked
     LIMIT 10;`;
 
-    connection.query(query, function(error, results, fields){
+    connection.query(query, function (error, results, fields) {
 
-        if(error){
-            res.json({error:error})
-        }else if(results){
-            res.json({results:results})
+        if (error) {
+            res.json({ error: error })
+        } else if (results) {
+            res.json({ results: results })
         }
     });
 }
 
-async function search_title(req, res){
+async function search_title(req, res) {
     const title = req.query.title
 
     var query = `SELECT A.Anime_ID AS id, A.Name AS Name, Score, Source, Rating, Episodes, Type, url
     FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
     Where A.Name LIKE '%${title}%'
     ORDER BY A.Popularity`;
-    connection.query(query, function(error, results, fields){
+    connection.query(query, function (error, results, fields) {
 
-        if(error){
-            res.json({error:error})
-        }else if(results){
-            res.json({results:results})
+        if (error) {
+            res.json({ error: error })
+        } else if (results) {
+            res.json({ results: results })
         }
     });
 }
