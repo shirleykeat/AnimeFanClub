@@ -77,6 +77,19 @@ async function user_rated(req, res) {
     })
 }
 
+async function get_password(req, res) {
+    const email = req.query.email
+    connection.query(`SELECT Password
+    FROM user
+    WHERE Email_address = '${email}'`, function (error, results, fields) {
+
+        if (error) {
+            res.json({ error: error })
+        } else if (results) {
+            res.json({ results: results })
+        }
+    })
+}
 // ********************************************
 //             ANIME-SPECIFIC ROUTES
 // ********************************************
