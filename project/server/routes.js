@@ -90,6 +90,7 @@ async function get_password(req, res) {
         }
     })
 }
+
 // ********************************************
 //             ANIME-SPECIFIC ROUTES
 // ********************************************
@@ -455,6 +456,7 @@ module.exports = {
     user_watched,
     user_watching,
     user_rated,
+    get_password,
     anime_property,
     anime_description,
     anime_genres,
