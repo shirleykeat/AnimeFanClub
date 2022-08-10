@@ -167,8 +167,8 @@ class SearchPage extends React.Component {
                             <FormInput placeholder="Name" value={this.state.nameQuery} onChange={this.handleNameQueryChange} />
                         </FormGroup></Col>
                         <Col flex={2}><FormGroup style={{ width: '40vw', margin: '0 auto' }}>
-                            <label>Synopsis</label>
-                            <FormInput placeholder="Synopsis" value={this.state.synopsisQuery} onChange={this.handleSynopsisQueryChange} />
+                            {/* <label>Synopsis</label> */}
+                            {/* <FormInput placeholder="Synopsis" value={this.state.synopsisQuery} onChange={this.handleSynopsisQueryChange} /> */}
                         </FormGroup></Col>
                     </Row>
                     <br></br>

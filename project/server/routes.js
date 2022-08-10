@@ -405,10 +405,10 @@ async function search_title(req, res) {
 
 async function get_search_results(req, res) {
     const genre = req.query.genre ? req.query.genre : '';
-    const licensor = req.query.id ? req.query.id : '';
-    const producer = req.query.id ? req.query.id : '';
-    const studio = req.query.id ? req.query.id : '';
-    const keyword = req.query.id ? req.query.id : '';
+    const licensor = req.query.licensor ? req.query.licensor : '';
+    const producer = req.query.producer ? req.query.producer : '';
+    const studio = req.query.studio ? req.query.studio : '';
+    const name = req.query.name ? req.query.name : '';
     SearchQuery = `WITH genre AS (
         SELECT Anime_ID, Genres
         FROM anime_genres
@@ -432,29 +432,24 @@ async function get_search_results(req, res) {
     SELECT anime.Name AS name, genre.Genres AS genre, licensor.Licensors AS licensor,
         producer.Producers AS producer, studio.Studios AS studio,
         anime.Type AS type, anime.Score AS score, anime.Rating AS rating,
-        anime.Ranked AS ranked, anime.Popularity AS popularity, anime.Favorites AS favorites,
-        anime_with_synopsis.Synopsis AS synopsis
+        anime.Ranked AS ranked, anime.Popularity AS popularity, anime.Favorites AS favorites
     FROM anime
     INNER JOIN genre ON anime.Anime_ID = genre.Anime_ID
     INNER JOIN licensor ON anime.Anime_ID = licensor.Anime_ID
     INNER JOIN producer ON anime.Anime_ID = producer.Anime_ID
     INNER JOIN studio ON anime.Anime_ID = studio.Anime_ID
-    INNER JOIN anime_with_synopsis ON anime.Anime_ID = anime_with_synopsis.Anime_ID
-    WHERE anime.Name LIKE '%${keyword}%' OR Synopsis LIKE '%${keyword}%';
+    WHERE anime.Name LIKE '%${name}%';
     `;
-    if (animeid === null) {
-        res.json({ results: [] })
-    } else {
-        connection.query(SearchQuery,
-            function (error, results, fields) {
-                if (error) {
-                    console.log(error)
-                    res.json({ error: error })
-                } else if (results) {
-                    res.json({ results: results })
-                }
-            })
-    }
+
+    connection.query(SearchQuery,
+        function (error, results, fields) {
+            if (error) {
+                console.log(error)
+                res.json({ error: error })
+            } else if (results) {
+                res.json({ results: results })
+            }
+        })
 }
 
 
