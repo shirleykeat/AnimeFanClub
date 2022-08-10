@@ -92,9 +92,12 @@ class AnimePage extends React.Component {
 
               <img src={anime.url} referrerpolicy="no-referrer" alt={"animePic"} style={{ height: '25vh' }} />
             </Card>
-            <NavLink to={{ pathname: '/anime?id=' + anime.Anime_id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+            {/* <NavLink to={{ pathname: '/anime?id=' + anime.Anime_id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
               {anime.Name}
-            </NavLink>
+            </NavLink> */}
+            <a href={"../anime?id=" + anime.Anime_id} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+              {anime.Name}
+            </a>
 
           </Col>
         </div>
