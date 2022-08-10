@@ -31,7 +31,7 @@ async function user_profile(req, res) {
 
 async function user_watched(req, res) {
     const userid = req.query.id
-    connection.query(`SELECT anime.Anime_ID, Name, url
+    connection.query(`SELECT anime.Anime_ID AS id, Name, url
     FROM animelist
     JOIN anime ON animelist.anime_id = anime.Anime_ID
     LEFT JOIN anime_url au ON animelist.anime_id = au.Anime_ID
@@ -47,7 +47,7 @@ async function user_watched(req, res) {
 
 async function user_watching(req, res) {
     const userid = req.query.id
-    connection.query(`SELECT anime.Anime_ID, Name, url
+    connection.query(`SELECT anime.Anime_ID AS id, Name, url
     FROM animelist
     JOIN anime ON animelist.anime_id = anime.Anime_ID
     LEFT JOIN anime_url au ON animelist.anime_id = au.Anime_ID
@@ -63,7 +63,7 @@ async function user_watching(req, res) {
 
 async function user_rated(req, res) {
     const userid = req.query.id
-    connection.query(`SELECT anime.Anime_ID, Name, url
+    connection.query(`SELECT anime.Anime_ID AS id, Name, url
     FROM animelist
     JOIN anime ON animelist.anime_id = anime.Anime_ID
     LEFT JOIN anime_url au ON animelist.anime_id = au.Anime_ID
@@ -79,7 +79,7 @@ async function user_rated(req, res) {
 
 async function get_password(req, res) {
     const email = req.query.email
-    connection.query(`SELECT Password
+    connection.query(`SELECT Password, USER_ID AS id
     FROM user
     WHERE Email_address = '${email}'`, function (error, results, fields) {
 
