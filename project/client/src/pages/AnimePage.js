@@ -179,9 +179,6 @@ class AnimePage extends React.Component {
 
 
 
-
-
-
           {this.state.userAlsoWatchDetails ? <div style={{ width: '70vw', margin: '0 auto', marginTop: '2vh' }}>
 
             <Divider><h4 style={{ fontSize: 20, fontFamily: 'arial' }}>People Also Watch</h4></Divider>

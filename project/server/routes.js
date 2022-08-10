@@ -222,13 +222,21 @@ async function anime_TopinsameGenres(req, res) {
         SELECT DISTINCT Anime_id
         FROM anime_genres
         WHERE Anime_id <> ${animeid} and Genres in (SELECT Genres FROM temp)
+    ),
+        animeID_list AS (
+        SELECT Anime_id
+        FROM animelist
+        WHERE Anime_id <> ${animeid} and watching_status in (1, 2)
+        GROUP BY Anime_id
+        ORDER BY count(*) DESC
+        LIMIT 100
     )
     SELECT a.Anime_id, a.Name, au.url
     FROM anime a LEFT JOIN anime_url au ON a.Anime_ID = au.Anime_ID
-    WHERE a.Anime_id in (SELECT Anime_id FROM animeID)
+    WHERE a.Anime_id in (SELECT Anime_id FROM animeID) AND a.Anime_id in (SELECT Anime_id FROM animeID_list)
     group by a.Anime_id, a.Name
     ORDER BY a.Score desc
-    LIMIT 10
+    LIMIT 20
     `;
 
     if (animeid === null) {
