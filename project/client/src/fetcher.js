@@ -114,8 +114,8 @@ const getTitle = async (title) => {
     return res.json()
 }
 
-const getSearchResults = async (genre, licensor, producer, studio, name) => {
-    var res = await fetch(`http://${config.server_host}:${config.server_port}/search/advance_search?genre=${genre}&licensor=${licensor}&producer=${producer}&studio=${studio}&name=${name}`, {
+const getSearchResults = async (genre, licensor, producer, studio, name, scoreH, scoreL) => {
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/search/advance_search?genre=${genre}&licensor=${licensor}&producer=${producer}&studio=${studio}&name=${name}&scoreH=${scoreH}&scoreL=${scoreL}`, {
         method: 'GET',
     })
     return res.json()

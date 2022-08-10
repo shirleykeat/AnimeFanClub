@@ -438,7 +438,8 @@ async function get_search_results(req, res) {
     INNER JOIN licensor ON anime.Anime_ID = licensor.Anime_ID
     INNER JOIN producer ON anime.Anime_ID = producer.Anime_ID
     INNER JOIN studio ON anime.Anime_ID = studio.Anime_ID
-    WHERE anime.Name LIKE '%${name}%' AND anime.Score >= '%${scoreL}%' AND anime.Score <= '%${scoreH}%';
+    WHERE anime.Name LIKE '%${name}%' AND anime.Score >= ${scoreL} AND anime.Score <= ${scoreH}
+    LIMIT 1000;
     `;
 
     connection.query(SearchQuery,
