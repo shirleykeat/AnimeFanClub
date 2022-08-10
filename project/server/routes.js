@@ -409,6 +409,8 @@ async function get_search_results(req, res) {
     const producer = req.query.producer ? req.query.producer : '';
     const studio = req.query.studio ? req.query.studio : '';
     const name = req.query.name ? req.query.name : '';
+    const scoreH = req.query.scoreH ? req.query.scoreH : 10;
+    const scoreL = req.query.scoreL ? req.query.scoreL : 0;
     SearchQuery = `WITH genre AS (
         SELECT Anime_ID, Genres
         FROM anime_genres
@@ -429,16 +431,14 @@ async function get_search_results(req, res) {
         FROM anime_studios
         WHERE Studios LIKE '%${studio}%'
         )
-    SELECT anime.Name AS name, genre.Genres AS genre, licensor.Licensors AS licensor,
-        producer.Producers AS producer, studio.Studios AS studio,
-        anime.Type AS type, anime.Score AS score, anime.Rating AS rating,
-        anime.Ranked AS ranked, anime.Popularity AS popularity, anime.Favorites AS favorites
+    SELECT DISTINCT anime.Name AS name, anime.Type AS type, anime.Score AS score, anime.Rating AS rating,
+            anime.Ranked AS ranked, anime.Popularity AS popularity, anime.Favorites AS favorites
     FROM anime
     INNER JOIN genre ON anime.Anime_ID = genre.Anime_ID
     INNER JOIN licensor ON anime.Anime_ID = licensor.Anime_ID
     INNER JOIN producer ON anime.Anime_ID = producer.Anime_ID
     INNER JOIN studio ON anime.Anime_ID = studio.Anime_ID
-    WHERE anime.Name LIKE '%${name}%';
+    WHERE anime.Name LIKE '%${name}%' AND anime.Score >= '%${scoreL}%' AND anime.Score <= '%${scoreH}%';
     `;
 
     connection.query(SearchQuery,

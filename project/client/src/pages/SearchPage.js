@@ -25,30 +25,30 @@ const animeColumns = [
         key: 'name',
         sorter: (a, b) => a.name.localeCompare(b.name)
     },
-    {
-        title: 'Genre',
-        dataIndex: 'genre',
-        key: 'genre',
-        sorter: (a, b) => a.genre.localeCompare(b.genre)
-    },
-    {
-        title: 'Licensor',
-        dataIndex: 'licensor',
-        key: 'licensor',
-        sorter: (a, b) => a.licensor.localeCompare(b.licensor)
-    },
-    {
-        title: 'Producer',
-        dataIndex: 'producer',
-        key: 'producer',
-        sorter: (a, b) => a.producer.localeCompare(b.producer)
-    },
-    {
-        title: 'Studio',
-        dataIndex: 'studio',
-        key: 'studio',
-        sorter: (a, b) => a.studio.localeCompare(b.studio)
-    },
+    // {
+    //     title: 'Genre',
+    //     dataIndex: 'genre',
+    //     key: 'genre',
+    //     sorter: (a, b) => a.genre.localeCompare(b.genre)
+    // },
+    // {
+    //     title: 'Licensor',
+    //     dataIndex: 'licensor',
+    //     key: 'licensor',
+    //     sorter: (a, b) => a.licensor.localeCompare(b.licensor)
+    // },
+    // {
+    //     title: 'Producer',
+    //     dataIndex: 'producer',
+    //     key: 'producer',
+    //     sorter: (a, b) => a.producer.localeCompare(b.producer)
+    // },
+    // {
+    //     title: 'Studio',
+    //     dataIndex: 'studio',
+    //     key: 'studio',
+    //     sorter: (a, b) => a.studio.localeCompare(b.studio)
+    // },
     {
         title: 'Type',
         dataIndex: 'type',
@@ -98,8 +98,8 @@ class SearchPage extends React.Component {
             licensorQuery: '',
             producerQuery: '',
             studioQuery: '',
-            // scoreHighQuery: 10,
-            // scoreLowQuery: 0,
+            scoreHighQuery: 10,
+            scoreLowQuery: 0,
             animeResults: []
 
         }
@@ -110,7 +110,7 @@ class SearchPage extends React.Component {
         this.handleLicensorQueryChange = this.handleLicensorQueryChange.bind(this)
         this.handleProducerQueryChange = this.handleProducerQueryChange.bind(this)
         this.handleStudioQueryChange = this.handleStudioQueryChange.bind(this)
-        // this.handleScoreChange = this.handleScoreChange.bind(this)
+        this.handleScoreChange = this.handleScoreChange.bind(this)
     }
 
     handleNameQueryChange(event) {
@@ -133,15 +133,15 @@ class SearchPage extends React.Component {
         this.setState({ studioQuery: event.target.value })
     }
 
-    // handleScoreChange(value) {
-    //     this.setState({ scoreLowQuery: value[0] })
-    //     this.setState({ scoreHighQuery: value[1] })
-    // }
+    handleScoreChange(value) {
+        this.setState({ scoreLowQuery: value[0] })
+        this.setState({ scoreHighQuery: value[1] })
+    }
 
     updateSearchResults() {
         getSearchResults(this.state.genreQuery, this.state.licensorQuery,
-            this.state.producerQuery, this.state.studioQuery, this.state.nameQuery
-            // this.state.scoreHighQuery, this.state.scoreLowQuery, 
+            this.state.producerQuery, this.state.studioQuery, this.state.nameQuery,
+            this.state.scoreHighQuery, this.state.scoreLowQuery, 
         ).then(res => {
             this.setState({ animeResults: res.results })
         })
@@ -149,8 +149,8 @@ class SearchPage extends React.Component {
 
     componentDidMount() {
         getSearchResults(this.state.genreQuery, this.state.licensorQuery,
-            this.state.producerQuery, this.state.studioQuery, this.state.nameQuery
-            // this.state.scoreHighQuery, this.state.scoreLowQuery, 
+            this.state.producerQuery, this.state.studioQuery, this.state.nameQuery,
+            this.state.scoreHighQuery, this.state.scoreLowQuery, 
         ).then(res => {
             this.setState({ animeResults: res.results })
         })
@@ -167,8 +167,6 @@ class SearchPage extends React.Component {
                             <FormInput placeholder="Name" value={this.state.nameQuery} onChange={this.handleNameQueryChange} />
                         </FormGroup></Col>
                         <Col flex={2}><FormGroup style={{ width: '40vw', margin: '0 auto' }}>
-                            {/* <label>Synopsis</label> */}
-                            {/* <FormInput placeholder="Synopsis" value={this.state.synopsisQuery} onChange={this.handleSynopsisQueryChange} /> */}
                         </FormGroup></Col>
                     </Row>
                     <br></br>
@@ -195,7 +193,7 @@ class SearchPage extends React.Component {
                     <Row>
                         <Col flex={2}><FormGroup style={{ width: '20vw', margin: '0 auto' }}>
                             <label>Score</label>
-                            <Slider range defaultValue={[0, 10]} onChange={this.handleScoreChange} />
+                            <Slider range defaultValue={[0, 10]}  max={10} onChange={this.handleScoreChange} />
                         </FormGroup></Col>
                         <Col flex={2}><FormGroup style={{ width: '10vw' }}>
                             <Button style={{ marginTop: '4vh' }} onClick={this.updateSearchResults}>Search</Button>
