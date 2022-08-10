@@ -64,6 +64,13 @@ const getUserRated = async (id) => {
     return res.json()
 }
 
+const getPassword = async (email) => {
+    var res = await fetch(`http://${config.server_host}:${config.server_port}/user/auth?email=${email}`, {
+        method: 'GET',
+    })
+    return res.json()
+}
+
 const getGenre = async (page, genre) => {
     var res = await fetch(`http://${config.server_host}:${config.server_port}/main/genres?page=${page}&genre=${genre}`, {
         method: 'GET',
