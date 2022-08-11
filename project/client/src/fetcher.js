@@ -138,6 +138,7 @@ export {
     getUserWatched,
     getUserWatching,
     getUserRated,
+    getPassword,
     getGenre,
     getSource,
     getRating,
