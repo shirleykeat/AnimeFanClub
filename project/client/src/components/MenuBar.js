@@ -23,8 +23,8 @@ function MenuBar() {
         <Nav.Link href="/search/advance_search" style={{ color: "white" }}>Advanced Search</Nav.Link>
         <Nav>
           <ButtonGroup className="mb-2">
-            <Button variant="outline-secondary" style={{ color: "white" }}>Sign In</Button>
-            <Button variant="outline-secondary" style={{ color: "white" }}>Sign Up</Button>
+            <Button variant="outline-secondary" style={{ color: "white" }} href="/signin">Sign In</Button>
+            <Button variant="outline-secondary" style={{ color: "white" }} href="/signup">Sign Up</Button>
           </ButtonGroup>
         </Nav>
       </Container>
