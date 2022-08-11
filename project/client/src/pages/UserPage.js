@@ -48,7 +48,9 @@ class UserPage extends React.Component {
                 </div>
 
                 <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
-                    <h3>Profile</h3>
+                    <div class="text-center">
+                        <h4>Profile</h4>
+                    </div>
                     <p>ID: {this.state.userprofileDetails.USER_ID}</p>
                     <p>Name: {this.state.userprofileDetails.Name}</p>
                     <p>Birthday: {this.state.userprofileDetails.Birthday}</p>
