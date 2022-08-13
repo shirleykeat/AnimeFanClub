@@ -58,7 +58,7 @@ class RatingsPage extends React.Component{
                     {/*<NavLink to={{ pathname: '/anime?id=' + anime.id }} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
                                         {anime.Name}
             </NavLink>*/}
-                    <a href={"../anime?id=" + anime.Anime_id} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
+                    <a href={"../anime?id=" + anime.id} style={{ textDecoration: 'none', color: 'brown', fontWeight: 'bold', fontSize: 13 }}>
                             {anime.Name}
                         </a>
                 </Col>
