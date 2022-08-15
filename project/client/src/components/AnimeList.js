@@ -1,8 +1,9 @@
+/*https://www.freecodecamp.org/news/react-movie-app-tutorial/*/
+
 import React from "react";
-import { Card, CardBody } from "shards-react";
+import { Card } from "shards-react";
 import { NavLink } from 'react-router-dom';
 import {
-    Row,
     Col
 } from 'antd';
 
