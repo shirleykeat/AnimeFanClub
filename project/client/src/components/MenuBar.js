@@ -43,7 +43,7 @@ class MenuBar extends React.Component {
 
   userLogOut = () => {
     this.setState({ id: null })
->>>>>>> 7ae135d005b068a8bf842dde77d07e2361a60c7f
+    localStorage.removeItem('user')
   }
 
   render() {
