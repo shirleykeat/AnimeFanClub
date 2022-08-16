@@ -8,23 +8,27 @@ class MenuBar extends React.Component {
   constructor(props){
     super(props);
     this.state ={
-      islogged: false,
       email:null,
       id:null
     }
 
   }
   
-  componentDidMount(){
+  
 
-   this.setState({islogged: this.props.signedin})
-   this.setState({email: this.props.email})
-   this.setState({id: this.props.id})
+  componentDidMount(){
     
+   const auth = localStorage.getItem('user')
+   
+   if(auth){
+    this.setState({email: auth.email})
+    this.setState({id: auth.id})
+   }
  }
  
   userLogOut=()=>{
     this.setState({id:null})
+    localStorage.removeItem('user')
   }
 
   render(){

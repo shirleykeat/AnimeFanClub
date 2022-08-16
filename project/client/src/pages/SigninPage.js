@@ -9,8 +9,8 @@ const onFinishFailed = (errorInfo) => {
 };
 
 class SigninPage extends React.Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             notice: '',
             message: '',
@@ -46,6 +46,7 @@ class SigninPage extends React.Component {
                                 notice: '',
                                 message: <div>You've successfully logged in! Go to <a href={"../user?id=" + this.state.user.id}>your page</a></div>
                             });
+                            localStorage.setItem('user', res.results[0])
                         }, 500);
 
                     }
@@ -55,28 +56,14 @@ class SigninPage extends React.Component {
 
 
     }
+
+   
+
     render() {
         return (
             
             <div>
-                <div>
-                    <BrowserRouter>
-                       <Switch>
-                       <Route
-                            exact
-                            path={"../components/Menubar.js"}
-                            render={props => (
-                                <MenuBar
-                                {...props}
-                                signedin={this.state.signedin}
-                                id={this.state.id}
-                                email = {this.state.user.email}
-                                />
-                            )}
-                            />
-                       </Switch>
-                    </BrowserRouter>
-                </div>
+           
                 <div style={{ width: '70vw', margin: '0 auto', marginTop: '10vh' }}>
                     <h1 style={{ color: 'white' }}>sign in</h1></div>
                 {this.state.notice && (
