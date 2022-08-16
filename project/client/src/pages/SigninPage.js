@@ -1,6 +1,8 @@
 import { Alert, Button, Checkbox, Form, Input } from 'antd';
 import React from 'react';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { getPassword } from '../fetcher';
+import MenuBar from '../components/MenuBar';
 
 const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
@@ -18,6 +20,7 @@ class SigninPage extends React.Component {
         }
         this.onFinish = this.onFinish.bind(this)
     }
+
     onFinish(values) {
 
         getPassword(values.email).then(res => {
@@ -53,7 +56,26 @@ class SigninPage extends React.Component {
     }
     render() {
         return (
+            
             <div>
+                <div>
+                    <BrowserRouter>
+                       <Switch>
+                       <Route
+                            exact
+                            path={"../components/Menubar.js"}
+                            render={props => (
+                                <MenuBar
+                                {...props}
+                                signedin={this.state.signedin}
+                                id={this.state.id}
+                                email = {this.state.user.email}
+                                />
+                            )}
+                            />
+                       </Switch>
+                    </BrowserRouter>
+                </div>
                 <div style={{ width: '70vw', margin: '0 auto', marginTop: '10vh' }}>
                     <h1 style={{ color: 'white' }}>sign in</h1></div>
                 {this.state.notice && (
