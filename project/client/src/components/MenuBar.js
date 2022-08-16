@@ -24,13 +24,13 @@ class MenuBar extends React.Component {
  }
  
   userLogOut=()=>{
-    this.setState({islogged:false})
+    this.setState({id:null})
   }
 
   render(){
     return (
     <div>
-      {this.state.islogged===false?
+      {this.state.id==null?
         <Navbar bg="dark" variant='dark'>
           <Container>
             <Navbar.Brand href="/" style={{ color: "white" }}>My Anime Fan Club</Navbar.Brand>
