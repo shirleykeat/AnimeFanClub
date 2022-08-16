@@ -4,16 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, FormInput, FormGroup, Button } from "shards-react";
 import { format } from 'd3-format';
 import { getSearchResults } from '../fetcher';
+import { Link } from 'react-router-dom'; 
 
 import {
     Table,
-    Pagination,
-    Select,
     Row,
     Col,
     Divider,
-    Slider,
-    Rate
+    Slider
 } from 'antd'
 
 const wideFormat = format('.3r');
@@ -23,32 +21,9 @@ const animeColumns = [
         title: 'Name',
         dataIndex: 'name',
         key: 'name',
+        cell: row =><a href={"../anime?id=" + this.state.animeResults.id}> </a>,
         sorter: (a, b) => a.name.localeCompare(b.name)
     },
-    // {
-    //     title: 'Genre',
-    //     dataIndex: 'genre',
-    //     key: 'genre',
-    //     sorter: (a, b) => a.genre.localeCompare(b.genre)
-    // },
-    // {
-    //     title: 'Licensor',
-    //     dataIndex: 'licensor',
-    //     key: 'licensor',
-    //     sorter: (a, b) => a.licensor.localeCompare(b.licensor)
-    // },
-    // {
-    //     title: 'Producer',
-    //     dataIndex: 'producer',
-    //     key: 'producer',
-    //     sorter: (a, b) => a.producer.localeCompare(b.producer)
-    // },
-    // {
-    //     title: 'Studio',
-    //     dataIndex: 'studio',
-    //     key: 'studio',
-    //     sorter: (a, b) => a.studio.localeCompare(b.studio)
-    // },
     {
         title: 'Type',
         dataIndex: 'type',
