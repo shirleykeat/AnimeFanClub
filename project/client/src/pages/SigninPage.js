@@ -43,6 +43,7 @@ class SigninPage extends React.Component {
                     else {
                         setTimeout(() => {
                             this.setState({
+                                notice: '',
                                 message: <div>You've successfully logged in! Go to <a href={"../user?id=" + this.state.user.id}>your page</a></div>
                             });
                         }, 500);

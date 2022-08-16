@@ -4,7 +4,7 @@ import React from "react";
 import { Card } from "shards-react";
 import { NavLink } from 'react-router-dom';
 import {
-    Col
+    Col, Link
 } from 'antd';
 
 const AnimeList = (props) => {
