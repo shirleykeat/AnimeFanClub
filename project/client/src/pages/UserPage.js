@@ -44,7 +44,7 @@ class UserPage extends React.Component {
 
         return (
             <div>
-                {/*<div>
+                <div>
                     <Navbar bg="dark" variant='dark'>
                         <Container>
                             <Navbar.Brand href="/" style={{ color: "white" }}>My Anime Fan Club</Navbar.Brand>
@@ -68,8 +68,8 @@ class UserPage extends React.Component {
                             </Nav>
                         </Container>
                     </Navbar>
-        </div>*/}
-                <div><MenuBar/></div>
+                </div>
+                {/*<div><MenuBar/></div>*/}
 
                 <div style={{ width: '70vw', margin: '0 auto', marginTop: '5vh' }}>
                     <div class="text-center">

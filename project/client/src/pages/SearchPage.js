@@ -18,10 +18,15 @@ const wideFormat = format('.3r');
 
 const animeColumns = [
     {
+        title: 'Link',
+        dataIndex: 'id',
+        key: 'id',
+        render: item => <a href={"../anime?id=" + item}> Link </a>
+    },
+    {
         title: 'Name',
         dataIndex: 'name',
         key: 'name',
-        cell: row =><a href={"../anime?id=" + this.state.animeResults.id}> </a>,
         sorter: (a, b) => a.name.localeCompare(b.name)
     },
     {
@@ -30,6 +35,7 @@ const animeColumns = [
         key: 'type',
         sorter: (a, b) => a.type.localeCompare(b.type)
     },
+
     {
         title: 'Rating',
         dataIndex: 'rating',

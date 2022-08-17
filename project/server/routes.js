@@ -435,7 +435,7 @@ async function get_search_results(req, res) {
         FROM anime_studios
         WHERE Studios LIKE '%${studio}%'
         )
-    SELECT DISTINCT anime.anime_id AS id, anime.Name AS name, anime.Type AS type, anime.Score AS score, anime.Rating AS rating,
+    SELECT DISTINCT anime.Anime_ID AS id, anime.Name AS name, anime.Type AS type, anime.Score AS score, anime.Rating AS rating,
             anime.Ranked AS ranked, anime.Popularity AS popularity, anime.Favorites AS favorites
     FROM anime
     INNER JOIN genre ON anime.Anime_ID = genre.Anime_ID
