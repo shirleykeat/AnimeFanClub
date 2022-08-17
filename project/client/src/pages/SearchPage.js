@@ -21,7 +21,7 @@ const animeColumns = [
         title: 'Link',
         dataIndex: 'id',
         key: 'id',
-        render: row => <a href={"../anime?id=" + "100"}> Link </a>
+        render: item => <a href={"../anime?id=" + item}> Link </a>
     },
     {
         title: 'Name',
