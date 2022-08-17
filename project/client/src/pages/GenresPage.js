@@ -79,7 +79,6 @@ class GenresPage extends React.Component{
             <div className='mx-auto p-2' style={{width: '1000px'}}>
                 <Button variant="outline-secondary" type="submit" size="sm" onClick={()=>{this.getGenreAnimes("Action")}}>Action</Button>{' '}
                 <Button variant="outline-secondary" type="submit" size="sm" onClick={()=>{this.getGenreAnimes("Comedy")}}>Comedy</Button>{' '}
-                <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Drama")}}>Drama</Button>{' '}
                 <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Sci-Fi")}}>Sci-Fi</Button>{' '}
                 <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Supernatural")}}>Supernatural</Button>{' '}
                 <Button variant="outline-secondary" type="submit"size="sm" onClick={()=>{this.getGenreAnimes("Magic")}}>Magic</Button>{' '}
