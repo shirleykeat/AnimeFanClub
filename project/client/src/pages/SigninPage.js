@@ -1,14 +1,16 @@
 import { Alert, Button, Checkbox, Form, Input } from 'antd';
 import React from 'react';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { getPassword } from '../fetcher';
+import MenuBar from '../components/MenuBar';
 
 const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
 };
 
 class SigninPage extends React.Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             notice: '',
             message: '',
@@ -18,6 +20,7 @@ class SigninPage extends React.Component {
         }
         this.onFinish = this.onFinish.bind(this)
     }
+
     onFinish(values) {
 
         getPassword(values.email).then(res => {
@@ -40,8 +43,10 @@ class SigninPage extends React.Component {
                     else {
                         setTimeout(() => {
                             this.setState({
+                                notice: '',
                                 message: <div>You've successfully logged in! Go to <a href={"../user?id=" + this.state.user.id}>your page</a></div>
                             });
+                            localStorage.setItem('user', res.results[0])
                         }, 500);
 
                     }
@@ -51,8 +56,12 @@ class SigninPage extends React.Component {
 
 
     }
+
+
+
     render() {
         return (
+
             <div>
                 <div style={{ width: '70vw', margin: '0 auto', marginTop: '10vh' }}>
                     <h1 style={{ color: 'white' }}>sign in</h1></div>
