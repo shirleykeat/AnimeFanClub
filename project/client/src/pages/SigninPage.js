@@ -57,13 +57,12 @@ class SigninPage extends React.Component {
 
     }
 
-   
+
 
     render() {
         return (
-            
+
             <div>
-           
                 <div style={{ width: '70vw', margin: '0 auto', marginTop: '10vh' }}>
                     <h1 style={{ color: 'white' }}>sign in</h1></div>
                 {this.state.notice && (
