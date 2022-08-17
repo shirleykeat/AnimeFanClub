@@ -267,7 +267,8 @@ async function get_genre(req, res) {
     FROM anime A INNER JOIN anime_genres G ON G.Anime_ID = A.Anime_ID
     INNER JOIN anime_url U on A.Anime_ID = U.Anime_ID
     WHERE G.Genres = '${genre}'
-    ORDER BY A.popularity;`
+    ORDER BY A.popularity
+    LIMIT 50;`
     //LIMIT ${pagenumber * 20}, 20;`;
 
     connection.query(query, function (error, results, fields) {
@@ -288,7 +289,8 @@ async function get_source(req, res) {
     var query = `SELECT A.Anime_ID AS id, Name, Score, Source, Rating, Episodes, Type, url
     FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
     WHERE A.Source = '${source}'
-    ORDER BY A.popularity;`
+    ORDER BY A.popularity
+    LIMIT 50;`
     //LIMIT ${pagenumber * 20}, 20;`;
 
     connection.query(query, function (error, results, fields) {
@@ -309,7 +311,8 @@ async function get_type(req, res) {
     var query = `SELECT A.Anime_ID AS id, Name, Score, Source, Rating, Episodes, Type, url
     FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
     WHERE A.Type = '${type}'
-    ORDER BY A.popularity;`
+    ORDER BY A.popularity
+    LIMIT 50;`
     //LIMIT ${pagenumber * 20}, 20;`;
 
     connection.query(query, function (error, results, fields) {
@@ -331,7 +334,8 @@ async function get_rating(req, res) {
     var query = `SELECT A.Anime_ID AS id, Name, Score, Source, Rating, Episodes, Type, url
     FROM anime A JOIN anime_url U ON U.Anime_ID = A.Anime_ID
     WHERE A.Rating LIKE '%${rating}%'
-    ORDER BY A.popularity;`
+    ORDER BY A.popularity
+    LIMIT 50;`
     //LIMIT ${pagenumber * 20}, 20;`;
 
     connection.query(query, function (error, results, fields) {
